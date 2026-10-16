@@ -1,5 +1,7 @@
 # Cozy Gray
 
+[Website](https://cozygray.marsolab.workers.dev) · [Source](https://github.com/marsolab/cozygray)
+
 A responsive landing page and prototype distribution surface for a warm gray editor and terminal theme, with light and dark variants.
 
 ## Run
