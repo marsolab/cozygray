@@ -275,3 +275,8 @@ The generated `public/assets/cozy-gray-logo.png` combines a softly squared C wit
 ### Editor preview separation
 
 The interactive editor window has a complete 8px corner radius and a soft two-layer shadow, including beneath the language bar. This separates the light editor chrome from its gray presentation stage without changing exported theme colors. The shadow is deeper against the dark website surface.
+
+
+### Painted preview backdrop
+
+The preview stage uses the generated `public/assets/preview-brushwork.webp`: broad, rough warm-gray brush strokes with visible bristle texture. The image covers the stage, with 40px side insets on desktop and 18px on mobile to expose the painting around the opaque editor. Dark website appearance multiplies the painting with a warm gray tint. Toolbar labels and captions use solid page-colored backings for consistent contrast; theme colors and the editor shadow remain unchanged. Prompt and provenance are saved in `design/preview-brushwork.prompt.txt` and `design/preview-brushwork.provenance.json`.

@@ -1,0 +1,8 @@
+{
+  "asset": "public/assets/preview-brushwork.webp",
+  "method": "built-in image_gen",
+  "useCase": "stylized-concept",
+  "promptFile": "design/preview-brushwork.prompt.txt",
+  "processing": "WebP encoding at original resolution, quality 85; no visual edits",
+  "usage": "Decorative background of the interactive editor preview stage."
+}

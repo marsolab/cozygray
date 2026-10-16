@@ -1,0 +1,8 @@
+Use case: stylized-concept
+Asset type: full-bleed painted background behind an interactive editor preview on the Cozy Gray website.
+Primary request: an abstract painting made from very large, rough, expressive brush strokes.
+Style/medium: tactile matte acrylic and oil paint on canvas, broad loaded house-painter brush gestures, ragged dry-brush edges, visible coarse bristle tracks and occasional thick scraped paint. Bold large-scale strokes, not fine busy texture.
+Color palette: restrained warm neutral grays, graphite, stone, ash, pale putty and off-white. Strictly gray dominant, no green or blue, no saturated colors.
+Composition: landscape 3:2 canvas, painting fills every edge. Several sweeping diagonal and horizontal strokes overlap in an asymmetrical, spacious composition. Large light and mid-gray passages with a few deeper graphite strokes. Brushwork remains especially distinctive around the perimeter because an opaque editor window will cover most of the center.
+Mood: calm, tactile, artful, substantial. A real physical painting photographed straight on with even soft light.
+Constraints: generate only the painting background. No text, logo, signature, frame, room, objects, UI, computer or mockup. No digital gradients, smooth airbrush, tiny repeated pattern or decorative speckles.
