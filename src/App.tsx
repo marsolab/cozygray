@@ -78,7 +78,7 @@ function App(){
         ['Can I make it my own?', 'Yes. The downloads are plain-text configuration files. Open one in your editor to adjust a background, syntax color, or accent to suit your workspace. Keep a copy of your previous settings before applying changes.']
       ].map(([question,answer])=><details key={question} name="faq"><summary>{question}<span className="faq-plus" aria-hidden="true"/></summary><p>{answer}</p></details>)}</div></section>
       <section className="closing wrap reveal"><Mark large/><h2>Make yourself<br/>at home.</h2><p>Your tools. A softer point of view.</p><Button asChild className="button primary"><a href="#platforms">Get Cozy Gray <ArrowUpRight size={17}/></a></Button></section>
-    </main><footer className="footer wrap"><a className="brand" href="#"><Mark/><span>cozy gray</span></a><p>A softer shade of focus.</p><div><a href="#preview">Preview</a><a href="#platforms">Platforms</a><a href="#install">Install</a></div><span>Made for a little more calm.</span></footer>
+    </main><footer className="footer wrap"><a className="brand" href="#"><Mark/><span>cozy gray</span></a><p>A softer shade of focus.</p><div><a href="#preview">Preview</a><a href="#platforms">Platforms</a><a href="#install">Install</a></div><span>© 2026 Marsolab. All rights reserved.</span></footer>
   </div>
 }
 function ArrowDownIcon(){return <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4v15m-5-5 5 5 5-5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>}
