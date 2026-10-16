@@ -209,13 +209,13 @@ Motion uses GSAP matchMedia: entrances and reveals move by (22–36px), run for 
 
 ## Elevation & Depth
 
-Depth comes from tonal fields: page, section surface, preview stage, and workspace surface. Controls are flat at rest. There are no persistent or ambient elevation shadows. Shadcn controls may use a focus-visible ring, which is an accessibility state rather than surface elevation. The single conceptual material photograph supplies physical light and texture; it is not a customer artifact. Its caption is a locally fixed light panel that does not invert with site appearance. Code surfaces retain their own selected palette.
+Depth comes from tonal fields: page, section surface, preview stage, and workspace surface. Controls are flat at rest. The interactive editor window uses a soft offset shadow to separate it from the preview stage. Other page surfaces remain flat. Shadcn controls may use a focus-visible ring, which is an accessibility state rather than surface elevation. The single conceptual material photograph supplies physical light and texture; it is not a customer artifact. Its caption is a locally fixed light panel that does not invert with site appearance. Code surfaces retain their own selected palette.
 
-**The Tonal Depth Rule.** Separate fields with warm surface tones and spacing; reserve ring shadows for interactive focus states rather than elevation.
+**The Tonal Depth Rule.** Separate fields with warm surface tones and spacing; use soft elevation only for the editor preview and ring shadows for interactive focus.
 
 ## Shapes
 
-Use gently rounded rectangular controls, with the radius roles in frontmatter. The shadcn base `--radius` is (0.625rem), while existing authored control and panel radii retain their explicit values; do not replace the delivered shapes with library defaults. The preview stage is the softest large container; the workspace rounds its upper corners only. Swatches are compact flat blocks. Icon buttons, appearance indicators, window dots, and step markers are circular. Rounded surfaces come from actual controls and material framing, not a repeated card grid. The supplied brand mark uses open circular linework; other icons are stroked SVGs.
+Use gently rounded rectangular controls, with the radius roles in frontmatter. The shadcn base `--radius` is (0.625rem), while existing authored control and panel radii retain their explicit values; do not replace the delivered shapes with library defaults. The preview stage is the softest large container; the workspace has an 8px radius on all four corners. Swatches are compact flat blocks. Icon buttons, appearance indicators, window dots, and step markers are circular. Rounded surfaces come from actual controls and material framing, not a repeated card grid. The supplied brand mark uses open circular linework; other icons are stroked SVGs.
 
 ## Components
 
@@ -270,3 +270,8 @@ The install panel uses a flat surface with numbered circular steps. File disclos
 ### Brand mark
 
 The generated `public/assets/cozy-gray-logo.png` combines a softly squared C with a terminal block cursor. It replaces the original inline double-C mark in the header, closing section, and footer. A CSS alpha mask follows `currentColor` in both website appearances; the original transparent PNG also serves as the favicon. Exact prompt and provenance live in `design/cozy-gray-logo.prompt.txt` and `design/cozy-gray-logo.provenance.json`.
+
+
+### Editor preview separation
+
+The interactive editor window has a complete 8px corner radius and a soft two-layer shadow, including beneath the language bar. This separates the light editor chrome from its gray presentation stage without changing exported theme colors. The shadow is deeper against the dark website surface.
