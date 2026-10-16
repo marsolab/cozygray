@@ -1,0 +1,687 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-16T07:06:29.918434+00:00",
+  "title": "Design System: Cozy Gray",
+  "extensions": {
+    "colorMeta": {
+      "neutral-action": {
+        "role": "primary",
+        "displayName": "Taupe Action",
+        "canonical": "#d0cbc5",
+        "tonalRamp": [
+          "oklch(15% 0.00995 72.65)",
+          "oklch(26% 0.00995 72.65)",
+          "oklch(38% 0.00995 72.65)",
+          "oklch(49% 0.00995 72.65)",
+          "oklch(61% 0.00995 72.65)",
+          "oklch(72% 0.00995 72.65)",
+          "oklch(84% 0.00995 72.65)",
+          "oklch(95% 0.00995 72.65)"
+        ]
+      },
+      "neutral-action-ink": {
+        "role": "primary",
+        "displayName": "Taupe Action Ink",
+        "canonical": "#39342f",
+        "tonalRamp": [
+          "oklch(15% 0.01119 67.42)",
+          "oklch(26% 0.01119 67.42)",
+          "oklch(38% 0.01119 67.42)",
+          "oklch(49% 0.01119 67.42)",
+          "oklch(61% 0.01119 67.42)",
+          "oklch(72% 0.01119 67.42)",
+          "oklch(84% 0.01119 67.42)",
+          "oklch(95% 0.01119 67.42)"
+        ]
+      },
+      "neutral-action-hover": {
+        "role": "primary",
+        "displayName": "Taupe Action Hover",
+        "canonical": "#c2bab2",
+        "tonalRamp": [
+          "oklch(15% 0.01439 67.62)",
+          "oklch(26% 0.01439 67.62)",
+          "oklch(38% 0.01439 67.62)",
+          "oklch(49% 0.01439 67.62)",
+          "oklch(61% 0.01439 67.62)",
+          "oklch(72% 0.01439 67.62)",
+          "oklch(84% 0.01439 67.62)",
+          "oklch(95% 0.01439 67.62)"
+        ]
+      },
+      "site-paper": {
+        "role": "neutral",
+        "displayName": "Site Paper",
+        "canonical": "#eeedeb",
+        "tonalRamp": [
+          "oklch(15% 0.00288 84.56)",
+          "oklch(26% 0.00288 84.56)",
+          "oklch(38% 0.00288 84.56)",
+          "oklch(49% 0.00288 84.56)",
+          "oklch(61% 0.00288 84.56)",
+          "oklch(72% 0.00288 84.56)",
+          "oklch(84% 0.00288 84.56)",
+          "oklch(95% 0.00288 84.56)"
+        ]
+      },
+      "site-ink": {
+        "role": "neutral",
+        "displayName": "Site Ink",
+        "canonical": "#333231",
+        "tonalRamp": [
+          "oklch(15% 0.00226 67.74)",
+          "oklch(26% 0.00226 67.74)",
+          "oklch(38% 0.00226 67.74)",
+          "oklch(49% 0.00226 67.74)",
+          "oklch(61% 0.00226 67.74)",
+          "oklch(72% 0.00226 67.74)",
+          "oklch(84% 0.00226 67.74)",
+          "oklch(95% 0.00226 67.74)"
+        ]
+      },
+      "site-muted": {
+        "role": "neutral",
+        "displayName": "Site Secondary Text",
+        "canonical": "#605d59",
+        "tonalRamp": [
+          "oklch(15% 0.00740 75.35)",
+          "oklch(26% 0.00740 75.35)",
+          "oklch(38% 0.00740 75.35)",
+          "oklch(49% 0.00740 75.35)",
+          "oklch(61% 0.00740 75.35)",
+          "oklch(72% 0.00740 75.35)",
+          "oklch(84% 0.00740 75.35)",
+          "oklch(95% 0.00740 75.35)"
+        ]
+      },
+      "site-surface": {
+        "role": "neutral",
+        "displayName": "Site Surface",
+        "canonical": "#e2e0dd",
+        "tonalRamp": [
+          "oklch(15% 0.00461 78.30)",
+          "oklch(26% 0.00461 78.30)",
+          "oklch(38% 0.00461 78.30)",
+          "oklch(49% 0.00461 78.30)",
+          "oklch(61% 0.00461 78.30)",
+          "oklch(72% 0.00461 78.30)",
+          "oklch(84% 0.00461 78.30)",
+          "oklch(95% 0.00461 78.30)"
+        ]
+      },
+      "site-stage": {
+        "role": "neutral",
+        "displayName": "Site Stage",
+        "canonical": "#dad8d5",
+        "tonalRamp": [
+          "oklch(15% 0.00464 78.30)",
+          "oklch(26% 0.00464 78.30)",
+          "oklch(38% 0.00464 78.30)",
+          "oklch(49% 0.00464 78.30)",
+          "oklch(61% 0.00464 78.30)",
+          "oklch(72% 0.00464 78.30)",
+          "oklch(84% 0.00464 78.30)",
+          "oklch(95% 0.00464 78.30)"
+        ]
+      },
+      "site-dark-bg": {
+        "role": "neutral",
+        "displayName": "Site Dark Bg",
+        "canonical": "#262525",
+        "tonalRamp": [
+          "oklch(15% 0.00148 17.25)",
+          "oklch(26% 0.00148 17.25)",
+          "oklch(38% 0.00148 17.25)",
+          "oklch(49% 0.00148 17.25)",
+          "oklch(61% 0.00148 17.25)",
+          "oklch(72% 0.00148 17.25)",
+          "oklch(84% 0.00148 17.25)",
+          "oklch(95% 0.00148 17.25)"
+        ]
+      },
+      "site-dark-ink": {
+        "role": "neutral",
+        "displayName": "Site Dark Ink",
+        "canonical": "#e7e4e0",
+        "tonalRamp": [
+          "oklch(15% 0.00630 75.40)",
+          "oklch(26% 0.00630 75.40)",
+          "oklch(38% 0.00630 75.40)",
+          "oklch(49% 0.00630 75.40)",
+          "oklch(61% 0.00630 75.40)",
+          "oklch(72% 0.00630 75.40)",
+          "oklch(84% 0.00630 75.40)",
+          "oklch(95% 0.00630 75.40)"
+        ]
+      },
+      "site-dark-muted": {
+        "role": "neutral",
+        "displayName": "Dark Site Secondary Text",
+        "canonical": "#b6b0aa",
+        "tonalRamp": [
+          "oklch(15% 0.01091 67.66)",
+          "oklch(26% 0.01091 67.66)",
+          "oklch(38% 0.01091 67.66)",
+          "oklch(49% 0.01091 67.66)",
+          "oklch(61% 0.01091 67.66)",
+          "oklch(72% 0.01091 67.66)",
+          "oklch(84% 0.01091 67.66)",
+          "oklch(95% 0.01091 67.66)"
+        ]
+      },
+      "site-dark-surface": {
+        "role": "neutral",
+        "displayName": "Site Dark Surface",
+        "canonical": "#302e2d",
+        "tonalRamp": [
+          "oklch(15% 0.00340 48.61)",
+          "oklch(26% 0.00340 48.61)",
+          "oklch(38% 0.00340 48.61)",
+          "oklch(49% 0.00340 48.61)",
+          "oklch(61% 0.00340 48.61)",
+          "oklch(72% 0.00340 48.61)",
+          "oklch(84% 0.00340 48.61)",
+          "oklch(95% 0.00340 48.61)"
+        ]
+      },
+      "site-dark-stage": {
+        "role": "neutral",
+        "displayName": "Site Dark Stage",
+        "canonical": "#3b3836",
+        "tonalRamp": [
+          "oklch(15% 0.00545 56.21)",
+          "oklch(26% 0.00545 56.21)",
+          "oklch(38% 0.00545 56.21)",
+          "oklch(49% 0.00545 56.21)",
+          "oklch(61% 0.00545 56.21)",
+          "oklch(72% 0.00545 56.21)",
+          "oklch(84% 0.00545 56.21)",
+          "oklch(95% 0.00545 56.21)"
+        ]
+      },
+      "dark-background": {
+        "role": "neutral",
+        "displayName": "Dark Background",
+        "canonical": "#292827",
+        "tonalRamp": [
+          "oklch(15% 0.00234 67.73)",
+          "oklch(26% 0.00234 67.73)",
+          "oklch(38% 0.00234 67.73)",
+          "oklch(49% 0.00234 67.73)",
+          "oklch(61% 0.00234 67.73)",
+          "oklch(72% 0.00234 67.73)",
+          "oklch(84% 0.00234 67.73)",
+          "oklch(95% 0.00234 67.73)"
+        ]
+      },
+      "dark-surface": {
+        "role": "neutral",
+        "displayName": "Dark Surface",
+        "canonical": "#33312f",
+        "tonalRamp": [
+          "oklch(15% 0.00454 67.66)",
+          "oklch(26% 0.00454 67.66)",
+          "oklch(38% 0.00454 67.66)",
+          "oklch(49% 0.00454 67.66)",
+          "oklch(61% 0.00454 67.66)",
+          "oklch(72% 0.00454 67.66)",
+          "oklch(84% 0.00454 67.66)",
+          "oklch(95% 0.00454 67.66)"
+        ]
+      },
+      "dark-foreground": {
+        "role": "neutral",
+        "displayName": "Dark Foreground",
+        "canonical": "#e7e2db",
+        "tonalRamp": [
+          "oklch(15% 0.01089 76.59)",
+          "oklch(26% 0.01089 76.59)",
+          "oklch(38% 0.01089 76.59)",
+          "oklch(49% 0.01089 76.59)",
+          "oklch(61% 0.01089 76.59)",
+          "oklch(72% 0.01089 76.59)",
+          "oklch(84% 0.01089 76.59)",
+          "oklch(95% 0.01089 76.59)"
+        ]
+      },
+      "dark-muted": {
+        "role": "neutral",
+        "displayName": "Dark Muted",
+        "canonical": "#aaa39b",
+        "tonalRamp": [
+          "oklch(15% 0.01402 71.27)",
+          "oklch(26% 0.01402 71.27)",
+          "oklch(38% 0.01402 71.27)",
+          "oklch(49% 0.01402 71.27)",
+          "oklch(61% 0.01402 71.27)",
+          "oklch(72% 0.01402 71.27)",
+          "oklch(84% 0.01402 71.27)",
+          "oklch(95% 0.01402 71.27)"
+        ]
+      },
+      "dark-keyword": {
+        "role": "secondary",
+        "displayName": "Coral \u00b7 Keyword",
+        "canonical": "#f0ab91",
+        "tonalRamp": [
+          "oklch(15% 0.08939 41.51)",
+          "oklch(26% 0.08939 41.51)",
+          "oklch(38% 0.08939 41.51)",
+          "oklch(49% 0.08939 41.51)",
+          "oklch(61% 0.08939 41.51)",
+          "oklch(72% 0.08939 41.51)",
+          "oklch(84% 0.08939 41.51)",
+          "oklch(95% 0.08939 41.51)"
+        ]
+      },
+      "dark-string": {
+        "role": "secondary",
+        "displayName": "Amber \u00b7 String",
+        "canonical": "#e6c078",
+        "tonalRamp": [
+          "oklch(15% 0.10038 82.53)",
+          "oklch(26% 0.10038 82.53)",
+          "oklch(38% 0.10038 82.53)",
+          "oklch(49% 0.10038 82.53)",
+          "oklch(61% 0.10038 82.53)",
+          "oklch(72% 0.10038 82.53)",
+          "oklch(84% 0.10038 82.53)",
+          "oklch(95% 0.10038 82.53)"
+        ]
+      },
+      "dark-function": {
+        "role": "secondary",
+        "displayName": "Sand \u00b7 Function",
+        "canonical": "#f2d4a5",
+        "tonalRamp": [
+          "oklch(15% 0.06974 78.79)",
+          "oklch(26% 0.06974 78.79)",
+          "oklch(38% 0.06974 78.79)",
+          "oklch(49% 0.06974 78.79)",
+          "oklch(61% 0.06974 78.79)",
+          "oklch(72% 0.06974 78.79)",
+          "oklch(84% 0.06974 78.79)",
+          "oklch(95% 0.06974 78.79)"
+        ]
+      },
+      "dark-type": {
+        "role": "secondary",
+        "displayName": "Rose \u00b7 Type",
+        "canonical": "#dab0c5",
+        "tonalRamp": [
+          "oklch(15% 0.05589 346.88)",
+          "oklch(26% 0.05589 346.88)",
+          "oklch(38% 0.05589 346.88)",
+          "oklch(49% 0.05589 346.88)",
+          "oklch(61% 0.05589 346.88)",
+          "oklch(72% 0.05589 346.88)",
+          "oklch(84% 0.05589 346.88)",
+          "oklch(95% 0.05589 346.88)"
+        ]
+      },
+      "dark-error": {
+        "role": "secondary",
+        "displayName": "Clay \u00b7 Error",
+        "canonical": "#f09b9b",
+        "tonalRamp": [
+          "oklch(15% 0.10225 19.66)",
+          "oklch(26% 0.10225 19.66)",
+          "oklch(38% 0.10225 19.66)",
+          "oklch(49% 0.10225 19.66)",
+          "oklch(61% 0.10225 19.66)",
+          "oklch(72% 0.10225 19.66)",
+          "oklch(84% 0.10225 19.66)",
+          "oklch(95% 0.10225 19.66)"
+        ]
+      },
+      "dark-selection": {
+        "role": "neutral",
+        "displayName": "Dark Selection",
+        "canonical": "#514941",
+        "tonalRamp": [
+          "oklch(15% 0.01691 67.33)",
+          "oklch(26% 0.01691 67.33)",
+          "oklch(38% 0.01691 67.33)",
+          "oklch(49% 0.01691 67.33)",
+          "oklch(61% 0.01691 67.33)",
+          "oklch(72% 0.01691 67.33)",
+          "oklch(84% 0.01691 67.33)",
+          "oklch(95% 0.01691 67.33)"
+        ]
+      },
+      "light-background": {
+        "role": "neutral",
+        "displayName": "Light Background",
+        "canonical": "#eae7e3",
+        "tonalRamp": [
+          "oklch(15% 0.00629 75.40)",
+          "oklch(26% 0.00629 75.40)",
+          "oklch(38% 0.00629 75.40)",
+          "oklch(49% 0.00629 75.40)",
+          "oklch(61% 0.00629 75.40)",
+          "oklch(72% 0.00629 75.40)",
+          "oklch(84% 0.00629 75.40)",
+          "oklch(95% 0.00629 75.40)"
+        ]
+      },
+      "light-surface": {
+        "role": "neutral",
+        "displayName": "Light Surface",
+        "canonical": "#dedad5",
+        "tonalRamp": [
+          "oklch(15% 0.00809 73.74)",
+          "oklch(26% 0.00809 73.74)",
+          "oklch(38% 0.00809 73.74)",
+          "oklch(49% 0.00809 73.74)",
+          "oklch(61% 0.00809 73.74)",
+          "oklch(72% 0.00809 73.74)",
+          "oklch(84% 0.00809 73.74)",
+          "oklch(95% 0.00809 73.74)"
+        ]
+      },
+      "light-foreground": {
+        "role": "neutral",
+        "displayName": "Light Foreground",
+        "canonical": "#393430",
+        "tonalRamp": [
+          "oklch(15% 0.00994 61.15)",
+          "oklch(26% 0.00994 61.15)",
+          "oklch(38% 0.00994 61.15)",
+          "oklch(49% 0.00994 61.15)",
+          "oklch(61% 0.00994 61.15)",
+          "oklch(72% 0.00994 61.15)",
+          "oklch(84% 0.00994 61.15)",
+          "oklch(95% 0.00994 61.15)"
+        ]
+      },
+      "light-muted": {
+        "role": "neutral",
+        "displayName": "Light Muted",
+        "canonical": "#6e655e",
+        "tonalRamp": [
+          "oklch(15% 0.01581 60.34)",
+          "oklch(26% 0.01581 60.34)",
+          "oklch(38% 0.01581 60.34)",
+          "oklch(49% 0.01581 60.34)",
+          "oklch(61% 0.01581 60.34)",
+          "oklch(72% 0.01581 60.34)",
+          "oklch(84% 0.01581 60.34)",
+          "oklch(95% 0.01581 60.34)"
+        ]
+      },
+      "light-keyword": {
+        "role": "secondary",
+        "displayName": "Copper \u00b7 Keyword",
+        "canonical": "#a1432d",
+        "tonalRamp": [
+          "oklch(15% 0.13015 34.53)",
+          "oklch(26% 0.13015 34.53)",
+          "oklch(38% 0.13015 34.53)",
+          "oklch(49% 0.13015 34.53)",
+          "oklch(61% 0.13015 34.53)",
+          "oklch(72% 0.13015 34.53)",
+          "oklch(84% 0.13015 34.53)",
+          "oklch(95% 0.13015 34.53)"
+        ]
+      },
+      "light-string": {
+        "role": "secondary",
+        "displayName": "Ochre \u00b7 String",
+        "canonical": "#86600d",
+        "tonalRamp": [
+          "oklch(15% 0.10233 80.21)",
+          "oklch(26% 0.10233 80.21)",
+          "oklch(38% 0.10233 80.21)",
+          "oklch(49% 0.10233 80.21)",
+          "oklch(61% 0.10233 80.21)",
+          "oklch(72% 0.10233 80.21)",
+          "oklch(84% 0.10233 80.21)",
+          "oklch(95% 0.10233 80.21)"
+        ]
+      },
+      "light-function": {
+        "role": "secondary",
+        "displayName": "Bronze \u00b7 Function",
+        "canonical": "#8b542b",
+        "tonalRamp": [
+          "oklch(15% 0.09202 55.37)",
+          "oklch(26% 0.09202 55.37)",
+          "oklch(38% 0.09202 55.37)",
+          "oklch(49% 0.09202 55.37)",
+          "oklch(61% 0.09202 55.37)",
+          "oklch(72% 0.09202 55.37)",
+          "oklch(84% 0.09202 55.37)",
+          "oklch(95% 0.09202 55.37)"
+        ]
+      },
+      "light-type": {
+        "role": "secondary",
+        "displayName": "Deep Rose \u00b7 Type",
+        "canonical": "#904769",
+        "tonalRamp": [
+          "oklch(15% 0.10650 352.38)",
+          "oklch(26% 0.10650 352.38)",
+          "oklch(38% 0.10650 352.38)",
+          "oklch(49% 0.10650 352.38)",
+          "oklch(61% 0.10650 352.38)",
+          "oklch(72% 0.10650 352.38)",
+          "oklch(84% 0.10650 352.38)",
+          "oklch(95% 0.10650 352.38)"
+        ]
+      },
+      "light-error": {
+        "role": "secondary",
+        "displayName": "Earth \u00b7 Error",
+        "canonical": "#b1353f",
+        "tonalRamp": [
+          "oklch(15% 0.15962 20.36)",
+          "oklch(26% 0.15962 20.36)",
+          "oklch(38% 0.15962 20.36)",
+          "oklch(49% 0.15962 20.36)",
+          "oklch(61% 0.15962 20.36)",
+          "oklch(72% 0.15962 20.36)",
+          "oklch(84% 0.15962 20.36)",
+          "oklch(95% 0.15962 20.36)"
+        ]
+      },
+      "light-selection": {
+        "role": "neutral",
+        "displayName": "Light Selection",
+        "canonical": "#d0c5ba",
+        "tonalRamp": [
+          "oklch(15% 0.01956 67.55)",
+          "oklch(26% 0.01956 67.55)",
+          "oklch(38% 0.01956 67.55)",
+          "oklch(49% 0.01956 67.55)",
+          "oklch(61% 0.01956 67.55)",
+          "oklch(72% 0.01956 67.55)",
+          "oklch(84% 0.01956 67.55)",
+          "oklch(95% 0.01956 67.55)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero heading; mobile overrides are documented in Layout."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section headings."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Principle titles."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Reading copy and installation steps."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Compact support and control labels."
+      },
+      "action": {
+        "displayName": "Action",
+        "purpose": "Filled and text calls to action."
+      },
+      "code": {
+        "displayName": "Code",
+        "purpose": "Desktop code fragments."
+      },
+      "code-mobile": {
+        "displayName": "Code Mobile",
+        "purpose": "Mobile editor/terminal exception."
+      }
+    },
+    "shadows": [
+      {
+        "name": "shadcn-focus-ring",
+        "value": "0 0 0 3px color-mix(in oklab, var(--ring, #333231) 50%, transparent)",
+        "purpose": "Button and ToggleGroup focus-visible state; no persistent surface elevation."
+      }
+    ],
+    "motion": [
+      {
+        "name": "state",
+        "value": "0.2s\u20130.3s",
+        "purpose": "Opacity, background, arrow movement, and hover transforms."
+      },
+      {
+        "name": "entrance",
+        "value": "1s\u20131.3s expo.out",
+        "purpose": "GSAP entrance/reveal translation and stagger under no-preference."
+      },
+      {
+        "name": "material-scrub",
+        "value": "yPercent: -5; scale: 1.04; scrub: 1",
+        "purpose": "Small material photograph parallax."
+      },
+      {
+        "name": "principle-pin",
+        "value": "min-width: 1000px; prefers-reduced-motion: no-preference",
+        "purpose": "Desktop title pin only; matchMedia reverts below breakpoint."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "animation: none; transition: none; scroll-behavior: auto",
+        "purpose": "Static visible composition, no pin, no parallax, no cursor blink."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "wide",
+        "value": "1600px"
+      },
+      {
+        "name": "compact-desktop",
+        "value": "1100px"
+      },
+      {
+        "name": "principle-pin-min",
+        "value": "1000px"
+      },
+      {
+        "name": "stack",
+        "value": "760px"
+      },
+      {
+        "name": "small-navigation",
+        "value": "430px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Official shadcn Button with authored taupe action styling and quiet movement.",
+      "html": "<button class=\"ds-primary\" data-slot=\"button\" data-variant=\"default\" data-size=\"default\">Get Cozy Gray<svg width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" aria-hidden=\"true\"><path d=\"M7 17 17 7M7 7h10v10\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></button>",
+      "css": ".ds-primary{font-family:var(--font-family, 'Geist Variable', sans-serif);font-size:14px;display:inline-flex;align-items:center;gap:25px;min-height:49px;padding:14px 23px;border:0;border-radius:5px;font-weight:550;background:var(--action,#d0cbc5);color:var(--action-ink,#39342f);cursor:pointer;transition:background .25s,transform .25s}.ds-primary:hover{background:#c2bab2;transform:translateY(-2px)}.ds-primary:focus-visible{outline:2px solid var(--ink,#333231);outline-offset:5px;box-shadow:0 0 0 3px color-mix(in oklab,var(--ring,#333231) 50%,transparent);}.ds-primary:active{transform:translateY(1px)}@media(prefers-reduced-motion:reduce){.ds-primary{transition:none}}"
+    },
+    {
+      "name": "Text action",
+      "kind": "button",
+      "refersTo": "button-text",
+      "description": "Unfilled navigation or disclosure-related action.",
+      "html": "<button class=\"ds-text\">Installation guide<svg width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" aria-hidden=\"true\"><path d=\"M7 17 17 7M7 7h10v10\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></button>",
+      "css": ".ds-text{font-family:var(--font-family, 'Geist Variable', sans-serif);font-size:14px;display:inline-flex;align-items:center;gap:20px;border:0;padding:5px 0;background:none;color:var(--ink,#333231);cursor:pointer}.ds-text svg{transition:transform .2s}.ds-text:hover svg{transform:translate(3px,-3px)}.ds-text:focus-visible{outline:2px solid var(--ink,#333231);outline-offset:5px;}.ds-text:active{transform:translateY(1px)}@media(prefers-reduced-motion:reduce){.ds-text svg{transition:none}}"
+    },
+    {
+      "name": "Theme appearance",
+      "kind": "chip",
+      "refersTo": "mode-switch",
+      "description": "Official shadcn single ToggleGroup, reused for appearance, view, language, and filters; selected items use data-state=\"on\".",
+      "html": "<div class=\"ds-mode\" role=\"group\" aria-label=\"Theme appearance\"><button aria-pressed=\"false\" data-state=\"off\">Light</button><button aria-pressed=\"true\" data-state=\"on\">Dark</button></div>",
+      "css": ".ds-mode{display:inline-flex;gap:3px;padding:4px;background:var(--surface,#e2e0dd);border-radius:6px}.ds-mode button{font-family:var(--font-family, 'Geist Variable', sans-serif);font-size:14px;font-size:13px;padding:8px 13px;min-height:33px;background:transparent;color:var(--text-secondary,#605d59);border:0;border-radius:4px;cursor:pointer;transition:background .2s,color .2s}.ds-mode button[data-state=on]{background:var(--ink,#333231);color:var(--bg,#eeedeb)}.ds-mode button:hover:not([data-state=on]){background:var(--stage,#dad8d5)}.ds-mode button:focus-visible{outline:2px solid var(--ink,#333231);outline-offset:5px;box-shadow:0 0 0 3px color-mix(in oklab,var(--ring,#333231) 50%,transparent);}.ds-mode button:active{transform:translateY(1px)}@media(prefers-reduced-motion:reduce){.ds-mode button{transition:none}}"
+    },
+    {
+      "name": "Platform search",
+      "kind": "input",
+      "refersTo": "search-field",
+      "description": "Flat field with full-width mobile behavior.",
+      "html": "<label class=\"ds-search\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" aria-hidden=\"true\"><circle cx=\"10\" cy=\"10\" r=\"6\" stroke=\"currentColor\" stroke-width=\"1.6\"/><path d=\"m15 15 5 5\" stroke=\"currentColor\" stroke-width=\"1.6\"/></svg><input type=\"search\" placeholder=\"Find your tool\" aria-label=\"Search platforms\"/></label>",
+      "css": ".ds-search{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--bg,#eeedeb);color:var(--text-secondary,#605d59);border-radius:4px;width:220px}.ds-search input{font-family:var(--font-family, 'Geist Variable', sans-serif);font-size:14px;font-size:13px;min-width:0;width:100%;border:0;background:none;color:var(--ink,#333231)}.ds-search input::placeholder{color:var(--text-secondary,#605d59);opacity:1}.ds-search input{outline:0}.ds-search:focus-within{outline:2px solid var(--ink,#333231);outline-offset:4px}.ds-search:hover{color:var(--ink,#333231)}@media(max-width:760px){.ds-search{width:auto;min-height:44px}.ds-search input{font-size:14px}}"
+    },
+    {
+      "name": "Platform selection",
+      "kind": "input",
+      "refersTo": "platform-select",
+      "description": "Custom shadcn/Radix Select with grouped, scrollable options and keyboard navigation. Static specimen below shows its closed trigger.",
+      "html": "<button class=\"ds-select\" type=\"button\" role=\"combobox\" aria-label=\"Choose your tool\" aria-expanded=\"false\"><span>VS Code</span><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" aria-hidden=\"true\"><path d=\"m6 9 6 6 6-6\" stroke=\"currentColor\" stroke-width=\"1.6\"/></svg></button>",
+      "css": ".ds-select{font-family:var(--font-family, 'Geist Variable', sans-serif);font-size:14px;width:100%;display:flex;align-items:center;justify-content:space-between;min-height:52px;padding:16px 17px;border:0;border-radius:5px;background:var(--surface,#e2e0dd);color:var(--ink,#333231);cursor:pointer}.ds-select:hover{color:var(--ink,#333231)}.ds-select:focus-visible{outline:2px solid var(--ink,#333231);outline-offset:5px;}"
+    },
+    {
+      "name": "Section navigation",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "Simple section anchors with opacity hover.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Main navigation\"><a href=\"#preview\">Preview</a><a href=\"#palette\">Palette</a><a href=\"#platforms\">Platforms</a></nav>",
+      "css": ".ds-nav{display:flex;gap:36px;align-items:center;height:110px}.ds-nav a{font-family:var(--font-family, 'Geist Variable', sans-serif);font-size:14px;color:var(--ink,#333231);text-decoration:none;transition:opacity .2s}.ds-nav a:hover{opacity:.6}.ds-nav a:focus-visible{outline:2px solid var(--ink,#333231);outline-offset:5px;}@media(prefers-reduced-motion:reduce){.ds-nav a{transition:none}}"
+    },
+    {
+      "name": "Install surface",
+      "kind": "card",
+      "refersTo": "install-panel",
+      "description": "Tonal panel with readable steps and source disclosure.",
+      "html": "<section class=\"ds-panel\"><div>VS Code <span>Native theme file</span></div><ol><li>Download the JSON theme file below.</li><li>Follow the tool-specific installation steps.</li></ol><details><summary>View theme file</summary><pre>{ \"name\": \"Cozy Gray Dark\" }</pre></details></section>",
+      "css": ".ds-panel{font-family:var(--font-family, 'Geist Variable', sans-serif);font-size:14px;padding:30px;background:var(--surface,#e2e0dd);color:var(--ink,#333231);border-radius:6px;max-width:480px}.ds-panel>div{display:flex;justify-content:space-between;gap:20px}.ds-panel span{font-size:13px;color:var(--text-secondary,#605d59)}.ds-panel ol{display:grid;gap:22px;padding-left:24px;margin:28px 0;font-size:16px;line-height:1.7}.ds-panel summary{font-size:13px;cursor:pointer;padding:8px 0;color:var(--text-secondary,#605d59)}.ds-panel summary:hover{color:var(--ink,#333231)}.ds-panel summary:focus-visible{outline:2px solid var(--ink,#333231);outline-offset:5px;}.ds-panel pre{padding:15px;background:var(--bg,#eeedeb);font-family:\"Geist Mono Variable\",monospace;font-size:13px;overflow:auto}"
+    },
+    {
+      "name": "Palette copy swatch",
+      "kind": "button",
+      "refersTo": "swatch",
+      "description": "Flat labeled theme role with lift and copy affordance.",
+      "html": "<button class=\"ds-swatch\"><span class=\"ds-color\"><svg width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" aria-hidden=\"true\"><path d=\"M7 17 17 7M7 7h10v10\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span><span class=\"ds-name\">Amber</span><span class=\"ds-value\">#e6c078</span></button>",
+      "css": ".ds-swatch{font-family:var(--font-family, 'Geist Variable', sans-serif);font-size:14px;display:flex;flex-direction:column;align-items:start;width:150px;padding:0;border:0;background:none;color:var(--ink,#333231);text-align:left;cursor:pointer}.ds-color{display:flex;justify-content:end;width:100%;height:120px;padding:13px;background:var(--code-string,#e6c078);color:#3b3530;border-radius:4px;transition:transform .3s}.ds-color svg{opacity:0;mix-blend-mode:difference;transition:opacity .25s}.ds-swatch:hover .ds-color{transform:translateY(-6px)}.ds-swatch:hover svg,.ds-swatch:focus-visible svg{opacity:1}.ds-swatch:focus-visible{outline:2px solid var(--ink,#333231);outline-offset:5px;}.ds-swatch:active{transform:translateY(1px)}.ds-name{font-size:13px;margin-top:16px}.ds-value{font-size:13px;margin-top:5px;color:var(--text-secondary,#605d59);font-variant-numeric:tabular-nums}@media(prefers-reduced-motion:reduce){.ds-color,.ds-color svg{transition:none}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Warm Gray Workspace",
+    "overview": "Cozy Gray uses warm off-gray fields, graphite text, quiet taupe actions, and readable code to make a developer workspace feel quiet and familiar. Broad spacing and soft, compact controls carry the presentation; the theme itself supplies the color. The name above describes the implemented world and is not a user-approved creative concept.\n\nThis records the current code-first implementation: Astro serves `src/pages/index.astro`, React hydrates `src/App.tsx` with `client:load`, and official shadcn/ui Button, ToggleGroup, and Select components use Tailwind CSS v4 semantic integration. The user confirmed this stack and code-first workflow, then requested less green and brighter syntax. Geist was selected through the explicitly invoked gpt-taste workflow. The earlier sage-led palette and unanswered-stack status are superseded. There is no approved visual comp; this record does not imply a concept-selection workflow. The revision is verified in the browser at desktop (1440px), mobile (390px), and intermediate (890px) widths without document overflow. Current captures in `.impeccable/review/` cover both theme appearances and the dark website appearance. Browser checks confirm hydrated controls, Python switching, Editor/Terminal view, filters/search and empty-state recovery, platform selection, Ghostty download, palette copy, tmux source disclosure/copy, FAQ, mobile navigation, website mode, and saved Light restoration after reload. Astro build and source assertions for palette contrast/parity and static server-rendered output pass; browser checks show no post-fix warnings or errors. These checks do not establish native target-application validation. The revision detector reports the pre-existing Geist warning and type-ramp advisory; Geist remains the explicitly selected font.",
+    "keyCharacteristics": [
+      "Neutral warm gray surfaces with brighter amber, coral, sand, and rose syntax roles.",
+      "Independent website and downloaded-theme appearances.",
+      "Wide editorial headings with compact native workspace fragments.",
+      "One generated material photograph, paired with live illustrative code.",
+      "Flat tonal depth, quiet motion, and a static reduced-motion composition."
+    ],
+    "rules": [],
+    "dos": [
+      "Do keep the shared theme mode consistent across preview, palette, and download.",
+      "Do retain visible Planned labels and the app-validation limitation beside platform choices.",
+      "Do preserve the illustrative-code disclosure and the generated photograph\u2019s provenance.",
+      "Do keep reading and installation copy at the body scale; allow horizontal scrolling for code.",
+      "Do preserve focus outlines, semantic control states, and the reduced-motion static layout."
+    ],
+    "donts": [
+      "Don't treat website appearance as the downloaded palette selection.",
+      "Don't present authored files as validated native integrations or marketplace releases.",
+      "Don't make medical or display-emission claims from the gray palette.",
+      "Don't extend compact editor-chrome text sizes to reading copy.",
+      "Don't reintroduce a green cast to the page surfaces or use sage as the action/syntax palette.",
+      "Don't replace the warm neutral foundation with blue-dominant backgrounds or vivid blue syntax."
+    ]
+  }
+}

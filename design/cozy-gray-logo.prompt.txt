@@ -1,0 +1,8 @@
+Use case: logo-brand
+Asset type: production logo symbol for Cozy Gray, a calm gray editor and terminal color theme.
+Primary request: create one distinctive, beautifully balanced compact symbol combining a soft geometric letter C with a small terminal block cursor nestled in its open right side. The C should feel like a smooth rounded square bracket, with generous negative space and substantial even weight. Quiet, precise, welcoming, recognizable at 24 pixels.
+Style: premium flat graphic identity, crisp vector-like silhouette, restrained geometry and subtly rounded corners.
+Composition: single standalone symbol centered on a square canvas, occupying about 85 percent of canvas width and height, minimal even transparent padding.
+Color: solid warm graphite #333231 only, uniform opaque fill inside the mark.
+Background: genuine transparent alpha, including all negative space.
+Constraints: symbol only, no wordmark, no text, no lettering beyond the abstract C shape, no additional icons, no mockup, no grid, no presentation board. No gradients, shadows, texture, glow, bevels, thin lines, green or blue. No enclosing app tile.

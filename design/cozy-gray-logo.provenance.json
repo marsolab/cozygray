@@ -1,0 +1,8 @@
+{
+  "asset": "public/assets/cozy-gray-logo.png",
+  "method": "built-in image_gen",
+  "useCase": "logo-brand",
+  "promptFile": "design/cozy-gray-logo.prompt.txt",
+  "transparentBackground": true,
+  "usage": "Original generated PNG; CSS alpha mask uses currentColor for light and dark website appearances."
+}

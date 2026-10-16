@@ -1,0 +1,502 @@
+{
+ "version": 1,
+ "at": "2026-10-16T06:06:56.669Z",
+ "seed": 1472771767,
+ "redraws": 0,
+ "input": {
+  "brief": "Cozy Gray, warm graphite editor and terminal themes in light and dark. A quiet tactile monochrome workspace with restrained sage syntax.",
+  "sector": "dev-tool",
+  "tone": "quiet",
+  "have": [
+   "product-ui",
+   "illustration"
+  ],
+  "keep": [
+   "palette"
+  ],
+  "avoid": [],
+  "sections": [
+   "showcase",
+   "features",
+   "list",
+   "faq",
+   "cta",
+   "footer"
+  ],
+  "direction": "product-performs"
+ },
+ "imagery": "interface",
+ "allow": [],
+ "direction": {
+  "id": "product-performs",
+  "name": "The product performs",
+  "sectors": [
+   "saas",
+   "dev-tool",
+   "ai-product",
+   "consumer-app",
+   "finance"
+  ],
+  "tones": [
+   "technical",
+   "quiet"
+  ],
+  "needs": [],
+  "idea": "Software is most convincing when it is doing its job in front of you. Instead of describing features, put small, true, working fragments of the product on the page: the actual control, with real content, responding to the pointer. A colour picker's loupe reads the page's own background and prints its value. A list tool lets you tick an item right there. A type-scale plugin sets the page's own headings. Find the one interaction that is the product and make the hero that interaction; then show each further capability as another fragment at real size. No dashboard collage, no browser frame, no screenshots shrunk until unreadable.",
+  "composition": "Hero: a short plain headline (4–6vw, left-aligned, upper-left third) and one sentence; the rest of the first screen is the main fragment at actual interface size, sitting directly on the page or on one flat stage colour, large enough to read every label. The fragment is built in HTML and works. Below, capabilities are a single-column sequence, each a row of two parts on a 5/7 split: a two-line statement on one side and the relevant fragment on the other, with the fragments varying in size and shape so the column never becomes a zigzag of equal blocks. Fragments are cropped pieces of interface (a menu, a row, a control, a panel edge), not whole windows. One section pins a fragment while three short statements change it.",
+  "typography": "The marketing type matches the product's interface type so the fragments and the page feel like one thing. Headline modest; interface text at its true size (13–15px) inside fragments.",
+  "typeClasses": [
+   "grotesk-tight",
+   "grotesk-light",
+   "geometric"
+  ],
+  "colour": "Neutral ground. The product's own interface colours provide the colour. At most one flat stage colour behind fragments.",
+  "paletteTags": [
+   "light-neutral",
+   "dark-neutral",
+   "mono-accent"
+  ],
+  "imagery": "The interface fragments are the main imagery: build them carefully with real labels, real numbers and sensible states (one hovered, one selected). Around them, two or three real pictures of the customer's world (found with scripts/assets.mjs), never stock of people at laptops.",
+  "sectionTags": [
+   "ui-led",
+   "quiet"
+  ],
+  "motion": "pinned-story",
+  "richness": "Fidelity. A fragment with believable content and a real hover state is more interesting than any illustration. Spend the effort there.",
+  "pitfalls": "A fake interface made of grey bars and circles is the worst outcome; if you cannot build a believable fragment, change direction. Mark each fragment's root element with the attribute data-ui: inside it the product's own conventions apply (1px control borders, small radii, a shadow on its open menu) and the inspector leaves them alone; outside it the house rules hold as usual. data-ui is for cropped fragments only, never for a page wrapper. Do not put the fragment in a browser or laptop frame.",
+  "seenIn": [
+   "opl-dabbit",
+   "opl-rows",
+   "opl-typewave",
+   "opl-shelf",
+   "opl-uni",
+   "opl-kontu"
+  ],
+  "allow": []
+ },
+ "hero": {
+  "id": "sentence-split-by-frame",
+  "name": "Sentence split by a frame",
+  "archetype": "inline-media-sentence",
+  "directions": [
+   "sentence-as-layout",
+   "pinned-poster",
+   "product-performs"
+  ],
+  "needs": [],
+  "blueprint": "A white or pale ground. One short sentence is broken in two and pushed to the edges: the first half flush to the 32px left margin, the second half flush to the right margin, both on the vertical centre line at clamp(40px, 3.6vw, 60px), medium weight. Between them, dead centre on columns 5–8, sits one media frame: 35% of the viewport wide, 16:9, corners 4px, holding a photograph or a working fragment of the product. The frame belongs to a vertical reel: the bottom 60px of the previous frame shows at the top edge of the viewport and the top 60px of the next at the bottom edge, same width, 24px gaps, so the centre column reads as a strip passing through the sentence. The stage is sticky; the reel advances three or four steps while the two halves of the sentence hold their place. Wordmark top-left; three text links and the single action as a small solid button top-right, all at 15px. Bottom-left on columns 1–4: one supporting sentence at 18px, its last line 32px above the bottom edge. The other corners stay empty.",
+  "mobile": "The halves stack: the first half of the sentence at 9vw flush left under the wordmark, then the frame at full width minus 16px margins and 4:3, then the second half flush right at 9vw. The neighbouring frames show as 28px slivers above and below. The supporting sentence and the action button follow at 16px. The links collapse to one word.",
+  "headline": "One sentence of four to six words split into two halves of up to about 14 characters each; the frame between them shows what it is about.",
+  "motion": "pinned-story",
+  "seenIn": [
+   "aww-made-with-gsap-1",
+   "aww-artem-shcherbakov"
+  ]
+ },
+ "type": {
+  "id": "archivo-regular",
+  "name": "Archivo",
+  "class": "grotesk-light",
+  "display": {
+   "family": "Archivo",
+   "source": "google",
+   "weights": [
+    400
+   ],
+   "italic": false,
+   "settings": "weight 400 · tracking -0.02em · leading 1.0 · sentence case; never bold, inactive items fade to grey",
+   "css": "<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n<link href=\"https://fonts.googleapis.com/css2?family=Archivo:wght@400;600&display=swap\" rel=\"stylesheet\">"
+  },
+  "text": {
+   "family": "Archivo",
+   "source": "google",
+   "weights": [
+    400,
+    600
+   ],
+   "italic": false,
+   "settings": "400 for body, 600 for buttons and short emphasis · leading 1.5 · tracking 0",
+   "css": "<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n<link href=\"https://fonts.googleapis.com/css2?family=Archivo:wght@400;600&display=swap\" rel=\"stylesheet\">"
+  },
+  "standsInFor": [
+   "Scto Grotesk A",
+   "Cash Sans"
+  ],
+  "note": "A sturdy grotesque kept at regular weight even at 88px, so the page reads as composed rather than loud. Suits finance, infrastructure and research pages that need to look sober and current.",
+  "seenIn": [
+   "aww-sharplink",
+   "opl-plastic",
+   "opl-lovably",
+   "opl-berd"
+  ],
+  "links": [
+   "https://fonts.googleapis.com/css2?family=Archivo:wght@400;600&display=swap"
+  ],
+  "scale": {
+   "step-small": "clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem)",
+   "step-body": "clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem)",
+   "step-lead": "clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem)",
+   "step-head": "clamp(2rem, 1.3rem + 3.2vw, 4rem)"
+  }
+ },
+ "palette": null,
+ "photos": {
+  "set": "fog-and-quiet",
+  "title": "Fog and quiet",
+  "note": "misty, muted, minimal landscapes and empty horizons; calm areas for text",
+  "treatment": null,
+  "others": [
+   "architecture",
+   "sky-and-space",
+   "water",
+   "texture"
+  ],
+  "photos": [
+   {
+    "id": 279,
+    "alt": "Still misty water fading into a soft pink-grey sky",
+    "tone": "mid",
+    "colours": [
+     "dusty pink",
+     "slate grey"
+    ],
+    "mono": false,
+    "calm": "all",
+    "quality": 5,
+    "ratio": 1.5,
+    "by": "Taylor Leopold",
+    "page": "https://unsplash.com/photos/OHS0yA7OkrQ"
+   },
+   {
+    "id": 255,
+    "alt": "Gravel path leading to a cluster of bare trees on a hill",
+    "tone": "mid",
+    "colours": [
+     "olive green",
+     "pale grey"
+    ],
+    "mono": false,
+    "calm": "top",
+    "quality": 5,
+    "ratio": 1.5,
+    "by": "Jon Ottosson",
+    "page": "https://unsplash.com/photos/Xg1e5bR_bL4"
+   },
+   {
+    "id": 634,
+    "alt": "Pine forest dissolving into fog beneath a pale pink sky",
+    "tone": "mid",
+    "colours": [
+     "dark green",
+     "pale pink",
+     "white"
+    ],
+    "mono": false,
+    "calm": "top",
+    "quality": 5,
+    "ratio": 1.5,
+    "by": "Jay Mantri",
+    "page": "https://unsplash.com/photos/TFyi0QOx08c"
+   },
+   {
+    "id": 544,
+    "alt": "Layered hill ridges fading into warm beige mist",
+    "tone": "mid",
+    "colours": [
+     "beige",
+     "warm brown",
+     "cream"
+    ],
+    "mono": false,
+    "calm": "top",
+    "quality": 5,
+    "ratio": 1.5,
+    "by": "Francesco Gallarotti",
+    "page": "https://unsplash.com/photos/-HkuuUSY1pE"
+   }
+  ]
+ },
+ "motion": {
+  "id": "pinned-story",
+  "name": "Pinned story",
+  "description": "One element holds its place with `position: sticky` (a title, a frame, a product fragment) while the items that belong to it scroll past or swap inside it. The page's ordinary scrolling does the work; nothing is hijacked. Keep the pinned run under six screens. Recipe: 'Pinned story' in references/motion.md."
+ },
+ "sections": [
+  {
+   "id": "showcase-one-control-blown-up",
+   "role": "showcase",
+   "name": "One control, blown up",
+   "shape": "full-bleed",
+   "tags": [
+    "ui-led",
+    "poster",
+    "colour-field"
+   ],
+   "directions": [
+    "loud-flat-poster",
+    "colour-chapters",
+    "one-motif",
+    "borrowed-category",
+    "dark-room",
+    "product-performs"
+   ],
+   "needs": [],
+   "blueprint": "A flat saturated field, full-bleed and 92svh tall, holds one working control from the product: the toggle, slider, segmented switch or record button the whole product turns on. Build it at true proportions with every dimension in em, mark its root data-ui, then raise that root's font-size until the control stands about 46vh tall. Anchor it right of centre so the section's right and bottom edges crop about a fifth of it (overflow: hidden on the section). It keeps its real label and value, now at poster size, and it works: operating it swaps the field between two palette colours and changes one word of the heading. The heading, two to four words at clamp(28px, 2.6vw, 40px), sits top-left on the page margin with one sentence at 17px beneath it. The lower-left third of the field stays empty.",
+   "mobile": "The field is 86svh. Heading and sentence sit top-left at 26px and 16px. The control is enlarged to about 130vw wide and anchored bottom-left, so the right edge crops its far end while its thumb or active segment stays within reach. It still works and still swaps the field colour.",
+   "seenIn": [
+    "opl-textmode-overlay",
+    "opl-uni"
+   ]
+  },
+  {
+   "id": "features-giant-command-list",
+   "role": "features",
+   "name": "Giant command list",
+   "shape": "list",
+   "tags": [
+    "ui-led",
+    "type-led",
+    "poster"
+   ],
+   "directions": [
+    "type-only-statement",
+    "loud-flat-poster",
+    "product-performs",
+    "dark-room",
+    "borrowed-category"
+   ],
+   "needs": [],
+   "blueprint": "The capabilities are set as the product's own command menu, scaled up until it is the section; the root is marked data-ui. First a real search `<input>` at clamp(28px, 3vw, 44px) across columns 1–10: a filled block one tone off the ground, 1.9em tall, whose placeholder of two to four words serves as the heading ('Find a command'). Beneath it six to eight capability names, one per line, at clamp(36px, 4.6vw, 76px), leading 1.1, flush left, each row the full content width. At the right end of a row sits its shortcut as key caps: filled squares 1em tall, one character each, in the text face. The selected row lies on a solid block of the accent colour and shows one sentence at 17px under its name. Typing filters the rows; arrow keys and hover move the selection. Nothing else is in the section.",
+   "mobile": "The input is 56px tall at 20px. Capability names are set at 8.5vw, one per line; key caps are dropped, since a phone has no shortcuts. Tapping a name selects it: the accent block and the 16px sentence open beneath it and the previous one closes. Filtering still works.",
+   "seenIn": []
+  },
+  {
+   "id": "list-two-ended-rows",
+   "role": "list",
+   "name": "Two-ended rows, narrow column",
+   "shape": "list",
+   "tags": [
+    "quiet",
+    "type-led"
+   ],
+   "directions": [
+    "quiet-instrument",
+    "product-performs",
+    "contact-sheet",
+    "type-only-statement",
+    "split-stage"
+   ],
+   "needs": [],
+   "blueprint": "A list in one narrow column, 520px wide, starting at 22% of the viewport width or centred. Every row is 34–38px tall with no box and nothing drawn between rows. Each row has two ends: at the left, a 16px round image (a face, a logo, a colour dot) followed after 8px by the name at 15–16px in full ink; at the far right of the column, a short value at 13px in the soft ink (a date, a price, a domain, an opening time) with tabular figures. Entries that need a sentence run to two lines at the left, and the value aligns with the first line. Groups are separated by 40px of space and begin with one plain word in the soft ink at the same size. A heading of two to four words at 24–28px in medium weight sits 32px above the first row. Holds 10–40 rows.",
+   "mobile": "The column fills the width with 20px margins. Rows are 44px tall for touch; the left image stays 16px. Long values wrap beneath the name at 13px, left-aligned with it, and the row grows. Group spacing is 32px.",
+   "seenIn": [
+    "opl-tiny-computer-co"
+   ]
+  },
+  {
+   "id": "faq-filled-tile-accordion",
+   "role": "faq",
+   "name": "Accordion of filled tiles",
+   "shape": "stack",
+   "tags": [
+    "dense",
+    "colour-field"
+   ],
+   "directions": [
+    "dense-tiles",
+    "one-motif",
+    "product-performs",
+    "specimen-catalogue",
+    "loud-flat-poster",
+    "colour-chapters"
+   ],
+   "needs": [],
+   "blueprint": "A two-part row. Columns 1–4 hold the heading, two to four words at about 4vw, `position: sticky; top: 96px` so it stays while the list scrolls past. Columns 5–12 hold the accordion: each question is a filled tile one step from the page ground, with 8px between tiles, no border and the page's one radius (or its motif's corner). A closed tile is 72px tall with the question at 20px medium on the left, 24px padding, and on the right a plus sign drawn from two 3px bars 16px long. The open tile switches to the accent colour with its assigned ink, the plus becomes a minus by rotating one bar, and the answer appears at 17px, no wider than 52ch. Build each tile as `<details>` with a shared `name` so one opens at a time. Six to nine tiles.",
+   "mobile": "The heading sits above at 9vw, not sticky. Tiles run full width with 6px gaps, questions at 18px wrapping to two lines, closed height at least 64px. The open tile keeps the accent colour, and answers are set at 16px with 20px padding.",
+   "seenIn": [
+    "opl-locker-land"
+   ]
+  },
+  {
+   "id": "cta-action-tile-row",
+   "role": "cta",
+   "name": "The action tile",
+   "shape": "grid",
+   "tags": [
+    "dense",
+    "colour-field"
+   ],
+   "directions": [
+    "dense-tiles",
+    "colour-chapters",
+    "specimen-catalogue",
+    "one-motif",
+    "product-performs"
+   ],
+   "needs": [],
+   "blueprint": "The close is one row of the board. Three filled tiles sit side by side with 8–14px gaps, all 360px tall and sharing one radius: a wide centre tile spanning columns 3–10 in the accent colour, flanked by two narrow tiles (columns 1–2 and 11–12) that run off the left and right viewport edges, as if the row had been cropped from a longer one. The centre tile holds, left-aligned and vertically centred with 40px padding: a heading of three to five words at 40px, two lines at 17px, and the action. The action is either one rectangular button or an email field 420px wide in the paper colour with the submit button nested inside its right end. The flanking tiles hold no text: one is a photograph covering the tile, the other a flat palette colour. No shadows, no outlines.",
+   "mobile": "The accent tile runs full width, about 300px tall, heading at 28px, field and button stacked at full width. The two flanking tiles follow beneath as a pair, each half width and 120px tall, with the same gap and the same radius.",
+   "seenIn": [
+    "opl-shelf"
+   ]
+  },
+  {
+   "id": "footer-single-quiet-line",
+   "role": "footer",
+   "name": "A single quiet line",
+   "shape": "strip",
+   "tags": [
+    "quiet"
+   ],
+   "directions": [
+    "quiet-instrument",
+    "contact-sheet",
+    "product-performs",
+    "split-stage",
+    "dark-room",
+    "pinned-poster"
+   ],
+   "needs": [],
+   "blueprint": "No footer block at all. After at least 30svh of empty page ground, one baseline 30px above the bottom edge carries three items in the page's ordinary small text size (14–16px), the same size and weight as the navigation: at the left margin, what this is in three or four words; centred, two to five links separated by 24px of space; at the right margin, the year and a privacy link. Use a three-column grid (1fr auto 1fr) so the centre group is truly centred whatever the side lengths. No logo, no background change, no line above it, no columns. Links are in the full ink; the rest in the softer ink. If the page has a narrow text column, the three items may instead sit on that column's left edge as one wrapped line. The restraint only works if the page above has already made its invitation.",
+   "mobile": "Three short lines at 14px on the left margin with 8px between them: the description, the links on one wrapped line, then year and privacy. Links stay in the full ink. Leave 20svh of empty ground above and 24px below.",
+   "seenIn": [
+    "aww-studio-k95-3",
+    "aww-gil-huybrecht",
+    "opl-rows",
+    "opl-compile",
+    "opl-tiny-computer-co"
+   ]
+  }
+ ],
+ "references": [
+  {
+   "id": "opl-dabbit",
+   "name": "Dabbit",
+   "url": "https://dabbit.app",
+   "source": "One Page Love",
+   "kind": "dev-tool",
+   "score": 7.8,
+   "idea": "The colour picker demonstrates itself on the page: its loupe sits in the hero reading the site's own background hex, and every feature is shown as a real fragment of the app.",
+   "mood": [
+    "precise",
+    "quiet",
+    "nocturnal",
+    "crafted"
+   ],
+   "archetype": "split-text-media",
+   "hero": "Near-black viewport split exactly in half by a one-pixel vertical hairline. Left half: a small chrome four-petal logo top-left at a 40px margin, then two thirds of empty dark, then everything else anchored bottom-left: a one-line 30px medium-weight headline, three lines of grey 18px copy, a light pill button beside an outlined pill, and a tiny note. Right half: a 450px rounded square with a thin iridescent border, the app's loupe, empty except for a centre crosshair dot and a small chip reading the hex of the page's own background. Eight pastel dots and lozenges drift across the top-right like spilled swatches.",
+   "type": "InterVariable only. Headline a modest 30px medium with -0.025em tracking; section heads about 22px; cell titles 15px; body 16px grey. Largest text is 3.3vw. Hierarchy comes from white against grey rather than size; hex values use tabular figures.",
+   "colour": "#141416 #2b2b2e #f4f3f2 #9a9aa0 #f4a48c #d4c6e6 — Charcoal ground, off-white and grey text, no brand accent. All colour comes from the product: pastel swatches, tonal scales, and a thin prismatic edge on the loupe and logo. Neutral-cool.",
+   "imagery": "Live-drawn UI fragments on canvas: swatch strips, eleven-step scales, contrast tables, a Figma plugin panel, each in a slightly lighter rounded panel. A chrome 3D logo and chrome price numerals are the only non-UI images.",
+   "layout": "40px outer margins; the hero's centre hairline becomes a three-column then four-column hairline grid. No section changes background; rhythm is small eyebrow, heading, grid, repeat. Text sits top-left in every cell.",
+   "sections": [
+    {
+     "role": "features",
+     "description": "A three-column grid ruled by one-pixel hairlines with no card backgrounds. Each cell is over 400px tall: 15px white title and three lines of grey copy, plus a real UI fragment docked above or below (a swatch history strip, a tonal scale, a contrast table, a ten-by-ten colour matrix). Rows alternate text-over-mock and mock-over-text so the grid staggers. The loupe square from the hero reappears floating across cell boundaries."
+    },
+    {
+     "role": "features",
+     "description": "A four-column, three-row grid of minor features divided by hairlines. Each item is a 14px title prefixed by a tiny coloured glyph (dot, square, triangle or dash, one shape per column, in the app's pastel colours) and two lines of grey text. No icons, no cards, no hover chrome."
+    },
+    {
+     "role": "pricing",
+     "description": "Left third: small grey eyebrow, a 22px heading, one paragraph. Right: the price rendered as huge chrome 3D numerals about 150px tall with the loupe square overlapping them, a tiny qualifier beside, and a plain four-line checklist beneath. No pricing card, no border, no tiers."
+    },
+    {
+     "role": "cta",
+     "description": "Closing block centred on the same dark ground: the chrome four-petal logo enlarged to about 200px, pastel shapes scattered widely around it, a two-line 22px sentence, the same two pill buttons, then a one-line footer with copyright left and seven text links right."
+    }
+   ],
+   "steal": [
+    "Make the hero demo sample the page itself: the tool reports the site's own background value, proving the product without a screenshot.",
+    "Build feature grids from hairlines and real UI fragments instead of bordered cards and icons, alternating text-above and mock-above per row.",
+    "Keep the headline small (30px) and anchored bottom-left so the product object, not the slogan, owns the first viewport."
+   ]
+  },
+  {
+   "id": "opl-typewave",
+   "name": "Typewave",
+   "url": "https://typewave.blendmodes.com",
+   "source": "One Page Love",
+   "kind": "dev-tool",
+   "score": 7.2,
+   "idea": "A plugin about type scales sold on a near-black page where flat saturated fields (orange, lime, blue) act as stages for the plugin's own dark interface.",
+   "mood": [
+    "dark",
+    "tidy",
+    "friendly",
+    "product-focused"
+   ],
+   "archetype": "centred-statement-media-below",
+   "hero": "Near-black field. Nav row at the top: pixel-block logo and wordmark left, four plain links centred (one carrying a tiny lime tag), a cream rectangular button with a Figma glyph right. The headline sits centred around mid-height: three lines at about 6.7vw, medium weight, off-white, with the third line recoloured pale lime. Below it a three-line 18px paragraph held to about 45% of the width, then a small cream button repeating the nav action. About 150px lower, the top edge of a flat orange slab, 70% of the viewport wide with barely rounded corners, peeks over the fold; it holds the plugin window.",
+   "type": "Roobert throughout: weight 500 for the 96px headline with slight negative tracking, 16-18px body, 28px card headings, about four sizes in all. Sentence case everywhere; the only emphasis device is recolouring one headline line.",
+   "colour": "#0f0f0e #191918 #e6e3da #f88616 #e4f283 #1463ff — Warm near-black ground with cream text. Orange, lime and electric blue never colour paragraphs; they only fill the rectangles behind product screenshots and the matching step-number chips.",
+   "imagery": "Dark plugin windows with a soft drop shadow, floated centred on flat saturated rectangles (orange, lime, blue, one pink); the rectangles are near square-cornered and inset inside a slightly lighter dark card.",
+   "layout": "Centred hero, then a 1000px container of full-width dark cards, each split one-third text and two-thirds colour stage. Export features alternate text and tile left to right. A small two-button bar stays pinned bottom-centre.",
+   "sections": [
+    {
+     "role": "how-it-works",
+     "description": "Three stacked cards in a slightly lighter black, each about 1000 by 350px. Left third: a 16px square number chip in the card's accent colour at the top, a three-line 28px heading under it, and a grey 12px paragraph pushed to the card's bottom edge, leaving a tall gap between. Right two-thirds: a flat colour rectangle inset 16px with the dark plugin window centred and shadowed on it. Cards differ only by hue: lime, orange, blue."
+    },
+    {
+     "role": "intro",
+     "description": "Between demo blocks a single left-aligned sentence at about 36px sits alone on black with some 300px of space above and below. Its words light up from dark grey to cream one after another as you scroll, so mid-capture the sentence trails off into the background. The pinned two-button bar is the only other element on screen."
+    },
+    {
+     "role": "features",
+     "description": "Export options as alternating rows. One side: a square colour tile (lime, then orange) holding a code-panel screenshot. Other side: a 24px heading, a five-line grey paragraph and a row of three or four small monochrome tool logos. Tile and text swap sides on each row, and the tiles are staggered vertically so one row's tile overlaps the next row's text band."
+    }
+   ],
+   "steal": [
+    "Stage dark UI screenshots on flat saturated rectangles instead of on the page background, so the colour does the branding and the UI stays legible.",
+    "Pin the paragraph to the bottom of a tall card and the heading to the top so the gap between them becomes the card's composition.",
+    "Colour-key each step: the number chip and the stage behind the screenshot share one hue and nothing else on the card uses it."
+   ]
+  },
+  {
+   "id": "opl-textmode-overlay",
+   "name": "Textmode Overlay",
+   "url": "https://extension.textmode.art",
+   "source": "One Page Love",
+   "kind": "dev-tool",
+   "score": 7.7,
+   "idea": "The whole site is rendered in the product's medium: one bitmap face and live character-art fields, laid out like a terminal instrument panel with a numbered rail.",
+   "mood": [
+    "retro-terminal",
+    "dark",
+    "precise",
+    "dense",
+    "technical"
+   ],
+   "archetype": "type-poster",
+   "hero": "Black viewport framed like an instrument panel. A 60px top bar with a hairline beneath: wordmark and version left, four small caps links right, a cream block button filling the bar's right end. A narrow right-edge rail lists 01 to 10 vertically; the active number extends leftward as an outlined label tab. The main area is a canvas of dim grey character marks with a few red ones, small caps captions in its top corners. The headline, two lines of cream pixel caps at 11vw, is left-aligned at mid-height, its last word in a slanted variant. Below a hairline, a bottom strip holds a short description left and two wide rectangular buttons.",
+   "type": "Monogram Extended, a bitmap face, for 96% of text: 160px headline caps, 24px body, small caps labels, one weight, with a slanted variant for the accent word. Inter appears only in the cookie dialog. Hierarchy comes from size and case alone.",
+   "colour": "#0a0a0a #f2f2ec #3b3b3b #b11226 #9a9a95 — Black with cream text and mid-grey glyph texture. Deep crimson appears as scattered characters, soft radial glows behind panels and slider fills. The last two sections invert to cream with black type.",
+   "imagery": "Live canvas renderings: a swirling white, grey and red brush-stroke animation shown beside its character-art conversion, plus ambient character fields as backgrounds. Square corners, hairline frames, no photographs.",
+   "layout": "Full-width panel grid drawn with 1px lines: 32px margins, a persistent right rail, sections built from bordered cells (three equal columns, a two-by-three spec table beside a wide panel, control strips). Each section starts with a small slash-separated caption and a large caps heading.",
+   "sections": [
+    {
+     "role": "showcase",
+     "description": "A wide bordered frame split vertically by a draggable handle: the left half shows the source animation (thick white, grey and crimson swirls on black), the right half the same frame converted to scattered characters, with small outlined tags in the top corners naming each side. Beneath, a control strip of bordered cells offers segmented options (cell size in four steps with the active one filled cream, glyph set, invert, motion), like a hardware panel."
+    },
+    {
+     "role": "how-it-works",
+     "description": "Three equal tall columns divided by hairlines inside one outer frame, each about 300px high. A single caps word sits at mid-left of each column in roughly 36px pixel type and two lines of small text sit at the bottom-left. A soft crimson radial glow is centred behind the middle column and fades into the outer two, the only shading in the section."
+    },
+    {
+     "role": "features",
+     "description": "Left 40%: a two-by-three table of bordered cells, each with a tiny index number top-left, a caps feature name at mid-left and a small grey quantity bottom-right. Right 60%: one large cell with a two-line caps heading upper-left, a crimson glow in the top-right corner and two lines of description along the bottom. The rail tab at the right edge names the section."
+    },
+    {
+     "role": "cta",
+     "description": "The close inverts to cream: a pale character field with a faint red cluster at upper right, a slash-separated caption, then a two-line black pixel-caps headline at about 8vw that echoes the hero and reuses the slanted last word, and one small outlined rectangular button. Footer links follow in three small columns on the same cream ground."
+    }
+   ],
+   "steal": [
+    "Add a fixed right-edge rail of section numbers where the active number sprouts a labelled tab into the content area.",
+    "Draw the page as bordered cells with 1px lines and put a tiny index top-left and a small quantity bottom-right in each feature cell.",
+    "End on an inverted, light-ground repeat of the hero headline so the close mirrors the opening in the opposite palette."
+   ]
+  }
+ ]
+}
