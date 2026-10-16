@@ -1,0 +1,531 @@
+"use client";
+
+import * as React from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type ReactNode,
+} from "react";
+import { Check, Copy, ArrowUpRight } from "lucide-react";
+import {
+  Popover as PopoverPrimitive,
+  Tooltip as TooltipPrimitive,
+} from "radix-ui";
+import { cn } from "@/lib/utils";
+
+function Popover(props: React.ComponentProps<typeof PopoverPrimitive.Root>) {
+  return <PopoverPrimitive.Root data-slot="popover" {...props} />;
+}
+
+function PopoverTrigger(
+  props: React.ComponentProps<typeof PopoverPrimitive.Trigger>
+) {
+  return <PopoverPrimitive.Trigger data-slot="popover-trigger" {...props} />;
+}
+
+function PopoverContent({
+  className,
+  align = "center",
+  sideOffset = 4,
+  container,
+  ...props
+}: React.ComponentProps<typeof PopoverPrimitive.Content> & { container?: HTMLElement | null }) {
+  return (
+    <PopoverPrimitive.Portal container={container}>
+      <PopoverPrimitive.Content
+        data-slot="popover-content"
+        align={align}
+        sideOffset={sideOffset}
+        className={cn(
+          "z-50 flex w-72 origin-(--radix-popover-content-transform-origin) flex-col gap-2.5 rounded-lg bg-popover p-2.5 text-sm text-popover-foreground shadow-md ring-1 ring-foreground/10 outline-hidden duration-100 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
+          className
+        )}
+        {...props}
+      />
+    </PopoverPrimitive.Portal>
+  );
+}
+
+function PopoverTitle({ className, ...props }: React.ComponentProps<"h2">) {
+  return (
+    <h2
+      data-slot="popover-title"
+      className={cn("font-medium", className)}
+      {...props}
+    />
+  );
+}
+
+function PopoverDescription({
+  className,
+  ...props
+}: React.ComponentProps<"p">) {
+  return (
+    <p
+      data-slot="popover-description"
+      className={cn("text-muted-foreground", className)}
+      {...props}
+    />
+  );
+}
+
+function TooltipProvider({
+  delayDuration = 0,
+  ...props
+}: React.ComponentProps<typeof TooltipPrimitive.Provider>) {
+  return (
+    <TooltipPrimitive.Provider
+      data-slot="tooltip-provider"
+      delayDuration={delayDuration}
+      {...props}
+    />
+  );
+}
+
+function Tooltip(props: React.ComponentProps<typeof TooltipPrimitive.Root>) {
+  return <TooltipPrimitive.Root data-slot="tooltip" {...props} />;
+}
+
+function TooltipTrigger(
+  props: React.ComponentProps<typeof TooltipPrimitive.Trigger>
+) {
+  return <TooltipPrimitive.Trigger data-slot="tooltip-trigger" {...props} />;
+}
+
+function TooltipContent({
+  className,
+  sideOffset = 0,
+  hideArrow = false,
+  container,
+  children,
+  ...props
+}: React.ComponentProps<typeof TooltipPrimitive.Content> & {
+  hideArrow?: boolean;
+  container?: HTMLElement | null;
+}) {
+  return (
+    <TooltipPrimitive.Portal container={container}>
+      <TooltipPrimitive.Content
+        data-slot="tooltip-content"
+        sideOffset={sideOffset}
+        className={cn(
+          "z-50 inline-flex w-fit max-w-xs origin-(--radix-tooltip-content-transform-origin) items-center gap-1.5 rounded-md bg-foreground px-3 py-1.5 text-xs text-background has-data-[slot=kbd]:pr-1.5 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 **:data-[slot=kbd]:relative **:data-[slot=kbd]:isolate **:data-[slot=kbd]:z-50 **:data-[slot=kbd]:rounded-sm data-[state=delayed-open]:animate-in data-[state=delayed-open]:fade-in-0 data-[state=delayed-open]:zoom-in-95 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
+          className
+        )}
+        {...props}
+      >
+        {children}
+        {!hideArrow && (
+          <TooltipPrimitive.Arrow className="z-50 size-2.5 translate-y-[calc(-50%_-_2px)] rotate-45 rounded-[2px] bg-foreground fill-foreground" />
+        )}
+      </TooltipPrimitive.Content>
+    </TooltipPrimitive.Portal>
+  );
+}
+
+export type MascotGaze = "up" | "down" | "left" | "right";
+
+export function AIMascot({
+  awake = false,
+  gaze,
+  size = "default",
+  brand = false,
+  className,
+}: {
+  awake?: boolean;
+  /** Direction the eyes look while awake: point it at the popover. */
+  gaze?: MascotGaze;
+  size?: "default" | "compact";
+  brand?: boolean;
+  className?: string;
+}) {
+  const eyeShift = !awake
+    ? "translate-x-px -translate-y-px"
+    : gaze === "down"
+      ? "translate-x-px translate-y-1"
+      : gaze === "left"
+        ? "-translate-x-1 -translate-y-px"
+        : gaze === "right"
+          ? "translate-x-1 -translate-y-px"
+          : "translate-x-px -translate-y-1";
+
+  return (
+    <span
+      aria-hidden="true"
+      data-awake={awake}
+      className={cn(
+        "ai-mascot relative inline-flex shrink-0 items-center justify-center bg-primary text-primary-foreground animate-[ai-mascot-blob_9s_ease-in-out_infinite] transition-transform duration-[440ms] ease-[cubic-bezier(.22,1.5,.5,1)]",
+        brand
+          ? "h-[22px] w-[22px] shadow-none"
+          : size === "compact"
+            ? "h-7 w-7 shadow-none"
+            : "h-10 w-10 rotate-[-7deg] data-[awake=true]:rotate-6 data-[awake=true]:scale-[1.05]",
+        className
+      )}
+    >
+      <span
+        className={cn(
+          "flex transition-transform duration-300",
+          brand
+            ? "gap-1"
+            : size === "compact"
+              ? "gap-[5px]"
+              : cn("gap-2 transition-transform", eyeShift)
+        )}
+      >
+        <span
+          className={cn(
+            "block animate-[ai-mascot-blink_6.5s_infinite] rounded-[5px] bg-current",
+            brand ? "h-[5px] w-[2.5px]" : size === "compact" ? "h-[7px] w-[3px]" : "h-2.5 w-1"
+          )}
+        />
+        <span
+          className={cn(
+            "block animate-[ai-mascot-blink_6.5s_infinite] rounded-[5px] bg-current",
+            brand ? "h-[5px] w-[2.5px]" : size === "compact" ? "h-[7px] w-[3px]" : "h-2.5 w-1"
+          )}
+        />
+      </span>
+      <style>{`
+        @keyframes ai-mascot-blob {
+          0%, 100% { border-radius: 58% 42% 55% 45% / 52% 58% 42% 48%; }
+          33% { border-radius: 45% 55% 48% 52% / 58% 44% 56% 42%; }
+          66% { border-radius: 52% 48% 42% 58% / 45% 52% 48% 55%; }
+        }
+        @keyframes ai-mascot-blink {
+          0%, 42%, 46%, 100% { transform: scaleY(1); }
+          44% { transform: scaleY(.12); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .ai-mascot, .ai-mascot * { animation: none !important; transition: none !important; }
+        }
+      `}</style>
+    </span>
+  );
+}
+
+export type IconProps = React.SVGProps<SVGSVGElement>;
+
+export function OpenAIIcon(props: IconProps) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 260" fill="currentColor" {...props}>
+      <path d="M239.184 106.203a64.716 64.716 0 0 0-5.576-53.103C219.452 28.459 191 15.784 163.213 21.74A65.586 65.586 0 0 0 52.096 45.22a64.716 64.716 0 0 0-43.23 31.36c-14.31 24.602-11.061 55.634 8.033 76.74a64.665 64.665 0 0 0 5.525 53.102c14.174 24.65 42.644 37.324 70.446 31.36a64.72 64.72 0 0 0 48.754 21.744c28.481.025 53.714-18.361 62.414-45.481a64.767 64.767 0 0 0 43.229-31.36c14.137-24.558 10.875-55.423-8.083-76.483Zm-97.56 136.338a48.397 48.397 0 0 1-31.105-11.255l1.535-.87 51.67-29.825a8.595 8.595 0 0 0 4.247-7.367v-72.85l21.845 12.636c.218.111.37.32.409.563v60.367c-.056 26.818-21.783 48.545-48.601 48.601Zm-104.466-44.61a48.345 48.345 0 0 1-5.781-32.589l1.534.921 51.722 29.826a8.339 8.339 0 0 0 8.441 0l63.181-36.425v25.221a.87.87 0 0 1-.358.665l-52.335 30.184c-23.257 13.398-52.97 5.431-66.404-17.803ZM23.549 85.38a48.499 48.499 0 0 1 25.58-21.333v61.39a8.288 8.288 0 0 0 4.195 7.316l62.874 36.272-21.845 12.636a.819.819 0 0 1-.767 0L41.353 151.53c-23.211-13.454-31.171-43.144-17.804-66.405v.256Zm179.466 41.695-63.08-36.63L161.73 77.86a.819.819 0 0 1 .768 0l52.233 30.184a48.6 48.6 0 0 1-7.316 87.635v-61.391a8.544 8.544 0 0 0-4.4-7.213Zm21.742-32.69-1.535-.922-51.619-30.081a8.39 8.39 0 0 0-8.492 0L99.98 99.808V74.587a.716.716 0 0 1 .307-.665l52.233-30.133a48.652 48.652 0 0 1 72.236 50.391v.205ZM88.061 139.097l-21.845-12.585a.87.87 0 0 1-.41-.614V65.685a48.652 48.652 0 0 1 79.757-37.346l-1.535.87-51.67 29.825a8.595 8.595 0 0 0-4.246 7.367l-.051 72.697Zm11.868-25.58 28.138-16.217 28.188 16.218v32.434l-28.086 16.218-28.188-16.218-.052-32.434Z" />
+    </svg>
+  );
+}
+
+export function ClaudeIcon(props: IconProps) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 257" fill="currentColor" {...props}>
+      <path d="m50.228 170.321 50.357-28.257.843-2.463-.843-1.361h-2.462l-8.426-.518-28.775-.778-24.952-1.037-24.175-1.296-6.092-1.297L0 125.796l.583-3.759 5.12-3.434 7.324.648 16.202 1.101 24.304 1.685 17.629 1.037 26.118 2.722h4.148l.583-1.685-1.426-1.037-1.101-1.037-25.147-17.045-27.22-18.017-14.258-10.37-7.713-5.25-3.888-4.925-1.685-10.758 7-7.713 9.397.649 2.398.648 9.527 7.323 20.35 15.75L94.817 91.9l3.889 3.24 1.555-1.102.195-.777-1.75-2.917-14.453-26.118-15.425-26.572-6.87-11.018-1.814-6.61c-.648-2.723-1.102-4.991-1.102-7.778l7.972-10.823L71.42 0 82.05 1.426l4.472 3.888 6.61 15.101 10.694 23.786 16.591 32.34 4.861 9.592 2.592 8.879.973 2.722h1.685v-1.556l1.36-18.211 2.528-22.36 2.463-28.776.843-8.1 4.018-9.722 7.971-5.25 6.222 2.981 5.12 7.324-.713 4.73-3.046 19.768-5.962 30.98-3.889 20.739h2.268l2.593-2.593 10.499-13.934 17.628-22.036 7.778-8.749 9.073-9.657 5.833-4.601h11.018l8.1 12.055-3.628 12.443-11.342 14.388-9.398 12.184-13.48 18.147-8.426 14.518.778 1.166 2.01-.194 30.46-6.481 16.462-2.982 19.637-3.37 8.88 4.148.971 4.213-3.5 8.62-20.998 5.184-24.628 4.926-36.682 8.685-.454.324.519.648 16.526 1.555 7.065.389h17.304l32.21 2.398 8.426 5.574 5.055 6.805-.843 5.184-12.962 6.611-17.498-4.148-40.83-9.721-14-3.5h-1.944v1.167l11.666 11.406 21.387 19.314 26.767 24.887 1.36 6.157-3.434 4.86-3.63-.518-23.526-17.693-9.073-7.972-20.545-17.304h-1.36v1.814l4.73 6.935 25.017 37.59 1.296 11.536-1.814 3.76-6.481 2.268-7.13-1.297-14.647-20.544-15.1-23.138-12.185-20.739-1.49.843-7.194 77.448-3.37 3.953-7.778 2.981-6.48-4.925-3.436-7.972 3.435-15.749 4.148-20.544 3.37-16.333 3.046-20.285 1.815-6.74-.13-.454-1.49.194-15.295 20.999-23.267 31.433-18.406 19.702-4.407 1.75-7.648-3.954.713-7.064 4.277-6.286 25.47-32.405 15.36-20.092 9.917-11.6-.065-1.686h-.583L44.07 198.125l-12.055 1.555-5.185-4.86.648-7.972 2.463-2.593 20.35-13.999-.064.065Z" />
+    </svg>
+  );
+}
+
+export function GrokIcon(props: IconProps) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" fill="currentColor" {...props}>
+      <path d="M395.479 633.828 735.91 381.105c16.689-12.39 40.544-7.557 48.496 11.687 41.854 101.493 23.155 223.461-60.118 307.204-83.272 83.743-199.137 102.108-305.041 60.281l-115.691 53.866c165.934 114.059 367.431 85.852 493.345-40.861 99.875-100.439 130.807-237.345 101.884-360.806l.262.263c-41.942-181.369 10.311-253.865 117.353-402.107 2.53-3.515 5.07-7.03 7.6-10.632L883.144 141.651v-.439L395.392 633.916" />
+      <path d="M325.226 695.251C206.128 580.84 226.662 403.776 328.285 301.668c75.146-75.571 198.264-106.414 305.741-61.072l115.428-53.602c-20.797-15.114-47.448-31.371-78.03-42.794-138.234-57.206-303.731-28.735-416.101 84.182C147.234 337.081 113.244 504.215 171.613 646.833c43.603 106.59-27.874 181.985-99.875 258.083C46.224 931.893 20.622 958.87 0 987.429l325.139-292.09" />
+    </svg>
+  );
+}
+
+export function PerplexityIcon(props: IconProps) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 48 48"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M24 4.5v39M13.73 16.573v-9.99L24 16.573m0 14.5L13.73 41.417V27.01L24 16.573m0 0l10.27-9.99v9.99" />
+      <path d="M13.73 31.396H9.44V16.573h29.12v14.823h-4.29" />
+      <path d="M24 16.573L34.27 27.01v14.407L24 31.073" />
+    </svg>
+  );
+}
+
+export const aiProviderIcons = {
+  chatgpt: OpenAIIcon,
+  claude: ClaudeIcon,
+  grok: GrokIcon,
+  perplexity: PerplexityIcon,
+} as const;
+
+export type AIProvider = {
+  id: string;
+  name: string;
+  url: string;
+  promptParam?: string;
+  brandColor: string;
+};
+
+export const defaultAIProviders: readonly AIProvider[] = [
+  {
+    id: "chatgpt",
+    name: "ChatGPT",
+    url: "https://chatgpt.com/",
+    promptParam: "q",
+    brandColor: "var(--foreground)",
+  },
+  {
+    id: "claude",
+    name: "Claude",
+    url: "https://claude.ai/new",
+    promptParam: "q",
+    brandColor: "#D97757",
+  },
+  {
+    id: "grok",
+    name: "Grok",
+    url: "https://grok.com/",
+    promptParam: "q",
+    brandColor: "var(--foreground)",
+  },
+  {
+    id: "perplexity",
+    name: "Perplexity",
+    url: "https://www.perplexity.ai/search",
+    promptParam: "q",
+    brandColor: "#20B8CD",
+  },
+];
+
+export function getProviderUrl(provider: AIProvider, prompt: string) {
+  const url = new URL(provider.url);
+  if (url.protocol !== "https:") {
+    throw new Error("AI provider URLs must use HTTPS.");
+  }
+  if (provider.promptParam) {
+    url.searchParams.set(provider.promptParam, prompt);
+  }
+  return url.toString();
+}
+
+export type AskAIProps = {
+  prompt: string;
+  container?: HTMLElement | null;
+  title?: string;
+  description?: string;
+  label?: string;
+  /** Optional tooltip text shown on hover. When blobOnly is true, defaults to label or "ask an ai". */
+  tooltip?: string;
+  /** Render only the mascot blob in a circular trigger without the label text. */
+  blobOnly?: boolean;
+  /** Optional custom mascot node, rendered in place of the default blob. */
+  mascot?: ReactNode;
+  providers?: readonly AIProvider[];
+  size?: "default" | "compact";
+  side?: "top" | "bottom" | "left" | "right";
+  align?: "start" | "center" | "end";
+  defaultOpen?: boolean;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  className?: string;
+  style?: CSSProperties;
+};
+
+export function AskAI({
+  prompt,
+  container,
+  title = "Ask an AI about me",
+  description = "A fresh perspective, from your favorite assistant.",
+  label = "Ask an AI",
+  tooltip,
+  blobOnly = false,
+  mascot,
+  providers = defaultAIProviders,
+  size = "default",
+  side = "top",
+  align = "start",
+  defaultOpen = false,
+  open,
+  onOpenChange,
+  className,
+  style,
+}: AskAIProps) {
+  const titleId = React.useId();
+  const descriptionId = React.useId();
+  const [internalOpen, setInternalOpen] = useState(defaultOpen);
+  const [tooltipOpen, setTooltipOpen] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const [fallbackPrompt, setFallbackPrompt] = useState(false);
+  const resetTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const isOpen = open ?? internalOpen;
+
+  useEffect(() => () => {
+    if (resetTimeout.current) clearTimeout(resetTimeout.current);
+  }, []);
+
+  useEffect(() => {
+    setCopied(false);
+    setFallbackPrompt(false);
+    if (resetTimeout.current) clearTimeout(resetTimeout.current);
+  }, [prompt]);
+
+  function changeOpen(next: boolean) {
+    setInternalOpen(next);
+    onOpenChange?.(next);
+    if (next) {
+      setTooltipOpen(false);
+    }
+    if (!next) {
+      setFallbackPrompt(false);
+    }
+  }
+
+  async function copyPrompt() {
+    try {
+      await navigator.clipboard.writeText(prompt);
+      setCopied(true);
+      setFallbackPrompt(false);
+      if (resetTimeout.current) clearTimeout(resetTimeout.current);
+      resetTimeout.current = setTimeout(() => setCopied(false), 2500);
+    } catch {
+      setFallbackPrompt(true);
+    }
+  }
+
+  const tooltipText = tooltip ?? (blobOnly ? label : undefined);
+
+  const triggerButton = (
+    <PopoverTrigger
+      className={cn(
+        "ask-ai-trigger group inline-flex cursor-pointer items-center justify-center text-foreground transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+        blobOnly
+          ? cn(
+              "rounded-full bg-background/55 backdrop-blur-xl backdrop-saturate-150 shadow-sm hover:shadow-md",
+              size === "compact" ? "size-10" : "size-12"
+            )
+          : cn(
+              "h-14 gap-4 rounded-full bg-muted/30 ps-5 pe-3 text-base font-medium tracking-tight data-[size=compact]:h-11 data-[size=compact]:gap-3 data-[size=compact]:rounded-[13px] data-[size=compact]:ps-3.5 data-[size=compact]:pe-[9px] data-[size=compact]:text-sm"
+            ),
+        className
+      )}
+      data-size={size}
+      style={style}
+      aria-label={blobOnly ? tooltipText || label : undefined}
+    >
+      {!blobOnly && <span>{label}</span>}
+      <span className="transition-transform duration-200 group-hover:-translate-y-0.5">
+        {mascot ?? (
+          <AIMascot
+            awake={isOpen}
+            gaze={side === "top" ? "up" : side === "bottom" ? "down" : side}
+            size={size}
+          />
+        )}
+      </span>
+    </PopoverTrigger>
+  );
+
+  return (
+    <TooltipProvider delayDuration={250}>
+      <Popover open={isOpen} onOpenChange={changeOpen}>
+        {tooltipText ? (
+          <Tooltip
+            open={isOpen ? false : tooltipOpen}
+            onOpenChange={(next) => setTooltipOpen(isOpen ? false : next)}
+          >
+            <TooltipTrigger asChild>
+              {triggerButton}
+            </TooltipTrigger>
+            <TooltipContent container={container} side={side === "top" ? "left" : "top"} className="text-xs">
+              {tooltipText}
+            </TooltipContent>
+          </Tooltip>
+        ) : (
+          triggerButton
+        )}
+        <PopoverContent
+          container={container}
+          aria-labelledby={titleId}
+          aria-describedby={descriptionId}
+          collisionPadding={12}
+          side={side}
+          align={align}
+          sideOffset={16}
+          autoFocus={false}
+          className="ask-ai-content w-82.5 sm:w-96 max-w-[calc(100vw-24px)] gap-0 rounded-4xl sm:rounded-[25px] bg-background/80 backdrop-blur-xl backdrop-saturate-150 p-4 sm:px-5 sm:pt-5 sm:pb-4 text-foreground shadow-xl ring-1 ring-inset ring-border/50"
+        >
+          <PopoverTitle id={titleId} className="text-sm sm:text-base font-medium tracking-tight">
+            {title}
+          </PopoverTitle>
+          <PopoverDescription id={descriptionId} className="mt-1 sm:mt-1.5 text-xs sm:text-sm leading-relaxed text-muted-foreground">
+            {description}
+          </PopoverDescription>
+          <div className="ask-ai-providers mt-3.5 sm:mt-[23px] flex gap-1 sm:gap-1.5" aria-label="Choose your AI assistant">
+            {providers.map((provider) => {
+              const Icon = aiProviderIcons[provider.id as keyof typeof aiProviderIcons];
+              return (
+                <Tooltip key={provider.id}>
+                  <TooltipTrigger asChild>
+                    <a
+                      href={getProviderUrl(provider, prompt)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ "--brand": provider.brandColor } as CSSProperties}
+                      className="ask-ai-provider group bg-muted hover:bg-background relative flex h-16 sm:h-[77px] min-w-0 flex-1 items-center justify-center rounded-[12px] sm:rounded-[15px] bg-card text-foreground/50 duration-200 ease-out hover:-translate-y-1 hover:text-[var(--brand)] focus-visible:-translate-y-1 focus-visible:bg-primary/[0.08] focus-visible:text-[var(--brand)] focus-visible:shadow-[0_6px_10px_-5px_color-mix(in_srgb,var(--primary)_18%,transparent)] focus-visible:outline-none first:rounded-[16px_12px_12px_16px] sm:first:rounded-[21px_15px_15px_21px] last:rounded-[12px_16px_16px_12px] sm:last:rounded-[15px_21px_21px_15px]"
+                      aria-label={`Ask ${provider.name} (opens in a new tab)${!provider.promptParam ? "; copies prompt to paste" : ""}`}
+                      onClick={() => {
+                        if (!provider.promptParam) void copyPrompt();
+                      }}
+                    >
+                      {Icon ? (
+                        <Icon
+                          aria-hidden="true"
+                          className="size-[22px] sm:size-[27px] transition-transform duration-200 group-hover:-translate-y-1 sm:group-hover:-translate-y-[7px] group-hover:scale-[.92] group-focus-visible:-translate-y-1 sm:group-focus-visible:-translate-y-[7px] group-focus-visible:scale-[.92]"
+                        />
+                      ) : null}
+                      <span className="absolute bottom-1.5 sm:bottom-2 translate-y-1 text-[9px] sm:text-[10px] opacity-0 transition-[opacity,transform] duration-[180ms] group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
+                        {provider.name}
+                      </span>
+                      <ArrowUpRight
+                        aria-hidden="true"
+                        className="absolute right-1 sm:right-[7px] top-1 sm:top-[7px] size-2.5 sm:size-[11px] text-primary opacity-0 transition-opacity duration-[180ms] group-hover:opacity-100 group-focus-visible:opacity-100"
+                      />
+                    </a>
+                  </TooltipTrigger>
+                  <TooltipContent container={container} className="text-xs">
+                    {provider.promptParam ? `open ${provider.name}` : `copy prompt & open ${provider.name}`}
+                  </TooltipContent>
+                </Tooltip>
+              );
+            })}
+          </div>
+          <button
+            type="button"
+            className="ask-ai-copy mt-2.5 sm:mt-3 flex min-h-9 sm:min-h-10 w-full cursor-pointer items-center justify-center gap-1.5 sm:gap-2 rounded-xl sm:rounded-2xl text-[11px] sm:text-xs text-muted-foreground transition-colors hover:bg-muted hover:text-foreground [&_svg]:size-3 sm:[&_svg]:size-3.5"
+            onClick={() => void copyPrompt()}
+          >
+            {copied ? <Check aria-hidden="true" /> : <Copy aria-hidden="true" />}
+            <span aria-live="polite">{copied ? "Prompt copied" : "Copy prompt for your agent"}</span>
+          </button>
+
+          <details className="ask-ai-prompt">
+            <summary>View prompt</summary>
+            <textarea aria-label="Installation prompt" readOnly value={prompt} rows={7} onFocus={event => event.currentTarget.select()} />
+          </details>
+          {fallbackPrompt && <p role="status" className="ask-ai-copy-error">Copy unavailable. Select the prompt below and copy it manually.</p>}
+          {fallbackPrompt && (
+            <textarea
+              className="mt-2.5 sm:mt-3 w-full rounded-lg border border-border bg-background p-2 text-xs sm:text-sm text-foreground outline-none focus:ring-2 focus:ring-ring"
+              aria-label="Select and copy this prompt"
+              readOnly
+              value={prompt}
+              onFocus={(event) => event.currentTarget.select()}
+              rows={3}
+            />
+          )}
+        </PopoverContent>
+      </Popover>
+    </TooltipProvider>
+  );
+}
+

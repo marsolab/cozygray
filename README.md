@@ -17,6 +17,7 @@ npm run dev
 npm run build
 npm run preview
 node scripts/validate-theme.mjs
+npm run validate:site
 ```
 
 The app uses Astro, React, TypeScript, shadcn/ui, Tailwind CSS, GSAP, Lucide, and self-hosted Geist font files from Fontsource. No API keys or backend are required. Astro commands use separate Vite caches so checks and production builds can run alongside the development server without invalidating its client modules.
@@ -28,6 +29,8 @@ The app uses Astro, React, TypeScript, shadcn/ui, Tailwind CSS, GSAP, Lucide, an
 - Synchronized palette swatches with clipboard copying and a saved preview preference.
 - Searchable and filterable tool catalog covering the platform families in the reference.
 - Generated native configuration downloads and contextual installation instructions.
+- Agent handoff with tool-specific light/dark prompts, copy controls, and assistant links.
+- Server-rendered SEO metadata, canonical URL, sitemap, structured data, and a 1200×630 social image.
 - Responsive navigation, keyboard focus, disclosure controls, and reduced-motion fallback.
 
 ## Theme files
@@ -44,6 +47,12 @@ JetBrains, Xcode, Emacs, Moshi, bat, Home Assistant, and OpenCode are visibly ma
 
 Platform scope reference: https://warmburnout.com/#platforms. No reference-site imagery, copy, or theme colors were reused.
 
+## Agent installation and sharing
+
+The supplied AskAI component is integrated beside the download action. Its prompt follows the selected tool and theme appearance. Copy it into a coding agent with local file access, or open an assistant for guided setup. Planned ports explicitly request exploration instead of installation. Public `/install/<tool>.md` guides and `/themes/<format>/<filename>` files are generated from the same source as the UI downloads; they remain crawlable but are excluded from search indexing via response headers.
+
+The canonical website URL is configured in `astro.config.mjs`. Sharing metadata and JSON-LD are rendered in `src/pages/index.astro`; the static sitemap and robots file are in `public/`. The generated OG image is `public/og/cozy-gray.jpg`, with its exact prompt and provenance in `design/og-image.*`. `validate:site` checks the built metadata, image dimensions, and every agent guide/theme link before deployment.
+
 ## Deploy to Cloudflare Workers
 
 The static Astro build is served by Cloudflare Workers Static Assets. `wrangler.jsonc` declares the Worker name, output directory, and `cozygray.marsolab.com` custom domain. To publish from an authenticated Cloudflare account:
@@ -54,7 +63,7 @@ npx wrangler login
 npm run deploy
 ```
 
-The deploy command builds the site, validates theme exports, and uploads `dist/`. Deployment is manual; pushing to GitHub does not automatically publish a release. No server-side secrets are needed by the site.
+The deploy command builds the site, validates theme exports and SEO/agent resources, and uploads `dist/`. Deployment is manual; pushing to GitHub does not automatically publish a release. No server-side secrets are needed by the site.
 
 Cloudflare documentation: https://developers.cloudflare.com/workers/static-assets/
 

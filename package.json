@@ -9,7 +9,8 @@
     "preview": "astro preview --host 0.0.0.0 --port 5173",
     "check": "astro check",
     "validate:themes": "node scripts/validate-theme.mjs",
-    "deploy": "npm run build && npm run validate:themes && wrangler deploy"
+    "validate:site": "node scripts/validate-site.mjs",
+    "deploy": "npm run build && npm run validate:themes && npm run validate:site && wrangler deploy"
   },
   "dependencies": {
     "@astrojs/react": "^7.1.0",

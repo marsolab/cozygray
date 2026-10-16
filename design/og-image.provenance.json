@@ -1,0 +1,9 @@
+{
+  "asset": "public/og/cozy-gray.jpg",
+  "method": "built-in image_gen",
+  "useCase": "ads-marketing",
+  "promptFile": "design/og-image.prompt.txt",
+  "references": ["public/assets/cozy-gray-logo.png", "public/assets/preview-brushwork.webp"],
+  "processing": "Resize to 1200x630 with contain fit and warm gray fill, JPEG quality 90.",
+  "usage": "Open Graph and social sharing image."
+}

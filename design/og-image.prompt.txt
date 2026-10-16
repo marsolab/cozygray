@@ -1,0 +1,7 @@
+Use case: ads-marketing
+Asset type: Open Graph social sharing image for Cozy Gray, wide 1.91:1 landscape composition, target 1200x630.
+Create a polished editorial brand card that matches a quiet warm-gray editor-theme website.
+Reference image 1 is the exact Cozy Gray logo symbol; preserve its silhouette. Reference image 2 is the site's rough-brushstroke painting; use it as an art direction reference and as a painted area on the right.
+Layout: warm pale-gray #eeedeb background; left 60 percent is a clean typography field, right 40 percent shows broad textured graphite and stone brushwork with two slightly overlapping simplified editor windows, one warm light gray and one dark graphite, with restrained amber, coral and dusty rose code-like marks. Clean flat UI windows with subtle shadows. The editor windows are illustrative, no readable code required.
+Place the logo small at the upper-left beside the exact wordmark "cozy gray". Large modern Swiss sans-serif headline on the left on two lines: "A softer shade" then "of focus." Below, exact smaller copy: "Light & dark themes for editors and terminals." Bottom left small text: "cozygray.marsolab.com"
+Make the typography beautiful and crisp, with ample breathing room and high contrast. All essential content within a 60px safe margin. No badges, gradients, blue or green, watermark, additional text, or outside frame.

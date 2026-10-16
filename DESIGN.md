@@ -280,3 +280,9 @@ The interactive editor window has a complete 8px corner radius and a soft two-la
 ### Painted preview backdrop
 
 The preview stage uses the generated `public/assets/preview-brushwork.webp`: broad, rough warm-gray brush strokes with visible bristle texture. The image covers the stage, with 40px side insets on desktop and 18px on mobile to expose the painting around the opaque editor. Dark website appearance multiplies the painting with a warm gray tint. Toolbar labels and captions use solid page-colored backings for consistent contrast; theme colors and the editor shadow remain unchanged. Prompt and provenance are saved in `design/preview-brushwork.prompt.txt` and `design/preview-brushwork.provenance.json`.
+
+### Agent handoff and social sharing
+
+The user-supplied AskAI mascot and provider picker sit beside the download action. Solid warm-gray surfaces, persistent provider labels, keyboard focus, and inherited site appearance keep the popover readable on desktop and mobile. It presents a reviewable installation prompt for the selected tool and appearance, with different wording for planned ports. Reduced-motion preferences disable the mascot animation.
+
+The social sharing card pairs the logo and “A softer shade of focus” headline with rough brushwork and overlapping light/dark editor illustrations. It is served as a 1200×630 JPEG at `/og/cozy-gray.jpg` and referenced by Open Graph and Twitter metadata.
