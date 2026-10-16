@@ -64,8 +64,9 @@
 
 /* Agent handoff keeps the supplied mascot and the site's solid neutral surfaces. */
 .install-actions{display:flex;align-items:center;flex-wrap:wrap;gap:12px}
-.ask-ai-trigger[data-size=compact]{height:49px;padding:10px 14px;gap:12px;border:1px solid var(--text-secondary);border-radius:5px;background:transparent;font-size:14px;letter-spacing:0;box-shadow:none}
-.ask-ai-trigger:hover{background:var(--bg)}
+.ask-ai-trigger[data-size=compact]{height:49px;padding:10px 14px;gap:12px;border:1px solid #a33d32;border-radius:5px;background:#a33d32;color:#fff8f4;font-size:14px;font-weight:550;letter-spacing:0;box-shadow:none}
+.ask-ai-trigger[data-size=compact]:hover{background:#8d3027;border-color:#8d3027}
+.ask-ai-trigger .ai-mascot{background:rgb(255 248 244 / 20%);color:#fff8f4}
 .ask-ai-content{width:390px;max-width:calc(100vw - 24px);max-height:var(--radix-popover-content-available-height);overflow-y:auto;padding:22px;border:1px solid var(--stage);border-radius:12px;background:var(--bg);color:var(--ink);backdrop-filter:none;box-shadow:0 8px 40px rgb(0 0 0 / 20%)}
 .ask-ai-content h2{font-size:18px;line-height:1.35;letter-spacing:-.02em}
 .ask-ai-content p{font-size:14px;line-height:1.6;color:var(--text-secondary)}
@@ -75,6 +76,7 @@
 .ask-ai-provider>svg:first-child{width:24px;height:24px;transform:none}
 .ask-ai-provider>span{position:static;opacity:1;transform:none;font-size:12px}
 .ask-ai-provider>svg:last-child{color:var(--ink)}
+.ask-ai-content .ask-ai-handoff{margin-top:14px;color:var(--ink)}
 .ask-ai-copy{min-height:44px;margin-top:14px;padding:10px;border-radius:6px;font-size:14px;color:var(--ink);background:var(--surface)}
 .ask-ai-copy:hover{background:var(--stage)}
 .ask-ai-copy svg{width:16px;height:16px}

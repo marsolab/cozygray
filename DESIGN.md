@@ -285,4 +285,6 @@ The preview stage uses the generated `public/assets/preview-brushwork.webp`: bro
 
 The user-supplied AskAI mascot and provider picker sit beside the download action. Solid warm-gray surfaces, persistent provider labels, keyboard focus, and inherited site appearance keep the popover readable on desktop and mobile. It presents a reviewable installation prompt for the selected tool and appearance, with different wording for planned ports. Reduced-motion preferences disable the mascot animation.
 
+The agent-install action is emphasized with warm red `#a33d32` and off-white `#fff8f4` text (6.11:1 contrast). Its hover surface is `#8d3027`; the mascot uses a translucent off-white backing. Downloads retain the neutral treatment. The picker contains ChatGPT, Claude, Cursor, and Antigravity, with a copy-and-paste handoff for Antigravity.
+
 The social sharing card pairs the logo and “A softer shade of focus” headline with rough brushwork and overlapping light/dark editor illustrations. It is served as a 1200×630 JPEG at `/og/cozy-gray.jpg` and referenced by Open Graph and Twitter metadata.

@@ -51,6 +51,8 @@ Platform scope reference: https://warmburnout.com/#platforms. No reference-site 
 
 The supplied AskAI component is integrated beside the download action. Its prompt follows the selected tool and theme appearance. Copy it into a coding agent with local file access, or open an assistant for guided setup. Planned ports explicitly request exploration instead of installation. Public `/install/<tool>.md` guides and `/themes/<format>/<filename>` files are generated from the same source as the UI downloads; they remain crawlable but are excluded from search indexing via response headers.
 
+The provider picker offers ChatGPT, Claude, Cursor, and Antigravity. Cursor uses its [documented prompt deeplink](https://cursor.com/docs/reference/deeplinks), which pre-fills chat for review. Antigravity copies the prompt and tells the user to paste it into the app's agent chat. Its button does not claim to launch or install anything. Cursor and Antigravity marks use monochrome paths sourced from their official websites.
+
 The canonical website URL is configured in `astro.config.mjs`. Sharing metadata and JSON-LD are rendered in `src/pages/index.astro`; the static sitemap and robots file are in `public/`. The generated OG image is `public/og/cozy-gray.jpg`, with its exact prompt and provenance in `design/og-image.*`. `validate:site` checks the built metadata, image dimensions, and every agent guide/theme link before deployment.
 
 ## Deploy to Cloudflare Workers

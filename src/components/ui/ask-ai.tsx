@@ -224,38 +224,20 @@ export function ClaudeIcon(props: IconProps) {
   );
 }
 
-export function GrokIcon(props: IconProps) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" fill="currentColor" {...props}>
-      <path d="M395.479 633.828 735.91 381.105c16.689-12.39 40.544-7.557 48.496 11.687 41.854 101.493 23.155 223.461-60.118 307.204-83.272 83.743-199.137 102.108-305.041 60.281l-115.691 53.866c165.934 114.059 367.431 85.852 493.345-40.861 99.875-100.439 130.807-237.345 101.884-360.806l.262.263c-41.942-181.369 10.311-253.865 117.353-402.107 2.53-3.515 5.07-7.03 7.6-10.632L883.144 141.651v-.439L395.392 633.916" />
-      <path d="M325.226 695.251C206.128 580.84 226.662 403.776 328.285 301.668c75.146-75.571 198.264-106.414 305.741-61.072l115.428-53.602c-20.797-15.114-47.448-31.371-78.03-42.794-138.234-57.206-303.731-28.735-416.101 84.182C147.234 337.081 113.244 504.215 171.613 646.833c43.603 106.59-27.874 181.985-99.875 258.083C46.224 931.893 20.622 958.87 0 987.429l325.139-292.09" />
-    </svg>
-  );
+// Product marks from https://cursor.com/brand and https://antigravity.google/.
+export function CursorIcon(props: IconProps) {
+  return <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 545" fill="currentColor" {...props}><path d="m466.383 137.073-206.469-119.2034c-6.63-3.8287-14.811-3.8287-21.441 0l-206.4586 119.2034c-5.5734 3.218-9.0144 9.169-9.0144 15.615v240.375c0 6.436 3.441 12.397 9.0144 15.615l206.4686 119.203c6.63 3.829 14.811 3.829 21.441 0l206.468-119.203c5.574-3.218 9.015-9.17 9.015-15.615v-240.375c0-6.436-3.441-12.397-9.015-15.615zm-12.969 25.25-199.316 345.223c-1.347 2.326-4.904 1.376-4.904-1.319v-226.048c0-4.517-2.414-8.695-6.33-10.963l-195.7577-113.019c-2.3263-1.347-1.3764-4.905 1.3182-4.905h398.6305c5.661 0 9.199 6.136 6.368 11.041h-.009z" /></svg>;
 }
 
-export function PerplexityIcon(props: IconProps) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 48 48"
-      fill="none"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      {...props}
-    >
-      <path d="M24 4.5v39M13.73 16.573v-9.99L24 16.573m0 14.5L13.73 41.417V27.01L24 16.573m0 0l10.27-9.99v9.99" />
-      <path d="M13.73 31.396H9.44V16.573h29.12v14.823h-4.29" />
-      <path d="M24 16.573L34.27 27.01v14.407L24 31.073" />
-    </svg>
-  );
+export function AntigravityIcon(props: IconProps) {
+  return <svg xmlns="http://www.w3.org/2000/svg" viewBox="15 20 150 140" fill="currentColor" {...props}><path d="M144.248 149.062C151.748 154.688 162.998 150.938 152.685 140.625C121.748 110.625 128.31 28.125 89.8727 28.125C51.4352 28.125 57.9977 110.625 27.0602 140.625C15.8102 151.875 27.9977 154.688 35.4977 149.062C64.5602 129.375 62.6852 94.6875 89.8727 94.6875C117.06 94.6875 115.185 129.375 144.248 149.062Z" /></svg>;
 }
 
 export const aiProviderIcons = {
   chatgpt: OpenAIIcon,
   claude: ClaudeIcon,
-  grok: GrokIcon,
-  perplexity: PerplexityIcon,
+  cursor: CursorIcon,
+  antigravity: AntigravityIcon,
 } as const;
 
 export type AIProvider = {
@@ -282,18 +264,17 @@ export const defaultAIProviders: readonly AIProvider[] = [
     brandColor: "#D97757",
   },
   {
-    id: "grok",
-    name: "Grok",
-    url: "https://grok.com/",
-    promptParam: "q",
+    id: "cursor",
+    name: "Cursor",
+    url: "https://cursor.com/link/prompt",
+    promptParam: "text",
     brandColor: "var(--foreground)",
   },
   {
-    id: "perplexity",
-    name: "Perplexity",
-    url: "https://www.perplexity.ai/search",
-    promptParam: "q",
-    brandColor: "#20B8CD",
+    id: "antigravity",
+    name: "Antigravity",
+    url: "https://antigravity.google/",
+    brandColor: "var(--foreground)",
   },
 ];
 
@@ -355,6 +336,7 @@ export function AskAI({
   const [internalOpen, setInternalOpen] = useState(defaultOpen);
   const [tooltipOpen, setTooltipOpen] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [copiedFor, setCopiedFor] = useState<string | null>(null);
   const [fallbackPrompt, setFallbackPrompt] = useState(false);
   const resetTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
   const isOpen = open ?? internalOpen;
@@ -365,6 +347,7 @@ export function AskAI({
 
   useEffect(() => {
     setCopied(false);
+    setCopiedFor(null);
     setFallbackPrompt(false);
     if (resetTimeout.current) clearTimeout(resetTimeout.current);
   }, [prompt]);
@@ -376,14 +359,17 @@ export function AskAI({
       setTooltipOpen(false);
     }
     if (!next) {
+      setCopiedFor(null);
       setFallbackPrompt(false);
     }
   }
 
-  async function copyPrompt() {
+  async function copyPrompt(destination?: string) {
+    setCopiedFor(null);
     try {
       await navigator.clipboard.writeText(prompt);
       setCopied(true);
+      setCopiedFor(destination ?? null);
       setFallbackPrompt(false);
       if (resetTimeout.current) clearTimeout(resetTimeout.current);
       resetTimeout.current = setTimeout(() => setCopied(false), 2500);
@@ -463,18 +449,20 @@ export function AskAI({
           <div className="ask-ai-providers mt-3.5 sm:mt-[23px] flex gap-1 sm:gap-1.5" aria-label="Choose your AI assistant">
             {providers.map((provider) => {
               const Icon = aiProviderIcons[provider.id as keyof typeof aiProviderIcons];
+              const ProviderControl = provider.promptParam ? "a" : "button";
               return (
                 <Tooltip key={provider.id}>
                   <TooltipTrigger asChild>
-                    <a
-                      href={getProviderUrl(provider, prompt)}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <ProviderControl
+                      href={provider.promptParam ? getProviderUrl(provider, prompt) : undefined}
+                      target={provider.promptParam ? "_blank" : undefined}
+                      rel={provider.promptParam ? "noopener noreferrer" : undefined}
+                      type={provider.promptParam ? undefined : "button"}
                       style={{ "--brand": provider.brandColor } as CSSProperties}
                       className="ask-ai-provider group bg-muted hover:bg-background relative flex h-16 sm:h-[77px] min-w-0 flex-1 items-center justify-center rounded-[12px] sm:rounded-[15px] bg-card text-foreground/50 duration-200 ease-out hover:-translate-y-1 hover:text-[var(--brand)] focus-visible:-translate-y-1 focus-visible:bg-primary/[0.08] focus-visible:text-[var(--brand)] focus-visible:shadow-[0_6px_10px_-5px_color-mix(in_srgb,var(--primary)_18%,transparent)] focus-visible:outline-none first:rounded-[16px_12px_12px_16px] sm:first:rounded-[21px_15px_15px_21px] last:rounded-[12px_16px_16px_12px] sm:last:rounded-[15px_21px_21px_15px]"
-                      aria-label={`Ask ${provider.name} (opens in a new tab)${!provider.promptParam ? "; copies prompt to paste" : ""}`}
+                      aria-label={provider.promptParam ? `Ask ${provider.name} (opens in a new tab)` : `Copy prompt for ${provider.name}`}
                       onClick={() => {
-                        if (!provider.promptParam) void copyPrompt();
+                        if (!provider.promptParam) void copyPrompt(provider.name);
                       }}
                     >
                       {Icon ? (
@@ -486,14 +474,14 @@ export function AskAI({
                       <span className="absolute bottom-1.5 sm:bottom-2 translate-y-1 text-[9px] sm:text-[10px] opacity-0 transition-[opacity,transform] duration-[180ms] group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
                         {provider.name}
                       </span>
-                      <ArrowUpRight
+                      {provider.promptParam && <ArrowUpRight
                         aria-hidden="true"
                         className="absolute right-1 sm:right-[7px] top-1 sm:top-[7px] size-2.5 sm:size-[11px] text-primary opacity-0 transition-opacity duration-[180ms] group-hover:opacity-100 group-focus-visible:opacity-100"
-                      />
-                    </a>
+                      />}
+                    </ProviderControl>
                   </TooltipTrigger>
                   <TooltipContent container={container} className="text-xs">
-                    {provider.promptParam ? `open ${provider.name}` : `copy prompt & open ${provider.name}`}
+                    {provider.promptParam ? `open ${provider.name}` : `copy prompt for ${provider.name}`}
                   </TooltipContent>
                 </Tooltip>
               );
@@ -508,6 +496,7 @@ export function AskAI({
             <span aria-live="polite">{copied ? "Prompt copied" : "Copy prompt for your agent"}</span>
           </button>
 
+          {copiedFor && <p role="status" className="ask-ai-handoff">Prompt copied. Open {copiedFor} and paste it into the agent chat.</p>}
           <details className="ask-ai-prompt">
             <summary>View prompt</summary>
             <textarea aria-label="Installation prompt" readOnly value={prompt} rows={7} onFocus={event => event.currentTarget.select()} />
