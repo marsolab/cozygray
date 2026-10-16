@@ -4,6 +4,9 @@
   "account_id": "21f2f68669de57f46deca9ae353e98de",
   "compatibility_date": "2026-10-16",
   "workers_dev": true,
+  "routes": [
+    { "pattern": "cozygray.marsolab.com", "custom_domain": true }
+  ],
   "assets": {
     "directory": "./dist"
   }

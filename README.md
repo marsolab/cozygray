@@ -1,6 +1,6 @@
 # Cozy Gray
 
-[Website](https://cozygray.marsolab.workers.dev) · [Source](https://github.com/marsolab/cozygray)
+[Website](https://cozygray.marsolab.com) · [Source](https://github.com/marsolab/cozygray)
 
 A responsive landing page and prototype distribution surface for a warm gray editor and terminal theme, with light and dark variants.
 
@@ -46,7 +46,7 @@ Platform scope reference: https://warmburnout.com/#platforms. No reference-site 
 
 ## Deploy to Cloudflare Workers
 
-The static Astro build is served by Cloudflare Workers Static Assets. `wrangler.jsonc` declares the Worker name and output directory. To publish from an authenticated Cloudflare account:
+The static Astro build is served by Cloudflare Workers Static Assets. `wrangler.jsonc` declares the Worker name, output directory, and `cozygray.marsolab.com` custom domain. To publish from an authenticated Cloudflare account:
 
 ```sh
 npm ci
