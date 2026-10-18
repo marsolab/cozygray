@@ -39,6 +39,10 @@ The app uses Astro, React, TypeScript, shadcn/ui, Tailwind CSS, GSAP, Lucide, an
 
 Native-format configuration files are authored for VS Code and its derivatives, Zed, Neovim, Vim, Helix, Ghostty, iTerm2, Windows Terminal, Warp, WezTerm, Alacritty, tmux, Zellij, Starship, Zsh, eza, and an Obsidian CSS snippet. These are initial configurations, not target-application acceptance-tested integrations or published extensions.
 
+OpenAI Codex Desktop has light and dark appearance ports. Select **OpenAI Codex** on the website and copy the theme file into **Settings → Appearance → Import** for the matching light/dark section. The `.codex-theme` downloads contain the native `codex-theme-v1:` share string, not bare JSON. Back up your current appearance with **Copy theme** before importing. Import both variants to use them with System appearance.
+
+The port applies Cozy Gray backgrounds, foregrounds, amber accents, and diff/skill colors with opaque windows and default fonts. Code highlighting uses the built-in **Gruvbox** theme: the desktop importer accepts registered code-theme IDs, not arbitrary syntax palettes. The theme picker therefore continues to show Gruvbox. This is a desktop appearance port, not a Codex CLI `.tmTheme` file. See [Codex port format and validation](docs/codex.md) for compatibility details.
+
 JetBrains, Xcode, Emacs, Moshi, bat, Home Assistant, and OpenCode are visibly marked Planned. Their downloads contain a palette reference rather than an installable theme. All ports need target-app validation before release. VS Code currently requires manually declaring the theme in an extension manifest, as explained in its guide.
 
 ## Design and provenance
