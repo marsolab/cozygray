@@ -28,6 +28,7 @@ export const platforms: Platform[] = [
   {name:'bat',detail:'Syntax-aware pager',group:'More tools'},
   {name:'eza',detail:'A modern ls replacement',group:'More tools',format:'eza'},
   {name:'Obsidian',detail:'Your notes, a little quieter',group:'More tools',format:'obsidian'},
+  {name:'OpenAI Codex',detail:'Desktop app appearance · light and dark',group:'More tools',format:'codex'},
   {name:'Home Assistant',detail:'Home dashboard',group:'More tools'},
   {name:'OpenCode',detail:'Terminal coding agent',group:'More tools'}
 ];
@@ -37,6 +38,25 @@ export function buildTheme(format: string, mode: Mode) {
   const ansi = [p.background,p.error,p.string,p.function,p.type,p.keyword,p.string,p.foreground,p.muted,p.error,p.string,p.function,p.type,p.keyword,p.string,p.foreground];
   const hex=(v:string)=>v.replace('#','');
   let content = '', extension = 'json';
+  if (format === 'codex') {
+    // Desktop Appearance → Import accepts this prefix + JSON, not a theme JSON file.
+    // Custom syntax tokens are not supported; Gruvbox supplies the warm code palette.
+    extension = 'codex-theme';
+    content = `codex-theme-v1:${JSON.stringify({
+      variant: mode,
+      codeThemeId: 'gruvbox',
+      theme: {
+        accent: p.string,
+        accentSource: 'custom',
+        surface: p.background,
+        ink: p.foreground,
+        contrast: mode === 'dark' ? 60 : 45,
+        opaqueWindows: true,
+        fonts: { code: null, ui: null },
+        semanticColors: { diffAdded: p.string, diffRemoved: p.error, skill: p.type },
+      },
+    })}`;
+  }
   if(format === 'vscode') content=JSON.stringify({name,type:mode==='dark'?'dark':'light',colors:{'editor.background':p.background,'editor.foreground':p.foreground,'editorLineNumber.foreground':p.muted,'editorLineNumber.activeForeground':p.foreground,'editorCursor.foreground':p.string,'editor.selectionBackground':p.selection,'editor.lineHighlightBackground':p.surface,'sideBar.background':p.surface,'sideBar.foreground':p.foreground,'activityBar.background':p.surface,'activityBar.foreground':p.foreground,'statusBar.background':p.surface,'statusBar.foreground':p.foreground,'titleBar.activeBackground':p.surface,'titleBar.activeForeground':p.foreground,'tab.activeBackground':p.background,'tab.activeForeground':p.foreground,'tab.inactiveBackground':p.surface,'tab.inactiveForeground':p.muted,'terminal.background':p.background,'terminal.foreground':p.foreground},tokenColors:[['comment',p.muted],['keyword, storage',p.keyword],['string',p.string],['entity.name.function',p.function],['entity.name.type, support.type',p.type],['constant.numeric',p.keyword],['invalid',p.error]].map(([scope,foreground])=>({scope:scope.split(', '),settings:{foreground}}))},null,2);
   if(format === 'ghostty'){extension='';content=`# ${name}\nbackground = ${hex(p.background)}\nforeground = ${hex(p.foreground)}\ncursor-color = ${hex(p.string)}\nselection-background = ${hex(p.selection)}\nselection-foreground = ${hex(p.foreground)}\n`+ansi.map((v,i)=>`palette = ${i}=${hex(v)}`).join('\n');}
   if(format === 'windows')content=JSON.stringify({name,background:p.background,foreground:p.foreground,cursorColor:p.string,selectionBackground:p.selection,...Object.fromEntries(['black','red','green','yellow','blue','purple','cyan','white','brightBlack','brightRed','brightGreen','brightYellow','brightBlue','brightPurple','brightCyan','brightWhite'].map((n,i)=>[n,ansi[i]]))},null,2);
@@ -61,6 +81,7 @@ export function installSteps(platform: Platform, mode: Mode) {
   const f=platform.format;
   const n=`cozy-gray-${mode}`;
   const steps: Record<string,string[]> = {
+    codex:[`Download the theme file and copy its entire contents, including the codex-theme-v1: prefix (or use View theme file → Copy file below).`,`In the Codex desktop app, open Settings → Appearance. Save your current ${mode} theme with Copy theme, then choose Import in the ${mode === 'dark' ? 'Dark' : 'Light'} theme section. Paste the copied text and confirm Import theme.`,`Select ${mode === 'dark' ? 'Dark' : 'Light'} appearance, or System to follow your OS. Import the other variant separately for automatic switching.`,`This port customizes app colors and uses built-in Gruvbox syntax highlighting with default fonts. It is not a Codex CLI theme. To undo, import your saved theme string into the same section.`],
     vscode:[`Download the JSON theme file below.`, `Create a theme extension folder with a package.json declaring this file under contributes.themes. Copy that folder to ~/.vscode/extensions (or your editor’s extensions folder).`, `Reload your editor, open “Preferences: Color Theme”, and choose Cozy Gray ${mode==='dark'?'Dark':'Light'}.`],
     ghostty:[`Save the file to ~/.config/ghostty/themes/${n}.`,`Add theme = ${n} to your Ghostty configuration.`,`Reload the configuration to apply your palette.`],
     zed:[`Save the JSON file to ~/.config/zed/themes/${n}.json.`,`Open the theme selector and choose Cozy Gray ${mode==='dark'?'Dark':'Light'}.`],
