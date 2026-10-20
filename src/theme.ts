@@ -32,6 +32,124 @@ export const platforms: Platform[] = [
   {name:'Home Assistant',detail:'Home dashboard',group:'More tools'},
   {name:'OpenCode',detail:'Terminal coding agent',group:'More tools'}
 ];
+
+function zedStyle(p: typeof palettes.dark) {
+  // Zed merges omitted roles with its default theme. Define the whole workspace
+  // so chrome, Markdown links, selections, and terminals keep the preview palette.
+  const syntaxRoles = {
+    attribute: p.type, boolean: p.keyword, comment: p.muted, 'comment.doc': p.muted,
+    constant: p.keyword, constructor: p.function, embedded: p.foreground,
+    emphasis: p.foreground, 'emphasis.strong': p.foreground, enum: p.type,
+    function: p.function, hint: p.muted, keyword: p.keyword, label: p.type,
+    link_text: p.string, link_uri: p.string, namespace: p.type, number: p.keyword,
+    operator: p.keyword, predictive: p.muted, preproc: p.keyword, primary: p.foreground,
+    property: p.foreground, punctuation: p.foreground, 'punctuation.bracket': p.foreground,
+    'punctuation.delimiter': p.foreground, 'punctuation.list_marker': p.keyword,
+    'punctuation.markup': p.keyword, string: p.string, 'string.escape': p.keyword,
+    'string.regex': p.string, 'string.special': p.string, 'string.special.symbol': p.type,
+    tag: p.keyword, 'text.literal': p.string, title: p.function, type: p.type,
+    variable: p.foreground, 'variable.special': p.keyword, variant: p.type,
+  };
+  const ansiRoles = {
+    black: p.background, red: p.error, green: p.string, yellow: p.function,
+    blue: p.type, magenta: p.keyword, cyan: p.string, white: p.foreground,
+  };
+  const statusRoles = {
+    conflict: p.function, created: p.string, deleted: p.error, error: p.error,
+    hidden: p.muted, hint: p.muted, ignored: p.muted, info: p.type,
+    modified: p.function, predictive: p.muted, renamed: p.type, success: p.string,
+    unreachable: p.muted, warning: p.function,
+  };
+  return {
+    'background.appearance': 'opaque',
+    background: p.background,
+    'surface.background': p.surface,
+    'elevated_surface.background': p.surface,
+    border: p.selection,
+    'border.variant': p.surface,
+    'border.focused': p.string,
+    'border.selected': p.string,
+    'border.transparent': '#00000000',
+    'border.disabled': p.surface,
+    'element.background': p.background,
+    'element.hover': p.selection,
+    'element.active': p.selection,
+    'element.selected': p.selection,
+    'element.disabled': p.surface,
+    'ghost_element.background': '#00000000',
+    'ghost_element.hover': p.selection,
+    'ghost_element.active': p.selection,
+    'ghost_element.selected': p.selection,
+    'ghost_element.disabled': p.surface,
+    'drop_target.background': `${p.selection}80`,
+    text: p.foreground,
+    'text.muted': p.muted,
+    'text.placeholder': p.muted,
+    'text.disabled': p.muted,
+    'text.accent': p.string,
+    icon: p.foreground,
+    'icon.muted': p.muted,
+    'icon.placeholder': p.muted,
+    'icon.disabled': p.muted,
+    'icon.accent': p.string,
+    'title_bar.background': p.surface,
+    'title_bar.inactive_background': p.surface,
+    'toolbar.background': p.background,
+    'tab_bar.background': p.surface,
+    'tab.active_background': p.background,
+    'tab.inactive_background': p.surface,
+    'status_bar.background': p.surface,
+    'panel.background': p.surface,
+    'panel.focused_border': p.selection,
+    'panel.indent_guide': p.selection,
+    'panel.indent_guide_active': p.muted,
+    'panel.indent_guide_hover': p.muted,
+    'pane.focused_border': p.selection,
+    'pane_group.border': p.surface,
+    'editor.background': p.background,
+    'editor.foreground': p.foreground,
+    'editor.gutter.background': p.background,
+    'editor.subheader.background': p.surface,
+    'editor.active_line.background': p.surface,
+    'editor.highlighted_line.background': p.surface,
+    'editor.line_number': p.muted,
+    'editor.active_line_number': p.foreground,
+    'editor.invisible': p.selection,
+    'editor.wrap_guide': p.surface,
+    'editor.active_wrap_guide': p.selection,
+    'editor.indent_guide': p.surface,
+    'editor.indent_guide_active': p.selection,
+    'editor.document_highlight.read_background': `${p.selection}80`,
+    'editor.document_highlight.write_background': `${p.selection}80`,
+    'editor.document_highlight.bracket_background': p.selection,
+    'search.match_background': p.selection,
+    'scrollbar.thumb.background': `${p.muted}60`,
+    'scrollbar.thumb.hover_background': `${p.muted}90`,
+    'scrollbar.thumb.border': '#00000000',
+    'scrollbar.track.background': '#00000000',
+    'scrollbar.track.border': '#00000000',
+    'link_text.hover': p.string,
+    'terminal.background': p.background,
+    'terminal.foreground': p.foreground,
+    'terminal.bright_foreground': p.foreground,
+    'terminal.dim_foreground': p.muted,
+    'terminal.ansi.background': p.background,
+    ...Object.fromEntries(Object.entries(ansiRoles).flatMap(([role, color]) => [
+      [`terminal.ansi.${role}`, color],
+      [`terminal.ansi.bright_${role}`, role === 'black' ? p.muted : color],
+      [`terminal.ansi.dim_${role}`, color],
+    ])),
+    ...Object.fromEntries(Object.entries(statusRoles).flatMap(([role, color]) => [
+      [role, color], [ `${role}.background`, `${color}18` ], [ `${role}.border`, `${color}50` ],
+    ])),
+    accents: [p.string, p.type, p.keyword, p.function],
+    players: [p.string, p.type, p.keyword, p.function, p.error].map((color, index) => ({
+      cursor: color, background: color, selection: index === 0 ? p.selection : `${color}35`,
+    })),
+    syntax: Object.fromEntries(Object.entries(syntaxRoles).map(([token, color]) => [token, { color }])),
+  };
+}
+
 export function buildTheme(format: string, mode: Mode) {
   const p = palettes[mode];
   const name = `Cozy Gray ${mode === 'dark' ? 'Dark' : 'Light'}`;
@@ -60,7 +178,7 @@ export function buildTheme(format: string, mode: Mode) {
   if(format === 'vscode') content=JSON.stringify({name,type:mode==='dark'?'dark':'light',colors:{'editor.background':p.background,'editor.foreground':p.foreground,'editorLineNumber.foreground':p.muted,'editorLineNumber.activeForeground':p.foreground,'editorCursor.foreground':p.string,'editor.selectionBackground':p.selection,'editor.lineHighlightBackground':p.surface,'sideBar.background':p.surface,'sideBar.foreground':p.foreground,'activityBar.background':p.surface,'activityBar.foreground':p.foreground,'statusBar.background':p.surface,'statusBar.foreground':p.foreground,'titleBar.activeBackground':p.surface,'titleBar.activeForeground':p.foreground,'tab.activeBackground':p.background,'tab.activeForeground':p.foreground,'tab.inactiveBackground':p.surface,'tab.inactiveForeground':p.muted,'terminal.background':p.background,'terminal.foreground':p.foreground},tokenColors:[['comment',p.muted],['keyword, storage',p.keyword],['string',p.string],['entity.name.function',p.function],['entity.name.type, support.type',p.type],['constant.numeric',p.keyword],['invalid',p.error]].map(([scope,foreground])=>({scope:scope.split(', '),settings:{foreground}}))},null,2);
   if(format === 'ghostty'){extension='';content=`# ${name}\nbackground = ${hex(p.background)}\nforeground = ${hex(p.foreground)}\ncursor-color = ${hex(p.string)}\nselection-background = ${hex(p.selection)}\nselection-foreground = ${hex(p.foreground)}\n`+ansi.map((v,i)=>`palette = ${i}=${hex(v)}`).join('\n');}
   if(format === 'windows')content=JSON.stringify({name,background:p.background,foreground:p.foreground,cursorColor:p.string,selectionBackground:p.selection,...Object.fromEntries(['black','red','green','yellow','blue','purple','cyan','white','brightBlack','brightRed','brightGreen','brightYellow','brightBlue','brightPurple','brightCyan','brightWhite'].map((n,i)=>[n,ansi[i]]))},null,2);
-  if(format==='zed')content=JSON.stringify({$schema:'https://zed.dev/schema/themes/v0.2.0.json',name,author:'Cozy Gray',themes:[{name,appearance:mode,style:{background:p.background,'editor.background':p.background,'editor.foreground':p.foreground,'text':p.foreground,'text.muted':p.muted,'panel.background':p.surface,'terminal.background':p.background,'terminal.foreground':p.foreground,syntax:Object.fromEntries(['comment','keyword','string','function','type','number'].map(k=>[k,{color:p[k==='comment'?'muted':k==='number'?'keyword':k as keyof typeof p]}]))}}]},null,2);
+  if(format==='zed')content=JSON.stringify({$schema:'https://zed.dev/schema/themes/v0.2.0.json',name,author:'Cozy Gray',themes:[{name,appearance:mode,style:zedStyle(p)}]},null,2);
   if(format==='alacritty'){extension='toml';content=`# ${name}\n[colors.primary]\nbackground = "${p.background}"\nforeground = "${p.foreground}"\n[colors.cursor]\ntext = "${p.background}"\ncursor = "${p.string}"\n[colors.normal]\n`+['black','red','green','yellow','blue','magenta','cyan','white'].map((n,i)=>`${n} = "${ansi[i]}"`).join('\n')+'\n[colors.bright]\n'+['black','red','green','yellow','blue','magenta','cyan','white'].map((n,i)=>`${n} = "${ansi[i+8]}"`).join('\n');}
   if(format==='wezterm'){extension='toml';content=`[colors]\nforeground = '${p.foreground}'\nbackground = '${p.background}'\ncursor_bg = '${p.string}'\ncursor_fg = '${p.background}'\nselection_bg = '${p.selection}'\nselection_fg = '${p.foreground}'\nansi = [${ansi.slice(0,8).map(v=>`'${v}'`).join(', ')}]\nbrights = [${ansi.slice(8).map(v=>`'${v}'`).join(', ')}]\n[metadata]\nname = '${name}'`}
   if(format==='warp'){extension='yaml';content=`name: '${name}'\naccent: '${p.string}'\nbackground: '${p.background}'\nforeground: '${p.foreground}'\ndetails: '${mode === 'dark' ? 'darker' : 'lighter'}'\nterminal_colors:\n  normal:\n`+['black','red','green','yellow','blue','magenta','cyan','white'].map((n,i)=>`    ${n}: '${ansi[i]}'`).join('\n')+'\n  bright:\n'+['black','red','green','yellow','blue','magenta','cyan','white'].map((n,i)=>`    ${n}: '${ansi[i+8]}'`).join('\n');}

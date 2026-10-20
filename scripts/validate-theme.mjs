@@ -1,5 +1,7 @@
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import { palettes, platforms, buildTheme, installSteps } from '../src/theme.ts';
+const previewCss = readFileSync(new URL('../src/style.css', import.meta.url), 'utf8');
 const luminance = hex => {
   const [r,g,b] = hex.match(/[0-9a-f]{2}/gi).map(value => parseInt(value, 16) / 255).map(value => value <= .04045 ? value / 12.92 : ((value + .055) / 1.055) ** 2.4);
   return .2126*r + .7152*g + .0722*b;
@@ -21,6 +23,31 @@ for (const [mode, palette] of Object.entries(palettes)) {
       assert.deepEqual(options, ['status-style','pane-border-style','pane-active-border-style','message-style','mode-style']);
     }
     if (platform.format === 'vscode') assert.equal(JSON.parse(file.content).colors['editor.background'],palette.background);
+    if (platform.format === 'zed') {
+      const { style } = JSON.parse(file.content).themes[0];
+      // The screenshot regression: Zed inherited white chrome and blue accents
+      // because the original export only supplied editor/panel backgrounds.
+      for (const key of ['surface.background', 'elevated_surface.background', 'title_bar.background', 'title_bar.inactive_background', 'tab_bar.background', 'tab.inactive_background', 'status_bar.background', 'panel.background']) {
+        assert.equal(style[key], palette.surface, `${mode}: ${key} must match preview chrome`);
+      }
+      for (const key of ['editor.background', 'editor.gutter.background', 'tab.active_background', 'toolbar.background', 'terminal.background']) {
+        assert.equal(style[key], palette.background, `${mode}: ${key} must match preview editor`);
+      }
+      for (const key of ['text.accent', 'icon.accent', 'link_text.hover']) assert.equal(style[key], palette.string);
+      assert.deepEqual(style.players[0], { cursor: palette.string, background: palette.string, selection: palette.selection });
+      for (const [token, role] of Object.entries({ comment: 'muted', keyword: 'keyword', string: 'string', function: 'function', type: 'type', number: 'keyword', link_text: 'string', link_uri: 'string' })) {
+        assert.equal(style.syntax[token].color, palette[role]);
+      }
+      for (const [index, color] of [palette.background, palette.error, palette.string, palette.function, palette.type, palette.keyword, palette.string, palette.foreground].entries()) {
+        const ansiName = ['black','red','green','yellow','blue','magenta','cyan','white'][index];
+        assert.equal(style[`terminal.ansi.${ansiName}`], color);
+      }
+      // Compare with the actual landing-page CSS, not just the palette object.
+      const preview = previewCss.match(new RegExp(`\\.theme-${mode}\\{([^}]+)\\}`))[1];
+      for (const [cssRole, role] of Object.entries({ bg: 'background', surface: 'surface', fg: 'foreground', muted: 'muted', string: 'string', function: 'function', keyword: 'keyword', type: 'type', select: 'selection' })) {
+        assert.ok(preview.includes(`--code-${cssRole}:${palette[role]}`), `${mode}: preview ${cssRole} must match exports`);
+      }
+    }
     if (platform.format === 'codex') {
       // The desktop importer requires a share string and rejects mismatched variants.
       assert.equal(file.filename, `cozy-gray-${mode}.codex-theme`);

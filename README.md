@@ -39,6 +39,18 @@ The app uses Astro, React, TypeScript, shadcn/ui, Tailwind CSS, GSAP, Lucide, an
 
 Native-format configuration files are authored for VS Code and its derivatives, Zed, Neovim, Vim, Helix, Ghostty, iTerm2, Windows Terminal, Warp, WezTerm, Alacritty, tmux, Zellij, Starship, Zsh, eza, and an Obsidian CSS snippet. These are initial configurations, not target-application acceptance-tested integrations or published extensions.
 
+The Zed port explicitly colors window chrome, tabs, panels, editor gutters, controls, selections, Markdown links, syntax, and terminal ANSI roles. Omitting these roles lets Zed inherit its default colors, which previously left white chrome and blue links around the gray editor. Both exports are checked against the landing-page palette; both appearances were installed and visually checked as a dev extension in Zed 1.24.3. The preview illustrates the palette in a sample editor layout. A theme file preserves Zed’s own layout and your configured fonts.
+
+### Zed extension
+
+[`extensions/zed`](extensions/zed) packages both appearances as the **Cozy Gray** extension (`cozy-gray-theme`, version `0.1.0`). It contains the manifest, generated theme family, README, and an MIT license scoped to that directory. Store publication awaits registry submission and approval; it is not yet available through Zed's extension store.
+
+For local installation, choose **Extensions → Install Dev Extension** in Zed and select `extensions/zed`. Then select **Cozy Gray Light** or **Cozy Gray Dark** in **Theme Selector**. Move previously installed standalone Cozy Gray theme files to a backup directory first so they cannot mask the extension.
+
+Run `npm run build:zed` after palette changes and commit the generated theme. `npm run validate:zed` detects stale output; it also runs as part of `validate:themes`. The extension uses Zed's supported registry subdirectory path, so the website and theme stay in one repository. See [publication and update steps](docs/zed-publishing.md).
+
+### OpenAI Codex appearance
+
 OpenAI Codex Desktop has light and dark appearance ports. Select **OpenAI Codex** on the website and copy the theme file into **Settings → Appearance → Import** for the matching light/dark section. The `.codex-theme` downloads contain the native `codex-theme-v1:` share string, not bare JSON. Back up your current appearance with **Copy theme** before importing. Import both variants to use them with System appearance.
 
 The port applies Cozy Gray backgrounds, foregrounds, amber accents, and diff/skill colors with opaque windows and default fonts. Code highlighting uses the built-in **Gruvbox** theme: the desktop importer accepts registered code-theme IDs, not arbitrary syntax palettes. The theme picker therefore continues to show Gruvbox. This is a desktop appearance port, not a Codex CLI `.tmTheme` file. See [Codex port format and validation](docs/codex.md) for compatibility details.
@@ -75,4 +87,4 @@ Cloudflare documentation: https://developers.cloudflare.com/workers/static-asset
 
 ## Theme release follow-up
 
-Package and validate theme ports inside their target applications, implement the planned native ports, and decide licensing and marketplace distribution. No release license or marketplace presence is assumed here.
+Validate the remaining ports inside their target applications, implement the planned native ports, and decide their licensing and marketplace distribution. The Zed package has an MIT license and awaits a human-owned registry submission; no other release license or marketplace presence is assumed here.

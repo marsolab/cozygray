@@ -1,0 +1,8 @@
+id = "cozy-gray-theme"
+name = "Cozy Gray"
+version = "0.1.0"
+schema_version = 1
+authors = ["Marsolab"]
+description = "Warm gray light and dark themes with amber, coral, and rose syntax accents."
+repository = "https://github.com/marsolab/cozygray"
+themes = ["themes/cozy-gray.json"]

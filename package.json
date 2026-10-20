@@ -8,7 +8,9 @@
     "build": "astro check && astro build",
     "preview": "astro preview --host 0.0.0.0 --port 5173",
     "check": "astro check",
-    "validate:themes": "node scripts/validate-theme.mjs",
+    "build:zed": "node scripts/build-zed-extension.mjs",
+    "validate:zed": "node scripts/build-zed-extension.mjs --check",
+    "validate:themes": "node scripts/validate-theme.mjs && npm run validate:zed",
     "validate:site": "node scripts/validate-site.mjs",
     "deploy": "npm run build && npm run validate:themes && npm run validate:site && wrangler deploy"
   },
