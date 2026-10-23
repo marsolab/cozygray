@@ -37,7 +37,7 @@ The app uses Astro, React, TypeScript, shadcn/ui, Tailwind CSS, GSAP, Lucide, an
 
 `src/theme.ts` defines the two palettes and download formats. All syntax roles pass 4.5:1 contrast against their variant’s background. This is a contrast calculation, not evidence of medical benefit or reduced display emissions.
 
-Native-format configuration files are authored for VS Code and its derivatives, Zed, Neovim, Vim, Helix, Ghostty, iTerm2, Windows Terminal, Warp, WezTerm, Alacritty, tmux, Zellij, Starship, Zsh, eza, and an Obsidian CSS snippet. These are initial configurations, not target-application acceptance-tested integrations or published extensions.
+Native-format configuration files are authored for VS Code and its derivatives, Zed, Neovim, Vim, Helix, Ghostty, Otty, iTerm2, Windows Terminal, Warp, WezTerm, Alacritty, tmux, Zellij, Starship, Zsh, eza, and an Obsidian CSS snippet. These are initial configurations, not target-application acceptance-tested integrations or published extensions.
 
 The Zed port explicitly colors window chrome, tabs, panels, editor gutters, controls, selections, Markdown links, syntax, and terminal ANSI roles. Omitting these roles lets Zed inherit its default colors, which previously left white chrome and blue links around the gray editor. Both exports are checked against the landing-page palette; both appearances were installed and visually checked as a dev extension in Zed 1.24.3. The preview illustrates the palette in a sample editor layout. A theme file preserves Zed’s own layout and your configured fonts.
 
@@ -48,6 +48,14 @@ The Zed port explicitly colors window chrome, tabs, panels, editor gutters, cont
 For local installation, choose **Extensions → Install Dev Extension** in Zed and select `extensions/zed`. Then select **Cozy Gray Light** or **Cozy Gray Dark** in **Theme Selector**. Move previously installed standalone Cozy Gray theme files to a backup directory first so they cannot mask the extension.
 
 Run `npm run build:zed` after palette changes and commit the generated theme. `npm run validate:zed` detects stale output; it also runs as part of `validate:themes`. The extension uses Zed's supported registry subdirectory path, so the website and theme stay in one repository. See [publication and update steps](docs/zed-publishing.md).
+
+### Otty
+
+Select **Otty** on the website to download **Cozy Gray Light** or **Cozy Gray Dark** as a native `.ottytheme` file. The TOML export includes all 16 ANSI colors, cursor and selection colors, autocomplete ghost text, an amber accent, window/tab colors, and an opaque window background. Fonts and layout follow your existing settings.
+
+In Otty, open **Settings → Appearance → Themes → Import Theme**, choose the **Otty** format, and select the file. Alternatively, save it to `~/.config/otty/themes/` on macOS/Linux or `%APPDATA%\otty\themes\` on Windows, then reopen the theme list (relaunch if needed). Choose **Cozy Gray Light** or **Cozy Gray Dark**. For automatic appearance switching, import both, set the main theme to Light, enable **Use separated theme for dark mode**, and set **Dark Theme** to Dark.
+
+The export follows Otty's [native theme format](https://docs.otty.sh/reference/theme-format) and [installation instructions](https://docs.otty.sh/customization/themes). Target-app visual acceptance is still pending.
 
 ### OpenAI Codex appearance
 
