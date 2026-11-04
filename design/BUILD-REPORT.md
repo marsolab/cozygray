@@ -1,6 +1,6 @@
 # Cozy Gray landing page
 
-Implemented as a Astro / React / TypeScript application with shadcn/ui and Tailwind CSS. Run `npm run dev` and open http://localhost:5173/.
+Implemented as an Astro / React / TypeScript application with shadcn/ui and Tailwind CSS. Run `bun run dev` and open http://localhost:5173/.
 
 ## Direction and interaction
 

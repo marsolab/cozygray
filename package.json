@@ -5,14 +5,18 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev --host 0.0.0.0 --port 5173",
-    "build": "astro check && astro build",
+    "build": "bun run check && astro build",
     "preview": "astro preview --host 0.0.0.0 --port 5173",
-    "check": "astro check",
-    "build:zed": "node scripts/build-zed-extension.mjs",
-    "validate:zed": "node scripts/build-zed-extension.mjs --check",
-    "validate:themes": "node scripts/validate-theme.mjs && npm run validate:zed",
-    "validate:site": "node scripts/validate-site.mjs",
-    "deploy": "npm run build && npm run validate:themes && npm run validate:site && wrangler deploy"
+    "lint": "oxlint",
+    "format": "oxfmt --write",
+    "format:check": "oxfmt --check",
+    "typecheck": "oxlint --type-aware --type-check",
+    "check": "bun run lint && bun run format:check && bun run typecheck && astro check",
+    "build:zed": "bun scripts/build-zed-extension.mjs",
+    "validate:zed": "bun scripts/build-zed-extension.mjs --check",
+    "validate:themes": "bun scripts/validate-theme.mjs && bun run validate:zed",
+    "validate:site": "bun scripts/validate-site.mjs",
+    "deploy": "bun run build && bun run validate:themes && bun run validate:site && wrangler deploy"
   },
   "dependencies": {
     "@astrojs/react": "^7.1.0",
@@ -33,9 +37,14 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "@astrojs/compiler-rs": "^0.5.2",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
+    "oxfmt": "^0.76.0",
+    "oxlint": "^1.91.0",
+    "oxlint-tsgolint": "^7.0.2005",
     "typescript": "~5.8.3",
     "wrangler": "4.149.0"
-  }
+  },
+  "packageManager": "bun@1.4.4"
 }

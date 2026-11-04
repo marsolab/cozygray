@@ -27,7 +27,7 @@ The desktop format cannot carry Cozy Gray's individual keyword, string, function
 
 ## Validation
 
-`npm run validate:themes` checks both share strings, their required fields, palette mapping, variant, built-in code-theme ID, and installation instructions. After `npm run build`, `npm run validate:site` checks the generated downloads and agent guides against the same source.
+`bun run validate:themes` checks both share strings, their required fields, palette mapping, variant, built-in code-theme ID, and installation instructions. After `bun run build`, `bun run validate:site` checks the generated downloads and agent guides against the same source.
 
 Both exports also passed the installed application's extracted share-string parser and theme schema in an isolated validation run. Gruvbox's registration was checked for both appearances. This validates serialization independently of the project's assertions; it does not establish rendered appearance.
 

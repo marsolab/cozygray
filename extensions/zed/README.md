@@ -34,9 +34,9 @@ The extension colors the title bar, tabs, panels, editor, Markdown links, select
 The packaged theme is generated from `src/theme.ts`, the same palette and exporter used by the website downloads. From the repository root:
 
 ```sh
-npm ci
-npm run build:zed
-npm run validate:zed
+bun install --frozen-lockfile
+bun run build:zed
+bun run validate:zed
 ```
 
 Commit the regenerated `themes/cozy-gray.json` with each palette change. See [`docs/zed-publishing.md`](../../docs/zed-publishing.md) for registry submission and release steps.

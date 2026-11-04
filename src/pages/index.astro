@@ -4,19 +4,45 @@ import '@fontsource-variable/geist';
 import '@fontsource-variable/geist-mono';
 import '../style.css';
 const title = 'Cozy Gray — Light & Dark Editor and Terminal Themes';
-const description = 'A warm gray color theme for editors and terminals. Preview light and dark palettes, explore brighter syntax colors, and download files for VS Code, Ghostty, Neovim, and more.';
+const description =
+  'A warm gray color theme for editors and terminals. Preview light and dark palettes, explore brighter syntax colors, and download files for VS Code, Ghostty, Neovim, and more.';
 const canonical = new URL('/', Astro.site).href;
 const image = new URL('/og/cozy-gray.jpg', Astro.site).href;
-const imageAlt = 'Cozy Gray: A softer shade of focus. Light and dark editor windows against warm gray brushstrokes.';
+const imageAlt =
+  'Cozy Gray: A softer shade of focus. Light and dark editor windows against warm gray brushstrokes.';
 const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
-    { '@type': 'Organization', '@id': 'https://marsolab.com/#organization', name: 'Marsolab', url: 'https://marsolab.com' },
-    { '@type': 'WebSite', '@id': `${canonical}#website`, url: canonical, name: 'Cozy Gray', description, inLanguage: 'en', publisher: { '@id': 'https://marsolab.com/#organization' }, sameAs: 'https://github.com/marsolab/cozygray' },
-    { '@type': 'WebPage', '@id': `${canonical}#webpage`, url: canonical, name: title, description, inLanguage: 'en', isPartOf: { '@id': `${canonical}#website` }, primaryImageOfPage: { '@type': 'ImageObject', url: image, width: 1200, height: 630 } },
+    {
+      '@type': 'Organization',
+      '@id': 'https://marsolab.com/#organization',
+      name: 'Marsolab',
+      url: 'https://marsolab.com',
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${canonical}#website`,
+      url: canonical,
+      name: 'Cozy Gray',
+      description,
+      inLanguage: 'en',
+      publisher: { '@id': 'https://marsolab.com/#organization' },
+      sameAs: 'https://github.com/marsolab/cozygray',
+    },
+    {
+      '@type': 'WebPage',
+      '@id': `${canonical}#webpage`,
+      url: canonical,
+      name: title,
+      description,
+      inLanguage: 'en',
+      isPartOf: { '@id': `${canonical}#website` },
+      primaryImageOfPage: { '@type': 'ImageObject', url: image, width: 1200, height: 630 },
+    },
   ],
 };
 ---
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -45,7 +71,12 @@ const structuredData = {
     <meta name="twitter:image:alt" content={imageAlt} />
     <link rel="icon" type="image/png" href="/assets/cozy-gray-logo.png" />
     <title>{title}</title>
-    <script type="application/ld+json" set:html={JSON.stringify(structuredData).replace(/</g, '\\u003c')} />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(structuredData).replace(/</g, '\\u003c')}
+    />
   </head>
-  <body><App client:load /></body>
+  <body>
+    <App client:load />
+  </body>
 </html>
