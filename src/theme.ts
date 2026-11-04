@@ -1,7 +1,7 @@
 export type Mode = 'dark' | 'light';
 export const palettes = {
-  dark: { background: '#292827', surface: '#33312f', foreground: '#e7e2db', muted: '#aaa39b', keyword: '#f0ab91', string: '#e6c078', function: '#f2d4a5', type: '#dab0c5', error: '#f09b9b', selection: '#514941' },
-  light: { background: '#eae7e3', surface: '#dedad5', foreground: '#393430', muted: '#6e655e', keyword: '#a1432d', string: '#86600d', function: '#8b542b', type: '#904769', error: '#b1353f', selection: '#d0c5ba' }
+  dark: { background: '#292827', surface: '#33312f', foreground: '#e7e2db', muted: '#aaa39b', keyword: '#f0ab91', string: '#e6c078', function: '#f2d4a5', type: '#dab0c5', error: '#f09b9b', selection: '#514941', border: '#403d39', divider: '#403d39' },
+  light: { background: '#eae7e3', surface: '#dedad5', foreground: '#393430', muted: '#6e655e', keyword: '#a1432d', string: '#86600d', function: '#8b542b', type: '#904769', error: '#b1353f', selection: '#d0c5ba', border: '#d0c5ba', divider: '#dedad5' }
 };
 export type Platform = { name: string; detail: string; group: 'Editors' | 'Terminals' | 'More tools'; format?: string };
 export const platforms: Platform[] = [
@@ -15,6 +15,7 @@ export const platforms: Platform[] = [
   {name:'Xcode',detail:'Apple development tools',group:'Editors'},
   {name:'Emacs',detail:'An extensible editor',group:'Editors'},
   {name:'Ghostty',detail:'A native terminal',group:'Terminals',format:'ghostty'},
+  {name:'Otty',detail:'Native terminal and window theme',group:'Terminals',format:'otty'},
   {name:'iTerm2',detail:'Terminal for macOS',group:'Terminals',format:'iterm'},
   {name:'Windows Terminal',detail:'Windows color scheme',group:'Terminals',format:'windows'},
   {name:'Warp',detail:'Terminal theme',group:'Terminals',format:'warp'},
@@ -65,8 +66,8 @@ function zedStyle(p: typeof palettes.dark) {
     background: p.background,
     'surface.background': p.surface,
     'elevated_surface.background': p.surface,
-    border: p.selection,
-    'border.variant': p.surface,
+    border: p.border,
+    'border.variant': p.divider,
     'border.focused': p.string,
     'border.selected': p.string,
     'border.transparent': '#00000000',
@@ -100,12 +101,12 @@ function zedStyle(p: typeof palettes.dark) {
     'tab.inactive_background': p.surface,
     'status_bar.background': p.surface,
     'panel.background': p.surface,
-    'panel.focused_border': p.selection,
+    'panel.focused_border': p.border,
     'panel.indent_guide': p.selection,
     'panel.indent_guide_active': p.muted,
     'panel.indent_guide_hover': p.muted,
-    'pane.focused_border': p.selection,
-    'pane_group.border': p.surface,
+    'pane.focused_border': p.border,
+    'pane_group.border': p.divider,
     'editor.background': p.background,
     'editor.foreground': p.foreground,
     'editor.gutter.background': p.background,
@@ -156,6 +157,47 @@ export function buildTheme(format: string, mode: Mode) {
   const ansi = [p.background,p.error,p.string,p.function,p.type,p.keyword,p.string,p.foreground,p.muted,p.error,p.string,p.function,p.type,p.keyword,p.string,p.foreground];
   const hex=(v:string)=>v.replace('#','');
   let content = '', extension = 'json';
+  if (format === 'otty') {
+    // Native TOML format: https://docs.otty.sh/reference/theme-format
+    extension = 'ottytheme';
+    content = `# ${name}
+[meta]
+name = "${name}"
+mode = "${mode}"
+author = "Cozy Gray"
+
+[terminal]
+background = "${p.background}"
+foreground = "${p.foreground}"
+cursor = "${p.string}"
+cursor-text = "${p.background}"
+palette = [
+${ansi.map(color => `  "${color}",`).join('\n')}
+]
+
+[selection]
+background = "${p.selection}"
+foreground = "${p.foreground}"
+
+[ghost]
+foreground = "${p.muted}"
+
+[token]
+accent = "${p.string}"
+
+[ui]
+title-bar-bg = "${p.surface}"
+tab-bar-bg = "${p.surface}"
+tab-active-bg = "${p.background}"
+tab-active-fg = "${p.foreground}"
+sidebar-divider = "${p.selection}"
+
+[window]
+material = "none"
+background = "${p.background}"
+opacity = 1.0
+`;
+  }
   if (format === 'codex') {
     // Desktop Appearance → Import accepts this prefix + JSON, not a theme JSON file.
     // Custom syntax tokens are not supported; Gruvbox supplies the warm code palette.
@@ -202,6 +244,7 @@ export function installSteps(platform: Platform, mode: Mode) {
     codex:[`Download the theme file and copy its entire contents, including the codex-theme-v1: prefix (or use View theme file → Copy file below).`,`In the Codex desktop app, open Settings → Appearance. Save your current ${mode} theme with Copy theme, then choose Import in the ${mode === 'dark' ? 'Dark' : 'Light'} theme section. Paste the copied text and confirm Import theme.`,`Select ${mode === 'dark' ? 'Dark' : 'Light'} appearance, or System to follow your OS. Import the other variant separately for automatic switching.`,`This port customizes app colors and uses built-in Gruvbox syntax highlighting with default fonts. It is not a Codex CLI theme. To undo, import your saved theme string into the same section.`],
     vscode:[`Download the JSON theme file below.`, `Create a theme extension folder with a package.json declaring this file under contributes.themes. Copy that folder to ~/.vscode/extensions (or your editor’s extensions folder).`, `Reload your editor, open “Preferences: Color Theme”, and choose Cozy Gray ${mode==='dark'?'Dark':'Light'}.`],
     ghostty:[`Save the file to ~/.config/ghostty/themes/${n}.`,`Add theme = ${n} to your Ghostty configuration.`,`Reload the configuration to apply your palette.`],
+    otty:[`Download ${n}.ottytheme. In Otty, open Settings → Appearance → Themes → Import Theme and choose the Otty format, then select the downloaded file.`,`Choose Cozy Gray ${mode === 'dark' ? 'Dark' : 'Light'} in the theme picker. To install manually, save the file to ~/.config/otty/themes/ on macOS/Linux or %APPDATA%\\otty\\themes\\ on Windows, then reopen the theme list (relaunch Otty if needed).`,`For automatic switching, import both variants, set the main theme to Cozy Gray Light, enable “Use separated theme for dark mode”, and set Dark Theme to Cozy Gray Dark. With that option off, the main theme applies to both appearances.`],
     zed:[`Save the JSON file to ~/.config/zed/themes/${n}.json.`,`Open the theme selector and choose Cozy Gray ${mode==='dark'?'Dark':'Light'}.`],
     neovim:[`Save the Lua file to ~/.config/nvim/colors/${n}.lua.`,`Run :colorscheme ${n}, then add that command to your configuration.`],
     vim:[`Save the Vim file to ~/.vim/colors/${n}.vim.`,`Run :colorscheme ${n}. Enable termguicolors for true-color support.`],
