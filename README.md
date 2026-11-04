@@ -1,99 +1,93 @@
 # Cozy Gray
 
-[Website](https://cozygray.marsolab.com) · [Source](https://github.com/marsolab/cozygray)
+A warm gray theme for editors, terminals, and desktop apps, with light and dark appearances and amber, coral, and rose accents.
 
-A responsive landing page and prototype distribution surface for a warm gray editor and terminal theme, with light and dark variants.
+[Preview and download](https://cozygray.marsolab.com) · [Source](https://github.com/marsolab/cozygray)
 
-## Run
+## Install
+
+1. Open the [website](https://cozygray.marsolab.com) and select your app.
+2. Choose **Cozy Gray Light** or **Cozy Gray Dark**.
+3. Download the theme file and follow the installation instructions for that app.
+
+Back up your existing configuration before applying a theme. The website also offers installation prompts you can copy into a coding assistant for guided setup.
+
+### Available formats
+
+- **Editors:** VS Code and derivatives, Zed, Neovim, Vim, and Helix.
+- **Terminals:** Ghostty, Otty, iTerm2, Windows Terminal, Warp, WezTerm, and Alacritty.
+- **Other tools:** tmux, Zellij, Starship, Zsh, eza, Obsidian (CSS snippet), OpenAI Codex Desktop, Herdr, and OpenCode.
+
+JetBrains, Xcode, Emacs, Moshi, bat, and Home Assistant are marked **Planned** in the catalog. Their downloads are palette references, not installable themes. Available exports may require manual configuration; see each app's installation guide on the website.
+
+### Zed
+
+For standalone installation, download the Zed JSON file, save it in `~/.config/zed/themes/`, and select **Cozy Gray Light** or **Cozy Gray Dark** in the theme selector.
+
+To install both appearances from this repository:
+
+1. Clone the repository.
+2. In Zed, open **Extensions → Install Dev Extension**.
+3. Select the [`extensions/zed`](extensions/zed) directory.
+4. Open **Theme Selector** and choose either appearance.
+
+If you previously installed standalone Cozy Gray theme files, move them to a backup directory before installing the extension so they do not override its themes.
+
+### Otty
+
+Download the `.ottytheme` file, then open **Settings → Appearance → Themes → Import Theme**, choose the **Otty** format, and select the file.
+
+For automatic switching, import both appearances, set the main theme to **Cozy Gray Light**, enable **Use separated theme for dark mode**, and set **Dark Theme** to **Cozy Gray Dark**.
+
+### OpenAI Codex Desktop
+
+Download the `.codex-theme` file and copy its entire contents, including the `codex-theme-v1:` prefix. In **Settings → Appearance**, back up your current appearance with **Copy theme**, then choose **Import** in the matching light or dark section and paste the text. Import both variants to use **System** appearance.
+
+This port customizes app colors and uses built-in **Gruvbox** syntax highlighting with default fonts. To restore your previous appearance, import the saved theme string.
+
+## Preview
+
+The website includes:
+
+- Light and dark code previews with TypeScript, Python, and Rust samples.
+- A terminal preview and copyable palette swatches.
+- A searchable app catalog with downloads and installation guides.
+- Separate website appearance and theme-preview preferences.
+
+## Local development
 
 Requires Bun 1.4.4+.
 
 ```sh
-bun install
+bun install --frozen-lockfile
 bun run dev
 ```
+
+The site uses Astro, React, TypeScript, and Tailwind CSS. No API keys or backend are required.
+
+Build and preview locally:
 
 ```sh
 bun run build
 bun run preview
+```
+
+Run code checks and validate the generated themes and site:
+
+```sh
 bun run check
 bun run validate:themes
+bun run build
 bun run validate:site
 ```
 
-The app uses Astro, React, TypeScript, shadcn/ui, Tailwind CSS, GSAP, Lucide, and self-hosted Geist font files from Fontsource. Oxlint provides linting and TypeScript type checking, while Oxfmt handles formatting. No API keys or backend are required. Astro commands use separate Vite caches so checks and production builds can run alongside the development server without invalidating its client modules.
-
-## Features
-
-- Live light/dark code preview, TypeScript/Python/Rust samples, and a terminal view.
-- Separate website light/dark appearance.
-- Synchronized palette swatches with clipboard copying and a saved preview preference.
-- Searchable and filterable tool catalog covering the platform families in the reference.
-- Generated native configuration downloads and contextual installation instructions.
-- Agent handoff with tool-specific light/dark prompts, copy controls, and assistant links.
-- Server-rendered SEO metadata, canonical URL, sitemap, structured data, and a 1200×630 social image.
-- Responsive navigation, keyboard focus, disclosure controls, and reduced-motion fallback.
-
-## Theme files
-
-`src/theme.ts` defines the two palettes and download formats. All syntax roles pass 4.5:1 contrast against their variant’s background. This is a contrast calculation, not evidence of medical benefit or reduced display emissions.
-
-Native-format configuration files are authored for VS Code and its derivatives, Zed, Neovim, Vim, Helix, Ghostty, Otty, iTerm2, Windows Terminal, Warp, WezTerm, Alacritty, tmux, Zellij, Starship, Zsh, eza, and an Obsidian CSS snippet. These are initial configurations, not target-application acceptance-tested integrations or published extensions.
-
-The Zed port explicitly colors window chrome, tabs, panels, editor gutters, controls, selections, Markdown links, syntax, and terminal ANSI roles. Omitting these roles lets Zed inherit its default colors, which previously left white chrome and blue links around the gray editor. Both exports are checked against the landing-page palette; both appearances were installed and visually checked as a dev extension in Zed 1.24.3. The preview illustrates the palette in a sample editor layout. A theme file preserves Zed’s own layout and your configured fonts.
-
-### Zed extension
-
-[`extensions/zed`](extensions/zed) packages both appearances as the **Cozy Gray** extension (`cozy-gray-theme`, version `0.1.0`). It contains the manifest, generated theme family, README, and an MIT license scoped to that directory. Store publication awaits registry submission and approval; it is not yet available through Zed's extension store.
-
-For local installation, choose **Extensions → Install Dev Extension** in Zed and select `extensions/zed`. Then select **Cozy Gray Light** or **Cozy Gray Dark** in **Theme Selector**. Move previously installed standalone Cozy Gray theme files to a backup directory first so they cannot mask the extension.
-
-Run `bun run build:zed` after palette changes and commit the generated theme. `bun run validate:zed` detects stale output; it also runs as part of `validate:themes`. The extension uses Zed's supported registry subdirectory path, so the website and theme stay in one repository. See [publication and update steps](docs/zed-publishing.md).
-
-### Otty
-
-Select **Otty** on the website to download **Cozy Gray Light** or **Cozy Gray Dark** as a native `.ottytheme` file. The TOML export includes all 16 ANSI colors, cursor and selection colors, autocomplete ghost text, an amber accent, window/tab colors, and an opaque window background. Fonts and layout follow your existing settings.
-
-In Otty, open **Settings → Appearance → Themes → Import Theme**, choose the **Otty** format, and select the file. Alternatively, save it to `~/.config/otty/themes/` on macOS/Linux or `%APPDATA%\otty\themes\` on Windows, then reopen the theme list (relaunch if needed). Choose **Cozy Gray Light** or **Cozy Gray Dark**. For automatic appearance switching, import both, set the main theme to Light, enable **Use separated theme for dark mode**, and set **Dark Theme** to Dark.
-
-The export follows Otty's [native theme format](https://docs.otty.sh/reference/theme-format) and [installation instructions](https://docs.otty.sh/customization/themes). Target-app visual acceptance is still pending.
-
-### OpenAI Codex appearance
-
-OpenAI Codex Desktop has light and dark appearance ports. Select **OpenAI Codex** on the website and copy the theme file into **Settings → Appearance → Import** for the matching light/dark section. The `.codex-theme` downloads contain the native `codex-theme-v1:` share string, not bare JSON. Back up your current appearance with **Copy theme** before importing. Import both variants to use them with System appearance.
-
-The port applies Cozy Gray backgrounds, foregrounds, amber accents, and diff/skill colors with opaque windows and default fonts. Code highlighting uses the built-in **Gruvbox** theme: the desktop importer accepts registered code-theme IDs, not arbitrary syntax palettes. The theme picker therefore continues to show Gruvbox. This is a desktop appearance port, not a Codex CLI `.tmTheme` file. See [Codex port format and validation](docs/codex.md) for compatibility details.
-
-JetBrains, Xcode, Emacs, Moshi, bat, Home Assistant, and OpenCode are visibly marked Planned. Their downloads contain a palette reference rather than an installable theme. All ports need target-app validation before release. VS Code currently requires manually declaring the theme in an extension manifest, as explained in its guide.
-
-## Design and provenance
-
-`PRODUCT.md` records the brief; `DESIGN.md` records the delivered visual system. The material photograph `public/assets/gray-stones.webp` was generated with the built-in image tool. Its exact prompt is in `design/gray-stones.prompt.txt`; provenance is in `design/image-provenance.json` and the asset’s adjacent sidecar. The logo `public/assets/cozy-gray-logo.png` was also created with the built-in image tool. Its prompt and provenance are in `design/cozy-gray-logo.prompt.txt` and `design/cozy-gray-logo.provenance.json`. The original transparent PNG is used as a CSS mask so the symbol follows the site appearance. Code examples are synthetic demonstrations, not an installable `cozy-gray` code library.
-
-Platform scope reference: https://warmburnout.com/#platforms. No reference-site imagery, copy, or theme colors were reused.
-
-## Agent installation and sharing
-
-The supplied AskAI component is integrated beside the download action. Its prompt follows the selected tool and theme appearance. Copy it into a coding agent with local file access, or open an assistant for guided setup. Planned ports explicitly request exploration instead of installation. Public `/install/<tool>.md` guides and `/themes/<format>/<filename>` files are generated from the same source as the UI downloads; they remain crawlable but are excluded from search indexing via response headers.
-
-The provider picker offers ChatGPT, Claude, Cursor, and Antigravity. Cursor uses its [documented prompt deeplink](https://cursor.com/docs/reference/deeplinks), which pre-fills chat for review. Antigravity copies the prompt and tells the user to paste it into the app's agent chat. Its button does not claim to launch or install anything. Cursor and Antigravity marks use monochrome paths sourced from their official websites.
-
-The canonical website URL is configured in `astro.config.mjs`. Sharing metadata and JSON-LD are rendered in `src/pages/index.astro`; the static sitemap and robots file are in `public/`. The generated OG image is `public/og/cozy-gray.jpg`, with its exact prompt and provenance in `design/og-image.*`. `validate:site` checks the built metadata, image dimensions, and every agent guide/theme link before deployment.
-
-## Deploy to Cloudflare Workers
-
-The static Astro build is served by Cloudflare Workers Static Assets. `wrangler.jsonc` declares the Worker name, output directory, and `cozygray.marsolab.com` custom domain. To publish from an authenticated Cloudflare account:
+Both palettes, export formats, and installation instructions are defined in [`src/theme.ts`](src/theme.ts). After changing a palette, regenerate the Zed extension and include the generated file in your changes:
 
 ```sh
-bun install --frozen-lockfile
-bunx wrangler login
-bun run deploy
+bun run build:zed
+bun run validate:zed
 ```
 
-The deploy command builds the site, validates theme exports and SEO/agent resources, and uploads `dist/`. Deployment is manual; pushing to GitHub does not automatically publish a release. No server-side secrets are needed by the site.
+## License
 
-Cloudflare documentation: https://developers.cloudflare.com/workers/static-assets/
-
-## Theme release follow-up
-
-Validate the remaining ports inside their target applications, implement the planned native ports, and decide their licensing and marketplace distribution. The Zed package has an MIT license and awaits a human-owned registry submission; no other release license or marketplace presence is assumed here.
+The Zed extension is available under the [MIT License](extensions/zed/LICENSE), scoped to the `extensions/zed` directory.
