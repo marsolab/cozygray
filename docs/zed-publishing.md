@@ -9,12 +9,12 @@ On October 20, 2026, the package was installed through **Install Dev Extension**
 ## Release preparation
 
 ```sh
-npm ci
-npm run build:zed
-npm run validate:themes
-npm run validate:zed
-npm run build
-npm run validate:site
+bun install --frozen-lockfile
+bun run build:zed
+bun run validate:themes
+bun run validate:zed
+bun run build
+bun run validate:site
 ```
 
 Install `extensions/zed` with Zed's **Install Dev Extension** action and check both appearances, including editor syntax, title bar, tabs, status bar, selections, Markdown links, and terminal colors. Temporarily move standalone Cozy Gray user theme files out of `~/.config/zed/themes` so they cannot mask the extension. Restore them afterward if retaining the manual installation.
@@ -42,6 +42,7 @@ Follow Zed's [publishing prerequisites](https://zed.dev/docs/extensions/publishi
    ```
 
    Confirm this commit remains reachable from the source repository's public `main` branch. The tag identifies a source release prepared for submission, not an already published store listing.
+
 5. Add this entry to the registry's `extensions.toml`:
 
    ```toml

@@ -6,21 +6,22 @@ A responsive landing page and prototype distribution surface for a warm gray edi
 
 ## Run
 
-Requires Node.js 22+.
+Requires Bun 1.4.4+.
 
 ```sh
-npm install
-npm run dev
+bun install
+bun run dev
 ```
 
 ```sh
-npm run build
-npm run preview
-node scripts/validate-theme.mjs
-npm run validate:site
+bun run build
+bun run preview
+bun run check
+bun run validate:themes
+bun run validate:site
 ```
 
-The app uses Astro, React, TypeScript, shadcn/ui, Tailwind CSS, GSAP, Lucide, and self-hosted Geist font files from Fontsource. No API keys or backend are required. Astro commands use separate Vite caches so checks and production builds can run alongside the development server without invalidating its client modules.
+The app uses Astro, React, TypeScript, shadcn/ui, Tailwind CSS, GSAP, Lucide, and self-hosted Geist font files from Fontsource. Oxlint provides linting and TypeScript type checking, while Oxfmt handles formatting. No API keys or backend are required. Astro commands use separate Vite caches so checks and production builds can run alongside the development server without invalidating its client modules.
 
 ## Features
 
@@ -47,7 +48,7 @@ The Zed port explicitly colors window chrome, tabs, panels, editor gutters, cont
 
 For local installation, choose **Extensions → Install Dev Extension** in Zed and select `extensions/zed`. Then select **Cozy Gray Light** or **Cozy Gray Dark** in **Theme Selector**. Move previously installed standalone Cozy Gray theme files to a backup directory first so they cannot mask the extension.
 
-Run `npm run build:zed` after palette changes and commit the generated theme. `npm run validate:zed` detects stale output; it also runs as part of `validate:themes`. The extension uses Zed's supported registry subdirectory path, so the website and theme stay in one repository. See [publication and update steps](docs/zed-publishing.md).
+Run `bun run build:zed` after palette changes and commit the generated theme. `bun run validate:zed` detects stale output; it also runs as part of `validate:themes`. The extension uses Zed's supported registry subdirectory path, so the website and theme stay in one repository. See [publication and update steps](docs/zed-publishing.md).
 
 ### Otty
 
@@ -84,9 +85,9 @@ The canonical website URL is configured in `astro.config.mjs`. Sharing metadata 
 The static Astro build is served by Cloudflare Workers Static Assets. `wrangler.jsonc` declares the Worker name, output directory, and `cozygray.marsolab.com` custom domain. To publish from an authenticated Cloudflare account:
 
 ```sh
-npm ci
-npx wrangler login
-npm run deploy
+bun install --frozen-lockfile
+bunx wrangler login
+bun run deploy
 ```
 
 The deploy command builds the site, validates theme exports and SEO/agent resources, and uploads `dist/`. Deployment is manual; pushing to GitHub does not automatically publish a release. No server-side secrets are needed by the site.

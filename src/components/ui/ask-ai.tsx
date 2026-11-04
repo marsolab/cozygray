@@ -1,33 +1,22 @@
-"use client";
+'use client';
 
-import * as React from "react";
-import {
-  useEffect,
-  useRef,
-  useState,
-  type CSSProperties,
-  type ReactNode,
-} from "react";
-import { Check, Copy, ArrowUpRight } from "lucide-react";
-import {
-  Popover as PopoverPrimitive,
-  Tooltip as TooltipPrimitive,
-} from "radix-ui";
-import { cn } from "@/lib/utils";
+import * as React from 'react';
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
+import { Check, Copy, ArrowUpRight } from 'lucide-react';
+import { Popover as PopoverPrimitive, Tooltip as TooltipPrimitive } from 'radix-ui';
+import { cn } from '@/lib/utils';
 
 function Popover(props: React.ComponentProps<typeof PopoverPrimitive.Root>) {
   return <PopoverPrimitive.Root data-slot="popover" {...props} />;
 }
 
-function PopoverTrigger(
-  props: React.ComponentProps<typeof PopoverPrimitive.Trigger>
-) {
+function PopoverTrigger(props: React.ComponentProps<typeof PopoverPrimitive.Trigger>) {
   return <PopoverPrimitive.Trigger data-slot="popover-trigger" {...props} />;
 }
 
 function PopoverContent({
   className,
-  align = "center",
+  align = 'center',
   sideOffset = 4,
   container,
   ...props
@@ -39,8 +28,8 @@ function PopoverContent({
         align={align}
         sideOffset={sideOffset}
         className={cn(
-          "z-50 flex w-72 origin-(--radix-popover-content-transform-origin) flex-col gap-2.5 rounded-lg bg-popover p-2.5 text-sm text-popover-foreground shadow-md ring-1 ring-foreground/10 outline-hidden duration-100 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
-          className
+          'z-50 flex w-72 origin-(--radix-popover-content-transform-origin) flex-col gap-2.5 rounded-lg bg-popover p-2.5 text-sm text-popover-foreground shadow-md ring-1 ring-foreground/10 outline-hidden duration-100 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95',
+          className,
         )}
         {...props}
       />
@@ -48,24 +37,15 @@ function PopoverContent({
   );
 }
 
-function PopoverTitle({ className, ...props }: React.ComponentProps<"h2">) {
-  return (
-    <h2
-      data-slot="popover-title"
-      className={cn("font-medium", className)}
-      {...props}
-    />
-  );
+function PopoverTitle({ className, ...props }: React.ComponentProps<'h2'>) {
+  return <h2 data-slot="popover-title" className={cn('font-medium', className)} {...props} />;
 }
 
-function PopoverDescription({
-  className,
-  ...props
-}: React.ComponentProps<"p">) {
+function PopoverDescription({ className, ...props }: React.ComponentProps<'p'>) {
   return (
     <p
       data-slot="popover-description"
-      className={cn("text-muted-foreground", className)}
+      className={cn('text-muted-foreground', className)}
       {...props}
     />
   );
@@ -88,9 +68,7 @@ function Tooltip(props: React.ComponentProps<typeof TooltipPrimitive.Root>) {
   return <TooltipPrimitive.Root data-slot="tooltip" {...props} />;
 }
 
-function TooltipTrigger(
-  props: React.ComponentProps<typeof TooltipPrimitive.Trigger>
-) {
+function TooltipTrigger(props: React.ComponentProps<typeof TooltipPrimitive.Trigger>) {
   return <TooltipPrimitive.Trigger data-slot="tooltip-trigger" {...props} />;
 }
 
@@ -111,8 +89,8 @@ function TooltipContent({
         data-slot="tooltip-content"
         sideOffset={sideOffset}
         className={cn(
-          "z-50 inline-flex w-fit max-w-xs origin-(--radix-tooltip-content-transform-origin) items-center gap-1.5 rounded-md bg-foreground px-3 py-1.5 text-xs text-background has-data-[slot=kbd]:pr-1.5 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 **:data-[slot=kbd]:relative **:data-[slot=kbd]:isolate **:data-[slot=kbd]:z-50 **:data-[slot=kbd]:rounded-sm data-[state=delayed-open]:animate-in data-[state=delayed-open]:fade-in-0 data-[state=delayed-open]:zoom-in-95 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
-          className
+          'z-50 inline-flex w-fit max-w-xs origin-(--radix-tooltip-content-transform-origin) items-center gap-1.5 rounded-md bg-foreground px-3 py-1.5 text-xs text-background has-data-[slot=kbd]:pr-1.5 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 **:data-[slot=kbd]:relative **:data-[slot=kbd]:isolate **:data-[slot=kbd]:z-50 **:data-[slot=kbd]:rounded-sm data-[state=delayed-open]:animate-in data-[state=delayed-open]:fade-in-0 data-[state=delayed-open]:zoom-in-95 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95',
+          className,
         )}
         {...props}
       >
@@ -125,66 +103,66 @@ function TooltipContent({
   );
 }
 
-export type MascotGaze = "up" | "down" | "left" | "right";
+export type MascotGaze = 'up' | 'down' | 'left' | 'right';
 
 export function AIMascot({
   awake = false,
   gaze,
-  size = "default",
+  size = 'default',
   brand = false,
   className,
 }: {
   awake?: boolean;
   /** Direction the eyes look while awake: point it at the popover. */
   gaze?: MascotGaze;
-  size?: "default" | "compact";
+  size?: 'default' | 'compact';
   brand?: boolean;
   className?: string;
 }) {
   const eyeShift = !awake
-    ? "translate-x-px -translate-y-px"
-    : gaze === "down"
-      ? "translate-x-px translate-y-1"
-      : gaze === "left"
-        ? "-translate-x-1 -translate-y-px"
-        : gaze === "right"
-          ? "translate-x-1 -translate-y-px"
-          : "translate-x-px -translate-y-1";
+    ? 'translate-x-px -translate-y-px'
+    : gaze === 'down'
+      ? 'translate-x-px translate-y-1'
+      : gaze === 'left'
+        ? '-translate-x-1 -translate-y-px'
+        : gaze === 'right'
+          ? 'translate-x-1 -translate-y-px'
+          : 'translate-x-px -translate-y-1';
 
   return (
     <span
       aria-hidden="true"
       data-awake={awake}
       className={cn(
-        "ai-mascot relative inline-flex shrink-0 items-center justify-center bg-primary text-primary-foreground animate-[ai-mascot-blob_9s_ease-in-out_infinite] transition-transform duration-[440ms] ease-[cubic-bezier(.22,1.5,.5,1)]",
+        'ai-mascot relative inline-flex shrink-0 items-center justify-center bg-primary text-primary-foreground animate-[ai-mascot-blob_9s_ease-in-out_infinite] transition-transform duration-[440ms] ease-[cubic-bezier(.22,1.5,.5,1)]',
         brand
-          ? "h-[22px] w-[22px] shadow-none"
-          : size === "compact"
-            ? "h-7 w-7 shadow-none"
-            : "h-10 w-10 rotate-[-7deg] data-[awake=true]:rotate-6 data-[awake=true]:scale-[1.05]",
-        className
+          ? 'h-[22px] w-[22px] shadow-none'
+          : size === 'compact'
+            ? 'h-7 w-7 shadow-none'
+            : 'h-10 w-10 rotate-[-7deg] data-[awake=true]:rotate-6 data-[awake=true]:scale-[1.05]',
+        className,
       )}
     >
       <span
         className={cn(
-          "flex transition-transform duration-300",
+          'flex transition-transform duration-300',
           brand
-            ? "gap-1"
-            : size === "compact"
-              ? "gap-[5px]"
-              : cn("gap-2 transition-transform", eyeShift)
+            ? 'gap-1'
+            : size === 'compact'
+              ? 'gap-[5px]'
+              : cn('gap-2 transition-transform', eyeShift),
         )}
       >
         <span
           className={cn(
-            "block animate-[ai-mascot-blink_6.5s_infinite] rounded-[5px] bg-current",
-            brand ? "h-[5px] w-[2.5px]" : size === "compact" ? "h-[7px] w-[3px]" : "h-2.5 w-1"
+            'block animate-[ai-mascot-blink_6.5s_infinite] rounded-[5px] bg-current',
+            brand ? 'h-[5px] w-[2.5px]' : size === 'compact' ? 'h-[7px] w-[3px]' : 'h-2.5 w-1',
           )}
         />
         <span
           className={cn(
-            "block animate-[ai-mascot-blink_6.5s_infinite] rounded-[5px] bg-current",
-            brand ? "h-[5px] w-[2.5px]" : size === "compact" ? "h-[7px] w-[3px]" : "h-2.5 w-1"
+            'block animate-[ai-mascot-blink_6.5s_infinite] rounded-[5px] bg-current',
+            brand ? 'h-[5px] w-[2.5px]' : size === 'compact' ? 'h-[7px] w-[3px]' : 'h-2.5 w-1',
           )}
         />
       </span>
@@ -226,11 +204,19 @@ export function ClaudeIcon(props: IconProps) {
 
 // Product marks from https://cursor.com/brand and https://antigravity.google/.
 export function CursorIcon(props: IconProps) {
-  return <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 545" fill="currentColor" {...props}><path d="m466.383 137.073-206.469-119.2034c-6.63-3.8287-14.811-3.8287-21.441 0l-206.4586 119.2034c-5.5734 3.218-9.0144 9.169-9.0144 15.615v240.375c0 6.436 3.441 12.397 9.0144 15.615l206.4686 119.203c6.63 3.829 14.811 3.829 21.441 0l206.468-119.203c5.574-3.218 9.015-9.17 9.015-15.615v-240.375c0-6.436-3.441-12.397-9.015-15.615zm-12.969 25.25-199.316 345.223c-1.347 2.326-4.904 1.376-4.904-1.319v-226.048c0-4.517-2.414-8.695-6.33-10.963l-195.7577-113.019c-2.3263-1.347-1.3764-4.905 1.3182-4.905h398.6305c5.661 0 9.199 6.136 6.368 11.041h-.009z" /></svg>;
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 545" fill="currentColor" {...props}>
+      <path d="m466.383 137.073-206.469-119.2034c-6.63-3.8287-14.811-3.8287-21.441 0l-206.4586 119.2034c-5.5734 3.218-9.0144 9.169-9.0144 15.615v240.375c0 6.436 3.441 12.397 9.0144 15.615l206.4686 119.203c6.63 3.829 14.811 3.829 21.441 0l206.468-119.203c5.574-3.218 9.015-9.17 9.015-15.615v-240.375c0-6.436-3.441-12.397-9.015-15.615zm-12.969 25.25-199.316 345.223c-1.347 2.326-4.904 1.376-4.904-1.319v-226.048c0-4.517-2.414-8.695-6.33-10.963l-195.7577-113.019c-2.3263-1.347-1.3764-4.905 1.3182-4.905h398.6305c5.661 0 9.199 6.136 6.368 11.041h-.009z" />
+    </svg>
+  );
 }
 
 export function AntigravityIcon(props: IconProps) {
-  return <svg xmlns="http://www.w3.org/2000/svg" viewBox="15 20 150 140" fill="currentColor" {...props}><path d="M144.248 149.062C151.748 154.688 162.998 150.938 152.685 140.625C121.748 110.625 128.31 28.125 89.8727 28.125C51.4352 28.125 57.9977 110.625 27.0602 140.625C15.8102 151.875 27.9977 154.688 35.4977 149.062C64.5602 129.375 62.6852 94.6875 89.8727 94.6875C117.06 94.6875 115.185 129.375 144.248 149.062Z" /></svg>;
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="15 20 150 140" fill="currentColor" {...props}>
+      <path d="M144.248 149.062C151.748 154.688 162.998 150.938 152.685 140.625C121.748 110.625 128.31 28.125 89.8727 28.125C51.4352 28.125 57.9977 110.625 27.0602 140.625C15.8102 151.875 27.9977 154.688 35.4977 149.062C64.5602 129.375 62.6852 94.6875 89.8727 94.6875C117.06 94.6875 115.185 129.375 144.248 149.062Z" />
+    </svg>
+  );
 }
 
 export const aiProviderIcons = {
@@ -250,38 +236,38 @@ export type AIProvider = {
 
 export const defaultAIProviders: readonly AIProvider[] = [
   {
-    id: "chatgpt",
-    name: "ChatGPT",
-    url: "https://chatgpt.com/",
-    promptParam: "q",
-    brandColor: "var(--foreground)",
+    id: 'chatgpt',
+    name: 'ChatGPT',
+    url: 'https://chatgpt.com/',
+    promptParam: 'q',
+    brandColor: 'var(--foreground)',
   },
   {
-    id: "claude",
-    name: "Claude",
-    url: "https://claude.ai/new",
-    promptParam: "q",
-    brandColor: "#D97757",
+    id: 'claude',
+    name: 'Claude',
+    url: 'https://claude.ai/new',
+    promptParam: 'q',
+    brandColor: '#D97757',
   },
   {
-    id: "cursor",
-    name: "Cursor",
-    url: "https://cursor.com/link/prompt",
-    promptParam: "text",
-    brandColor: "var(--foreground)",
+    id: 'cursor',
+    name: 'Cursor',
+    url: 'https://cursor.com/link/prompt',
+    promptParam: 'text',
+    brandColor: 'var(--foreground)',
   },
   {
-    id: "antigravity",
-    name: "Antigravity",
-    url: "https://antigravity.google/",
-    brandColor: "var(--foreground)",
+    id: 'antigravity',
+    name: 'Antigravity',
+    url: 'https://antigravity.google/',
+    brandColor: 'var(--foreground)',
   },
 ];
 
 export function getProviderUrl(provider: AIProvider, prompt: string) {
   const url = new URL(provider.url);
-  if (url.protocol !== "https:") {
-    throw new Error("AI provider URLs must use HTTPS.");
+  if (url.protocol !== 'https:') {
+    throw new Error('AI provider URLs must use HTTPS.');
   }
   if (provider.promptParam) {
     url.searchParams.set(provider.promptParam, prompt);
@@ -302,9 +288,9 @@ export type AskAIProps = {
   /** Optional custom mascot node, rendered in place of the default blob. */
   mascot?: ReactNode;
   providers?: readonly AIProvider[];
-  size?: "default" | "compact";
-  side?: "top" | "bottom" | "left" | "right";
-  align?: "start" | "center" | "end";
+  size?: 'default' | 'compact';
+  side?: 'top' | 'bottom' | 'left' | 'right';
+  align?: 'start' | 'center' | 'end';
   defaultOpen?: boolean;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
@@ -315,16 +301,16 @@ export type AskAIProps = {
 export function AskAI({
   prompt,
   container,
-  title = "Ask an AI about me",
-  description = "A fresh perspective, from your favorite assistant.",
-  label = "Ask an AI",
+  title = 'Ask an AI about me',
+  description = 'A fresh perspective, from your favorite assistant.',
+  label = 'Ask an AI',
   tooltip,
   blobOnly = false,
   mascot,
   providers = defaultAIProviders,
-  size = "default",
-  side = "top",
-  align = "start",
+  size = 'default',
+  side = 'top',
+  align = 'start',
   defaultOpen = false,
   open,
   onOpenChange,
@@ -341,9 +327,12 @@ export function AskAI({
   const resetTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
   const isOpen = open ?? internalOpen;
 
-  useEffect(() => () => {
-    if (resetTimeout.current) clearTimeout(resetTimeout.current);
-  }, []);
+  useEffect(
+    () => () => {
+      if (resetTimeout.current) clearTimeout(resetTimeout.current);
+    },
+    [],
+  );
 
   useEffect(() => {
     setCopied(false);
@@ -383,16 +372,16 @@ export function AskAI({
   const triggerButton = (
     <PopoverTrigger
       className={cn(
-        "ask-ai-trigger group inline-flex cursor-pointer items-center justify-center text-foreground transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+        'ask-ai-trigger group inline-flex cursor-pointer items-center justify-center text-foreground transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
         blobOnly
           ? cn(
-              "rounded-full bg-background/55 backdrop-blur-xl backdrop-saturate-150 shadow-sm hover:shadow-md",
-              size === "compact" ? "size-10" : "size-12"
+              'rounded-full bg-background/55 backdrop-blur-xl backdrop-saturate-150 shadow-sm hover:shadow-md',
+              size === 'compact' ? 'size-10' : 'size-12',
             )
           : cn(
-              "h-14 gap-4 rounded-full bg-muted/30 ps-5 pe-3 text-base font-medium tracking-tight data-[size=compact]:h-11 data-[size=compact]:gap-3 data-[size=compact]:rounded-[13px] data-[size=compact]:ps-3.5 data-[size=compact]:pe-[9px] data-[size=compact]:text-sm"
+              'h-14 gap-4 rounded-full bg-muted/30 ps-5 pe-3 text-base font-medium tracking-tight data-[size=compact]:h-11 data-[size=compact]:gap-3 data-[size=compact]:rounded-[13px] data-[size=compact]:ps-3.5 data-[size=compact]:pe-[9px] data-[size=compact]:text-sm',
             ),
-        className
+        className,
       )}
       data-size={size}
       style={style}
@@ -403,7 +392,7 @@ export function AskAI({
         {mascot ?? (
           <AIMascot
             awake={isOpen}
-            gaze={side === "top" ? "up" : side === "bottom" ? "down" : side}
+            gaze={side === 'top' ? 'up' : side === 'bottom' ? 'down' : side}
             size={size}
           />
         )}
@@ -419,10 +408,12 @@ export function AskAI({
             open={isOpen ? false : tooltipOpen}
             onOpenChange={(next) => setTooltipOpen(isOpen ? false : next)}
           >
-            <TooltipTrigger asChild>
-              {triggerButton}
-            </TooltipTrigger>
-            <TooltipContent container={container} side={side === "top" ? "left" : "top"} className="text-xs">
+            <TooltipTrigger asChild>{triggerButton}</TooltipTrigger>
+            <TooltipContent
+              container={container}
+              side={side === 'top' ? 'left' : 'top'}
+              className="text-xs"
+            >
               {tooltipText}
             </TooltipContent>
           </Tooltip>
@@ -443,24 +434,34 @@ export function AskAI({
           <PopoverTitle id={titleId} className="text-sm sm:text-base font-medium tracking-tight">
             {title}
           </PopoverTitle>
-          <PopoverDescription id={descriptionId} className="mt-1 sm:mt-1.5 text-xs sm:text-sm leading-relaxed text-muted-foreground">
+          <PopoverDescription
+            id={descriptionId}
+            className="mt-1 sm:mt-1.5 text-xs sm:text-sm leading-relaxed text-muted-foreground"
+          >
             {description}
           </PopoverDescription>
-          <div className="ask-ai-providers mt-3.5 sm:mt-[23px] flex gap-1 sm:gap-1.5" aria-label="Choose your AI assistant">
+          <div
+            className="ask-ai-providers mt-3.5 sm:mt-[23px] flex gap-1 sm:gap-1.5"
+            aria-label="Choose your AI assistant"
+          >
             {providers.map((provider) => {
               const Icon = aiProviderIcons[provider.id as keyof typeof aiProviderIcons];
-              const ProviderControl = provider.promptParam ? "a" : "button";
+              const ProviderControl = provider.promptParam ? 'a' : 'button';
               return (
                 <Tooltip key={provider.id}>
                   <TooltipTrigger asChild>
                     <ProviderControl
                       href={provider.promptParam ? getProviderUrl(provider, prompt) : undefined}
-                      target={provider.promptParam ? "_blank" : undefined}
-                      rel={provider.promptParam ? "noopener noreferrer" : undefined}
-                      type={provider.promptParam ? undefined : "button"}
-                      style={{ "--brand": provider.brandColor } as CSSProperties}
+                      target={provider.promptParam ? '_blank' : undefined}
+                      rel={provider.promptParam ? 'noopener noreferrer' : undefined}
+                      type={provider.promptParam ? undefined : 'button'}
+                      style={{ '--brand': provider.brandColor } as CSSProperties}
                       className="ask-ai-provider group bg-muted hover:bg-background relative flex h-16 sm:h-[77px] min-w-0 flex-1 items-center justify-center rounded-[12px] sm:rounded-[15px] bg-card text-foreground/50 duration-200 ease-out hover:-translate-y-1 hover:text-[var(--brand)] focus-visible:-translate-y-1 focus-visible:bg-primary/[0.08] focus-visible:text-[var(--brand)] focus-visible:shadow-[0_6px_10px_-5px_color-mix(in_srgb,var(--primary)_18%,transparent)] focus-visible:outline-none first:rounded-[16px_12px_12px_16px] sm:first:rounded-[21px_15px_15px_21px] last:rounded-[12px_16px_16px_12px] sm:last:rounded-[15px_21px_21px_15px]"
-                      aria-label={provider.promptParam ? `Ask ${provider.name} (opens in a new tab)` : `Copy prompt for ${provider.name}`}
+                      aria-label={
+                        provider.promptParam
+                          ? `Ask ${provider.name} (opens in a new tab)`
+                          : `Copy prompt for ${provider.name}`
+                      }
                       onClick={() => {
                         if (!provider.promptParam) void copyPrompt(provider.name);
                       }}
@@ -474,14 +475,18 @@ export function AskAI({
                       <span className="absolute bottom-1.5 sm:bottom-2 translate-y-1 text-[9px] sm:text-[10px] opacity-0 transition-[opacity,transform] duration-[180ms] group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
                         {provider.name}
                       </span>
-                      {provider.promptParam && <ArrowUpRight
-                        aria-hidden="true"
-                        className="absolute right-1 sm:right-[7px] top-1 sm:top-[7px] size-2.5 sm:size-[11px] text-primary opacity-0 transition-opacity duration-[180ms] group-hover:opacity-100 group-focus-visible:opacity-100"
-                      />}
+                      {provider.promptParam && (
+                        <ArrowUpRight
+                          aria-hidden="true"
+                          className="absolute right-1 sm:right-[7px] top-1 sm:top-[7px] size-2.5 sm:size-[11px] text-primary opacity-0 transition-opacity duration-[180ms] group-hover:opacity-100 group-focus-visible:opacity-100"
+                        />
+                      )}
                     </ProviderControl>
                   </TooltipTrigger>
                   <TooltipContent container={container} className="text-xs">
-                    {provider.promptParam ? `open ${provider.name}` : `copy prompt for ${provider.name}`}
+                    {provider.promptParam
+                      ? `open ${provider.name}`
+                      : `copy prompt for ${provider.name}`}
                   </TooltipContent>
                 </Tooltip>
               );
@@ -493,15 +498,31 @@ export function AskAI({
             onClick={() => void copyPrompt()}
           >
             {copied ? <Check aria-hidden="true" /> : <Copy aria-hidden="true" />}
-            <span aria-live="polite">{copied ? "Prompt copied" : "Copy prompt for your agent"}</span>
+            <span aria-live="polite">
+              {copied ? 'Prompt copied' : 'Copy prompt for your agent'}
+            </span>
           </button>
 
-          {copiedFor && <p role="status" className="ask-ai-handoff">Prompt copied. Open {copiedFor} and paste it into the agent chat.</p>}
+          {copiedFor && (
+            <p role="status" className="ask-ai-handoff">
+              Prompt copied. Open {copiedFor} and paste it into the agent chat.
+            </p>
+          )}
           <details className="ask-ai-prompt">
             <summary>View prompt</summary>
-            <textarea aria-label="Installation prompt" readOnly value={prompt} rows={7} onFocus={event => event.currentTarget.select()} />
+            <textarea
+              aria-label="Installation prompt"
+              readOnly
+              value={prompt}
+              rows={7}
+              onFocus={(event) => event.currentTarget.select()}
+            />
           </details>
-          {fallbackPrompt && <p role="status" className="ask-ai-copy-error">Copy unavailable. Select the prompt below and copy it manually.</p>}
+          {fallbackPrompt && (
+            <p role="status" className="ask-ai-copy-error">
+              Copy unavailable. Select the prompt below and copy it manually.
+            </p>
+          )}
           {fallbackPrompt && (
             <textarea
               className="mt-2.5 sm:mt-3 w-full rounded-lg border border-border bg-background p-2 text-xs sm:text-sm text-foreground outline-none focus:ring-2 focus:ring-ring"
@@ -517,4 +538,3 @@ export function AskAI({
     </TooltipProvider>
   );
 }
-

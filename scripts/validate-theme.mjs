@@ -2,50 +2,146 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { palettes, platforms, buildTheme, installSteps } from '../src/theme.ts';
 const previewCss = readFileSync(new URL('../src/style.css', import.meta.url), 'utf8');
-const luminance = hex => {
-  const [r,g,b] = hex.match(/[0-9a-f]{2}/gi).map(value => parseInt(value, 16) / 255).map(value => value <= .04045 ? value / 12.92 : ((value + .055) / 1.055) ** 2.4);
-  return .2126*r + .7152*g + .0722*b;
+const luminance = (hex) => {
+  const [r, g, b] = hex
+    .match(/[0-9a-f]{2}/gi)
+    .map((value) => parseInt(value, 16) / 255)
+    .map((value) => (value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4));
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
 };
 for (const [mode, palette] of Object.entries(palettes)) {
-  for (const role of ['foreground','muted','keyword','string','function','type','error']) {
-    const a = luminance(palette.background), b = luminance(palette[role]);
-    assert.ok((Math.max(a,b)+.05)/(Math.min(a,b)+.05) >= 4.5, `${mode}: ${role} must have AA contrast`);
+  for (const role of ['foreground', 'muted', 'keyword', 'string', 'function', 'type', 'error']) {
+    const a = luminance(palette.background),
+      b = luminance(palette[role]);
+    assert.ok(
+      (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05) >= 4.5,
+      `${mode}: ${role} must have AA contrast`,
+    );
   }
   for (const platform of platforms) {
     const file = buildTheme(platform.format || 'palette', mode);
     assert.ok(file.content.length > 50, `${platform.name}: missing theme content`);
-    assert.ok(installSteps(platform,mode).length > 0, `${platform.name}: missing instructions`);
+    assert.ok(installSteps(platform, mode).length > 0, `${platform.name}: missing instructions`);
     if (file.filename.endsWith('.json')) JSON.parse(file.content);
     if (!platform.format) assert.match(file.content, /native port not yet implemented/);
-    if (platform.format === 'ghostty') assert.equal((file.content.match(/^palette = /gm) || []).length,16);
+    if (platform.format === 'ghostty')
+      assert.equal((file.content.match(/^palette = /gm) || []).length, 16);
     if (platform.format === 'tmux') {
-      const options = [...file.content.matchAll(/^set -g ([a-z-]+)/gm)].map(match => match[1]);
-      assert.deepEqual(options, ['status-style','pane-border-style','pane-active-border-style','message-style','mode-style']);
+      const options = [...file.content.matchAll(/^set -g ([a-z-]+)/gm)].map((match) => match[1]);
+      assert.deepEqual(options, [
+        'status-style',
+        'pane-border-style',
+        'pane-active-border-style',
+        'message-style',
+        'mode-style',
+      ]);
     }
-    if (platform.format === 'vscode') assert.equal(JSON.parse(file.content).colors['editor.background'],palette.background);
+    if (platform.format === 'vscode')
+      assert.equal(JSON.parse(file.content).colors['editor.background'], palette.background);
+    if (platform.format === 'herdr') {
+      const herdr = JSON.parse(file.content);
+      assert.equal(herdr.background, palette.background);
+      assert.equal(herdr.foreground, palette.foreground);
+      assert.equal(herdr.selection, palette.selection);
+      assert.equal(herdr.ansi.length, 16);
+      assert.equal(herdr.colors.background, palette.background);
+      assert.equal(herdr.colors.border, palette.border);
+      assert.equal(herdr.colors.accent, palette.string);
+      assert.equal(herdr.colors.working, palette.function);
+    }
+    if (platform.format === 'opencode') {
+      const opencode = JSON.parse(file.content);
+      assert.equal(opencode.$schema, 'https://opencode.ai/theme.json');
+      for (const variant of ['light', 'dark']) {
+        const expected = palettes[variant];
+        assert.ok(opencode[variant].hue.gray);
+        assert.ok(opencode[variant].hue.accent);
+        assert.equal(opencode[variant].text.base, expected.foreground);
+        assert.equal(opencode[variant].background.base, expected.background);
+        assert.equal(opencode[variant].border.base, expected.border);
+        assert.equal(opencode[variant].syntax.string, expected.string);
+        assert.equal(opencode[variant].markdown.heading, expected.function);
+      }
+      assert.ok(opencode.base.text && opencode.base.background);
+    }
     if (platform.format === 'zed') {
       const { style } = JSON.parse(file.content).themes[0];
       // The screenshot regression: Zed inherited white chrome and blue accents
       // because the original export only supplied editor/panel backgrounds.
-      for (const key of ['surface.background', 'elevated_surface.background', 'title_bar.background', 'title_bar.inactive_background', 'tab_bar.background', 'tab.inactive_background', 'status_bar.background', 'panel.background']) {
+      for (const key of [
+        'surface.background',
+        'elevated_surface.background',
+        'title_bar.background',
+        'title_bar.inactive_background',
+        'tab_bar.background',
+        'tab.inactive_background',
+        'status_bar.background',
+        'panel.background',
+      ]) {
         assert.equal(style[key], palette.surface, `${mode}: ${key} must match preview chrome`);
       }
-      for (const key of ['editor.background', 'editor.gutter.background', 'tab.active_background', 'toolbar.background', 'terminal.background']) {
+      for (const key of [
+        'editor.background',
+        'editor.gutter.background',
+        'tab.active_background',
+        'toolbar.background',
+        'terminal.background',
+      ]) {
         assert.equal(style[key], palette.background, `${mode}: ${key} must match preview editor`);
       }
-      for (const key of ['text.accent', 'icon.accent', 'link_text.hover']) assert.equal(style[key], palette.string);
-      assert.deepEqual(style.players[0], { cursor: palette.string, background: palette.string, selection: palette.selection });
-      for (const [token, role] of Object.entries({ comment: 'muted', keyword: 'keyword', string: 'string', function: 'function', type: 'type', number: 'keyword', link_text: 'string', link_uri: 'string' })) {
+      for (const key of ['text.accent', 'icon.accent', 'link_text.hover'])
+        assert.equal(style[key], palette.string);
+      assert.deepEqual(style.players[0], {
+        cursor: palette.string,
+        background: palette.string,
+        selection: palette.selection,
+      });
+      for (const [token, role] of Object.entries({
+        comment: 'muted',
+        keyword: 'keyword',
+        string: 'string',
+        function: 'function',
+        type: 'type',
+        number: 'keyword',
+        link_text: 'string',
+        link_uri: 'string',
+      })) {
         assert.equal(style.syntax[token].color, palette[role]);
       }
-      for (const [index, color] of [palette.background, palette.error, palette.string, palette.function, palette.type, palette.keyword, palette.string, palette.foreground].entries()) {
-        const ansiName = ['black','red','green','yellow','blue','magenta','cyan','white'][index];
+      for (const [index, color] of [
+        palette.background,
+        palette.error,
+        palette.string,
+        palette.function,
+        palette.type,
+        palette.keyword,
+        palette.string,
+        palette.foreground,
+      ].entries()) {
+        const ansiName = ['black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white'][
+          index
+        ];
         assert.equal(style[`terminal.ansi.${ansiName}`], color);
       }
       // Compare with the actual landing-page CSS, not just the palette object.
-      const preview = previewCss.match(new RegExp(`\\.theme-${mode}\\{([^}]+)\\}`))[1];
-      for (const [cssRole, role] of Object.entries({ bg: 'background', surface: 'surface', fg: 'foreground', muted: 'muted', string: 'string', function: 'function', keyword: 'keyword', type: 'type', select: 'selection' })) {
-        assert.ok(preview.includes(`--code-${cssRole}:${palette[role]}`), `${mode}: preview ${cssRole} must match exports`);
+      const previewMatch = previewCss.match(new RegExp(`\\.theme-${mode}\\s*\\{([^}]+)\\}`));
+      assert.ok(previewMatch, `${mode}: preview theme block must exist`);
+      const preview = previewMatch[1].replace(/\s+/g, '');
+      for (const [cssRole, role] of Object.entries({
+        bg: 'background',
+        surface: 'surface',
+        fg: 'foreground',
+        muted: 'muted',
+        string: 'string',
+        function: 'function',
+        keyword: 'keyword',
+        type: 'type',
+        select: 'selection',
+      })) {
+        assert.ok(
+          preview.includes(`--code-${cssRole}:${palette[role]}`),
+          `${mode}: preview ${cssRole} must match exports`,
+        );
       }
     }
     if (platform.format === 'codex') {
@@ -63,8 +159,17 @@ for (const [mode, palette] of Object.entries(palettes)) {
       assert.equal(theme.opaqueWindows, true);
       assert.deepEqual(theme.fonts, { code: null, ui: null });
       assert.ok(Number.isInteger(theme.contrast) && theme.contrast >= 0 && theme.contrast <= 100);
-      assert.deepEqual(Object.keys(theme.semanticColors).sort(), ['diffAdded', 'diffRemoved', 'skill']);
-      for (const color of [theme.accent, theme.surface, theme.ink, ...Object.values(theme.semanticColors)]) {
+      assert.deepEqual(Object.keys(theme.semanticColors).sort(), [
+        'diffAdded',
+        'diffRemoved',
+        'skill',
+      ]);
+      for (const color of [
+        theme.accent,
+        theme.surface,
+        theme.ink,
+        ...Object.values(theme.semanticColors),
+      ]) {
         assert.match(color, /^#[0-9a-fA-F]{6}$/);
       }
       assert.notEqual(theme.semanticColors.diffAdded, theme.semanticColors.diffRemoved);
@@ -72,4 +177,6 @@ for (const [mode, palette] of Object.entries(palettes)) {
     }
   }
 }
-console.log(`Both palettes pass 4.5:1 syntax contrast; downloads and instructions validated for ${platforms.length} platform entries.`);
+console.log(
+  `Both palettes pass 4.5:1 syntax contrast; downloads and instructions validated for ${platforms.length} platform entries.`,
+);

@@ -14,13 +14,21 @@ for (const property of ['og:title', 'og:description', 'og:url', 'og:image', 'og:
   assert.match(html, new RegExp(`<meta property="${property}" content="[^"]+"`));
 }
 assert.match(html, /name="twitter:card" content="summary_large_image"/);
-const structured = JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1]);
-assert.equal(structured['@graph'].find(item => item['@type'] === 'WebPage').url, `${site}/`);
+const structured = JSON.parse(
+  html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1],
+);
+assert.equal(structured['@graph'].find((item) => item['@type'] === 'WebPage').url, `${site}/`);
 const image = await sharp('dist/og/cozy-gray.jpg').metadata();
 assert.equal(image.width, 1200);
 assert.equal(image.height, 630);
-assert.match(await readFile('dist/robots.txt', 'utf8'), /Sitemap: https:\/\/cozygray.marsolab.com\/sitemap.xml/);
-assert.match(await readFile('dist/sitemap.xml', 'utf8'), /<loc>https:\/\/cozygray.marsolab.com\/<\/loc>/);
+assert.match(
+  await readFile('dist/robots.txt', 'utf8'),
+  /Sitemap: https:\/\/cozygray.marsolab.com\/sitemap.xml/,
+);
+assert.match(
+  await readFile('dist/sitemap.xml', 'utf8'),
+  /<loc>https:\/\/cozygray.marsolab.com\/<\/loc>/,
+);
 
 for (const platform of platforms) {
   const guide = await readFile(`dist/install/${platformSlug(platform)}.md`, 'utf8');
@@ -41,4 +49,6 @@ for (const platform of platforms) {
     }
   }
 }
-console.log(`Site checks passed: SEO, 1200×630 OG image, and light/dark agent resources for ${platforms.length} tools.`);
+console.log(
+  `Site checks passed: SEO, 1200×630 OG image, and light/dark agent resources for ${platforms.length} tools.`,
+);

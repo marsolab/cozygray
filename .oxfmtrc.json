@@ -1,0 +1,15 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "printWidth": 100,
+  "singleQuote": true,
+  "astro": true,
+  "ignorePatterns": [
+    ".impeccable/**",
+    ".taste-skill/**",
+    "DESIGN.md",
+    "PRODUCT.md",
+    "design/**",
+    "extensions/zed/themes/**",
+    "public/assets/**/*.json"
+  ]
+}
