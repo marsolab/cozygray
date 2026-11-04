@@ -1,7 +1,7 @@
 export type Mode = 'dark' | 'light';
 export const palettes = {
-  dark: { background: '#292827', surface: '#33312f', foreground: '#e7e2db', muted: '#aaa39b', keyword: '#f0ab91', string: '#e6c078', function: '#f2d4a5', type: '#dab0c5', error: '#f09b9b', selection: '#514941' },
-  light: { background: '#eae7e3', surface: '#dedad5', foreground: '#393430', muted: '#6e655e', keyword: '#a1432d', string: '#86600d', function: '#8b542b', type: '#904769', error: '#b1353f', selection: '#d0c5ba' }
+  dark: { background: '#292827', surface: '#33312f', foreground: '#e7e2db', muted: '#aaa39b', keyword: '#f0ab91', string: '#e6c078', function: '#f2d4a5', type: '#dab0c5', error: '#f09b9b', selection: '#514941', border: '#403d39', divider: '#403d39' },
+  light: { background: '#eae7e3', surface: '#dedad5', foreground: '#393430', muted: '#6e655e', keyword: '#a1432d', string: '#86600d', function: '#8b542b', type: '#904769', error: '#b1353f', selection: '#d0c5ba', border: '#d0c5ba', divider: '#dedad5' }
 };
 export type Platform = { name: string; detail: string; group: 'Editors' | 'Terminals' | 'More tools'; format?: string };
 export const platforms: Platform[] = [
@@ -66,8 +66,8 @@ function zedStyle(p: typeof palettes.dark) {
     background: p.background,
     'surface.background': p.surface,
     'elevated_surface.background': p.surface,
-    border: p.selection,
-    'border.variant': p.surface,
+    border: p.border,
+    'border.variant': p.divider,
     'border.focused': p.string,
     'border.selected': p.string,
     'border.transparent': '#00000000',
@@ -101,12 +101,12 @@ function zedStyle(p: typeof palettes.dark) {
     'tab.inactive_background': p.surface,
     'status_bar.background': p.surface,
     'panel.background': p.surface,
-    'panel.focused_border': p.selection,
+    'panel.focused_border': p.border,
     'panel.indent_guide': p.selection,
     'panel.indent_guide_active': p.muted,
     'panel.indent_guide_hover': p.muted,
-    'pane.focused_border': p.selection,
-    'pane_group.border': p.surface,
+    'pane.focused_border': p.border,
+    'pane_group.border': p.divider,
     'editor.background': p.background,
     'editor.foreground': p.foreground,
     'editor.gutter.background': p.background,
