@@ -55,6 +55,7 @@ export const platforms: Platform[] = [
   { name: 'Xcode', detail: 'Apple development tools', group: 'Editors' },
   { name: 'Emacs', detail: 'An extensible editor', group: 'Editors' },
   { name: 'Ghostty', detail: 'A native terminal', group: 'Terminals', format: 'ghostty' },
+  { name: 'Rex', detail: 'Terminal and multiplexer', group: 'Terminals', format: 'rex' },
   { name: 'Otty', detail: 'Native terminal and window theme', group: 'Terminals', format: 'otty' },
   { name: 'iTerm2', detail: 'Terminal for macOS', group: 'Terminals', format: 'iterm' },
   {
@@ -532,7 +533,7 @@ opacity = 1.0
       null,
       2,
     );
-  if (format === 'ghostty') {
+  if (format === 'ghostty' || format === 'rex') {
     extension = '';
     content =
       `# ${name}\nbackground = ${hex(p.background)}\nforeground = ${hex(p.foreground)}\ncursor-color = ${hex(p.string)}\nselection-background = ${hex(p.selection)}\nselection-foreground = ${hex(p.foreground)}\n` +
@@ -735,6 +736,10 @@ export function installSteps(platform: Platform, mode: Mode) {
       `Save the file to ~/.config/ghostty/themes/${n}.`,
       `Add theme = ${n} to your Ghostty configuration.`,
       `Reload the configuration to apply your palette.`,
+    ],
+    rex: [
+      `Download ${n}, then in Rex open Settings → Themes → Import Theme and select the file. Rex assigns it to the matching light or dark appearance.`,
+      `Import both variants to use Cozy Gray in both appearances. Select another theme in Settings → Themes to restore your previous appearance.`,
     ],
     otty: [
       `Download ${n}.ottytheme. In Otty, open Settings → Appearance → Themes → Import Theme and choose the Otty format, then select the downloaded file.`,
