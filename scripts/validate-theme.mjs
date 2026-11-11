@@ -24,8 +24,9 @@ for (const [mode, palette] of Object.entries(palettes)) {
     assert.ok(installSteps(platform, mode).length > 0, `${platform.name}: missing instructions`);
     if (file.filename.endsWith('.json')) JSON.parse(file.content);
     if (!platform.format) assert.match(file.content, /native port not yet implemented/);
-    if (platform.format === 'ghostty')
+    if (platform.format === 'ghostty' || platform.format === 'rex')
       assert.equal((file.content.match(/^palette = /gm) || []).length, 16);
+    if (platform.format === 'rex') assert.equal(file.content, buildTheme('ghostty', mode).content);
     if (platform.format === 'tmux') {
       const options = [...file.content.matchAll(/^set -g ([a-z-]+)/gm)].map((match) => match[1]);
       assert.deepEqual(options, [

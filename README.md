@@ -15,7 +15,7 @@ Back up your existing configuration before applying a theme. The website also of
 ### Available formats
 
 - **Editors:** VS Code and derivatives, Zed, Neovim, Vim, and Helix.
-- **Terminals:** Ghostty, Otty, iTerm2, Windows Terminal, Warp, WezTerm, and Alacritty.
+- **Terminals:** Ghostty, Rex, Otty, iTerm2, Windows Terminal, Warp, WezTerm, and Alacritty.
 - **Other tools:** tmux, Zellij, Starship, Zsh, eza, Obsidian (CSS snippet), OpenAI Codex Desktop, Herdr, and OpenCode.
 
 JetBrains, Xcode, Emacs, Moshi, bat, and Home Assistant are marked **Planned** in the catalog. Their downloads are palette references, not installable themes. Available exports may require manual configuration; see each app's installation guide on the website.
@@ -32,6 +32,10 @@ To install both appearances from this repository:
 4. Open **Theme Selector** and choose either appearance.
 
 If you previously installed standalone Cozy Gray theme files, move them to a backup directory before installing the extension so they do not override its themes.
+
+### Rex
+
+Download both Rex theme files, then import each in **Settings → Themes → Import Theme**. Rex assigns each palette to its matching light or dark appearance. Choose another theme in the same settings to undo the change.
 
 ### Otty
 
